@@ -5,18 +5,21 @@ using UnityEngine.InputSystem;
 
 public class Movment : MonoBehaviour
 {
+    [Header("Player Controlls")]
     //this is the input maneger
+
     public InputAction PlayerMovment;
     Vector2 MoveDir = Vector2.zero;
 
     //player speed
-    private float speed = 5f;
+    public float speed = 5f;
 
     //rigibody
     [SerializeField] private Rigidbody2D rb;
     
     //animation
     //public Animator Animator;
+
 
     private void OnEnable()
     {
@@ -33,8 +36,6 @@ public class Movment : MonoBehaviour
     {
         //read player input
         MoveDir = PlayerMovment.ReadValue<Vector2>();
-        //Animator.SetFloat("Speed", Mathf.Abs(rb.velocity.x)); 
-        //Animator.SetFloat("Speed2", Mathf.Abs(rb.velocity.y));        
 
     }
 

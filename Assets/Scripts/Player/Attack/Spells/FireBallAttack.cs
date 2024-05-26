@@ -1,20 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class Attack : MonoBehaviour
+public class FireBallAttack : MonoBehaviour
 {
-    //add new input system
+    [Header("General stats")]
     public Transform FirePoint;
+    public float Speed;
+    public int ManaCost;
+
+    [Header("Ball Attack")]
     public GameObject Ball;
     public GameObject explosionPrefab;
-    public float Speed;
-    
+
+
+
+    // Update is called once per frame
     void Update()
     {
+        //ball attacks
         //rigistere input
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -37,9 +43,13 @@ public class Attack : MonoBehaviour
 
             // add the explodion prefab and destroy bullet
             Invoke("ReplaceBullet", Vector2.Distance(transform.position, mousePosition) / Speed);
-            //Destroy(bullet, Vector2.Distance(transform.position, mousePosition) / Speed+0.01f);
+
+            //mana cost
+            PlayerStats.Mana -= ManaCost;
+
         }
     }
+
     void ReplaceBullet()
     {
         // Find the bullet and replace it with explosion prefab
