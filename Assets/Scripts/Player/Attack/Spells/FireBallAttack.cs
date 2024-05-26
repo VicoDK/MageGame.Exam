@@ -20,7 +20,7 @@ public class FireBallAttack : MonoBehaviour
     {
         //ball attacks
         //rigistere input
-        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost && Attack.AttackReady)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -46,6 +46,8 @@ public class FireBallAttack : MonoBehaviour
 
             //mana cost
             PlayerStats.Mana -= ManaCost;
+
+            StartCoroutine(Attack.AttackDelay());
 
         }
     }

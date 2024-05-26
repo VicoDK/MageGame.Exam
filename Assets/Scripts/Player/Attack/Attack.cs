@@ -10,21 +10,23 @@ public class Attack : MonoBehaviour
     [Header("Fire Point")]
     public Transform FirePoint;
 
-    [Header("Prefabs")]
-    [Header("Base Attack")]
-    public GameObject BaseAttack;
 
     [Header("Meleattack")]
     public GameObject Sword;
 
-    [Header("Projectile Speed")]
+    [Header("Basic attack")]
     public float Speed;
-    
+    public GameObject BaseAttack;
+    static public float Delay = 0.2f; 
+    static public bool AttackReady = true;
+
     void Update()
     {
         //base attack
-        if (Input.GetButtonDown("Fire1"))
+        //here we check after input and if attack is ready
+        if (Input.GetButtonDown("Fire1") && AttackReady)
         {
+
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
             Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -44,8 +46,25 @@ public class Attack : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
 
+            //here we start a IEnumerator for the timer
+            StartCoroutine(AttackDelay());
+
         }
 
     }
+
+    //this is the IEnumerator for timer
+    static public IEnumerator AttackDelay ()
+    {
+        //attack is not ready to go now
+        AttackReady = false;
+        //here we wait some time
+        yield return new WaitForSeconds(Delay);
+        //now attack is ready
+        AttackReady = true;
+          
+    }
+
+
 
 }
