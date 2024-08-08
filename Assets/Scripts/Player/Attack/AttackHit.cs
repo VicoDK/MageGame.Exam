@@ -7,18 +7,17 @@ public class AttackHit : MonoBehaviour
     [Header("Prefab")]
     public GameObject explosionPrefab;
 
+    private bool hasExploded = false; // Add a boolean flag
 
-    //check if it hit anything and it is not the player
+    // Check if it hit anything and it is not the player
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
-        if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet"))
+        if (!hasExploded && (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Wall"))) 
         {
-            //make explosion and deleting magic ball
+            // Make explosion and deleting magic ball
             Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
             Destroy(gameObject);
+            hasExploded = true; // Set the flag to true
         }
-
-        
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class FireBallAttack : MonoBehaviour
@@ -8,6 +9,8 @@ public class FireBallAttack : MonoBehaviour
     public Transform FirePoint;
     public float Speed;
     public int ManaCost;
+    private GameObject bullet;
+
 
     [Header("Ball Attack")]
     public GameObject Ball;
@@ -20,7 +23,7 @@ public class FireBallAttack : MonoBehaviour
     {
         //ball attacks
         //rigistere input
-        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost && Attack.AttackReady)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost && Attack.AttackReady && !PlayerStats.Shopping)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -31,7 +34,7 @@ public class FireBallAttack : MonoBehaviour
             Vector2 fireDir = (mousePosition - transform.position).normalized;
 
             // Instantiate bullet at fire point
-            GameObject bullet = Instantiate(Ball, FirePoint.position, Quaternion.identity);
+            bullet = Instantiate(Ball, FirePoint.position, Quaternion.identity);
 
             // Rotate bullet towards mouse position
             float angle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
@@ -40,6 +43,7 @@ public class FireBallAttack : MonoBehaviour
             // Add force to the bullet
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
+
 
             // add the explodion prefab and destroy bullet
             Invoke("ReplaceBullet", Vector2.Distance(transform.position, mousePosition) / Speed);
@@ -55,12 +59,13 @@ public class FireBallAttack : MonoBehaviour
     void ReplaceBullet()
     {
         // Find the bullet and replace it with explosion prefab
-        GameObject bullet = GameObject.FindGameObjectWithTag("Bullet");
+        //GameObject bullet = GameObject.FindGameObjectWithTag("Bullet");
         if (bullet != null)
         {
-            // Instantiate explosion prefab at bullet position
+            //Instantiate explosion prefab at bullet position
             Instantiate(explosionPrefab, bullet.transform.position, Quaternion.identity);
             Destroy(bullet);
         }
+
     }
 }

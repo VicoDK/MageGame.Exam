@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,22 +8,44 @@ public class BasicAttack : MonoBehaviour
 
     [Header("Values")]
     public float Damage;
+    public String itself;
 
     //check if it hit anything and it is not the player
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        //here we check if it doesn't hit itself or a bullet or a wall 
+        if(!collision.gameObject.CompareTag(itself) && !collision.gameObject.CompareTag("Bullet") && !collision.gameObject.CompareTag("Wall") && !collision.gameObject.CompareTag("DontHit")) 
+        {
+            //here we what it hits 
+            if (itself == "Player")
+            {
+                EnemyHealth enemyHealth = collision.GetComponent<EnemyHealth>(); //take the health script
+                if (enemyHealth != null) //if there is non do nothing
+                {
+                    enemyHealth.TakeDamage(Damage, false);
+                }
 
-        if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Bullet") && !collision.gameObject.CompareTag("Wall"))
-        {
-            //make explosion and deleting magic ball
-            collision.GetComponent<EnemyHealth>().TakeDamage(Damage, false);
-            Destroy(gameObject);
-        }
-        else if(collision.gameObject.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
+            }
+            else if (itself == "Enemy")
+            {
+                PlayerStats playerStats = collision.GetComponent<PlayerStats>();
+                if (playerStats != null)
+                {
+                    playerStats.TakeDamage(Damage);
+                }
+            }
             
+
+            Destroy(gameObject); //destroy ball
         }
+        else if(collision.gameObject.CompareTag("Wall")) // if its hits a wall
+        {
+            Destroy(gameObject); //destroy ball
+       
+        }
+   
+  
+        
         
     }
 }

@@ -13,12 +13,15 @@ public class Movment : MonoBehaviour
 
     //player speed
     public float speed = 5f;
+    public float RollSpeed = 10f;
 
     //rigibody
     [SerializeField] private Rigidbody2D rb;
     
     //animation
     //public Animator Animator;
+
+    
 
 
     private void OnEnable()
@@ -37,11 +40,21 @@ public class Movment : MonoBehaviour
         //read player input
         MoveDir = PlayerMovment.ReadValue<Vector2>();
 
+        if (Input.GetButton("Roll"))
+        {
+            rb.AddForce(MoveDir * RollSpeed);
+            Debug.Log("Roll");
+        }
+
     }
 
     void FixedUpdate()
     {
-        //move player
-        rb.velocity = new Vector2(MoveDir.x * speed, MoveDir.y * speed);
+        if (!PlayerStats.Shopping) 
+        {
+            //move player
+            rb.velocity = new Vector2(MoveDir.x * speed, MoveDir.y * speed);
+        }
+
     }
 }

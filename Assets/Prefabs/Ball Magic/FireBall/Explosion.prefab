@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Time: 0.12
-  Damage: 50
+  Damage: 25
   BurningEffect: 1
   FrozenEffect: 0
   WetEffect: 0

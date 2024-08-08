@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
     {
         //base attack
         //here we check after input and if attack is ready
-        if (Input.GetButtonDown("Fire1") && AttackReady)
+        if (Input.GetButtonDown("Fire1") && AttackReady && !PlayerStats.Shopping)
         {
 
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"

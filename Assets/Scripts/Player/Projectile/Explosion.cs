@@ -41,7 +41,7 @@ public class Explosion : MonoBehaviour
             //here we find a script whit the name EnemyHealth and  the function TakeDamage and give it our value Damage
             collision.GetComponent<EnemyHealth>().TakeDamage(Damage, LightingMagic);
             
-            //her we check which effect to give
+            //here we check which effect to give
             if(BurningEffect)
             {
                 collision.GetComponent<EnemyHealth>().Bruning();
@@ -62,7 +62,7 @@ public class Explosion : MonoBehaviour
         }
         
     }
-    private IEnumerator Explode ()
+    private IEnumerator Explode()
     {
         //here we wait some seconds
         yield return new WaitForSeconds(Time);

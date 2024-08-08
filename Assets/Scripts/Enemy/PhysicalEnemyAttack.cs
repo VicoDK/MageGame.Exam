@@ -9,6 +9,7 @@ public class PhysicalEnemyAttack : MonoBehaviour
     public float AttackSpeed;
     private bool AttackReady = true;
 
+
     //check if colision
     public void OnTriggerStay2D(Collider2D collision)
     {

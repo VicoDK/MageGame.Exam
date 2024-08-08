@@ -3,19 +3,30 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerStats : MonoBehaviour
 {
     [Header("Player Stats")]
+    
+    
+    
+    [Header("Player purse")]
+    public static float CoinAmount; 
+    static public int Coin;
+    public TMP_Text CoinAmountDisplay;
+    
+
     [Header("Health")]
-    public bool Alive;
     public float _Health;
     public static float Health;
+    static public bool Alive = true;
+    
     private float MaxHealth;
     public float _HealthRegn;
     public static float HealthRegn;
     public float HealthRegnDelay;
-    private bool AlowHeal = true;
+    private bool AllowHeal = true;
 
     [Header("UI")]
     public GameObject DeathMenu;
@@ -31,6 +42,11 @@ public class PlayerStats : MonoBehaviour
     public Image HealthBar;
     public Image ManaBar;
 
+
+    public static bool Shopping;
+
+ 
+
     void Start()
     {
         //here we set the static variables to the orther variabels
@@ -40,6 +56,9 @@ public class PlayerStats : MonoBehaviour
         Mana = _Mana;
         MaxMana = _Mana;
         ManaRegn = _ManaRegn;
+        Shopping = false;
+
+        
     }   
 
     void FixedUpdate()
@@ -49,6 +68,7 @@ public class PlayerStats : MonoBehaviour
         _HealthRegn = HealthRegn;
         _Mana = Mana;
         _ManaRegn = ManaRegn;
+        CoinAmount = Coin;
 
 
         //this is for mana regn
@@ -62,7 +82,7 @@ public class PlayerStats : MonoBehaviour
         {
             Alive = false;
         }
-        else if (MaxHealth > Health && AlowHeal)
+        else if (MaxHealth > Health && AllowHeal)
         {
             Health += HealthRegn;
         }
@@ -80,10 +100,17 @@ public class PlayerStats : MonoBehaviour
 
 
         //delete before realese
+        //
+        //
+        //
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             Mana = MaxMana;
         }
+
+
+        //for updating layout with coins 
+        CoinAmountDisplay.text = (CoinAmount + " Coins");
     }
 
     //function for taking damage
@@ -103,11 +130,11 @@ public class PlayerStats : MonoBehaviour
     private IEnumerator Attacks ()
     {
         //stops the player from healing
-        AlowHeal = false;
+        AllowHeal = false;
         //here we wait some seconds
         yield return new WaitForSeconds(HealthRegnDelay);
         //starts the players healing
-        AlowHeal = true;
+        AllowHeal = true;
         
     }
 

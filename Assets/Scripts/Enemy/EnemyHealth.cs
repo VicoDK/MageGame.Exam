@@ -31,14 +31,16 @@ public class EnemyHealth : MonoBehaviour
 
     //function for taking damage
     public void TakeDamage(float Damage, bool LightingMagic)
-    {
+    {   
+        //check if enemy is wet and there is used LightingMagic 
         if (WetEffect && LightingMagic)
         {
-            //take damage
+            //take damage more damage
             Health -= Damage*LightingOnWetEnemy;
         }
         else 
         {
+            //take damage
             Health -= Damage;
         }
 
@@ -48,14 +50,15 @@ public class EnemyHealth : MonoBehaviour
     //function for burning enemy
     public void Bruning()
     {
-        
+        //if enemy is not wet or forzen 
         if (!WetEffect && !FrozenEffect)
         {
+            //enemy is burning 
             BurningEffect = true;
         }
         else
         {
-            
+            //if they were wet or frozen, now they are dry
             WetEffect = false;
             FrozenEffect = false;
         }
@@ -65,6 +68,7 @@ public class EnemyHealth : MonoBehaviour
     //function to frezze the enemy
     public void Frozen()
     {
+        //enemy is frozen  (but not wet)  (but not burning)
         FrozenEffect = true;
         WetEffect = false;
         BurningEffect = false;
@@ -73,16 +77,18 @@ public class EnemyHealth : MonoBehaviour
     //function for making the enemy wet
     public void Wet()
     {
+        //if enemy is not burning or forzen 
         if (!BurningEffect && !FrozenEffect)
         {
+            //make them wet
             WetEffect = true;
         }
-        else if (BurningEffect)
+        else if (BurningEffect) //if burning dry them
         {
             BurningEffect = false;
 
         }
-        else if (FrozenEffect)
+        else if (FrozenEffect) // frozen do nothing
         {
             //Do nothing
         }
@@ -95,6 +101,7 @@ public class EnemyHealth : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
 
         //here we see what effect we should do
         if (BurningEffect)
@@ -119,20 +126,23 @@ public class EnemyHealth : MonoBehaviour
 
 
         }
-        else if (FrozenEffect)
+        else if (FrozenEffect) 
         {
+            //make them change color to frozen
             GetComponent<SpriteRenderer>().material.color = new Color (0, 146, 241, 255); 
-            Debug.Log("frozen");
+
         }
         else if (WetEffect)
         {
+            //make them change color to wet
             GetComponent<SpriteRenderer>().material.color = new Color (0, 0, 255, 255); 
-            Debug.Log("wet");
+
         }
         else if (!BurningEffect && !FrozenEffect && !WetEffect)
         {
+            //make them change color to normal
             GetComponent<SpriteRenderer>().material.color = new Color (255, 255, 255, 255); 
-            //Debug.Log("normal");
+
 
         }
     }
