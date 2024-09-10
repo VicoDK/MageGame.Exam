@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class EnemyHealth : MonoBehaviour
     
     [Header("Stats")]
     public float Health = 100;
+
+    private float MaxHealth;
 
     //Generald info
     private bool BurningEffect;
@@ -27,6 +30,8 @@ public class EnemyHealth : MonoBehaviour
     public int BurnEffectLength;
     private float Burntimestamp1;
     private int BurnTicks;
+
+    public Image HealthBar;
 
 
     //function for taking damage
@@ -96,6 +101,8 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
+
+
         //check if enemy is dead
         if (Health < 0 || Health == 0)
         {
@@ -145,5 +152,17 @@ public class EnemyHealth : MonoBehaviour
 
 
         }
+    }
+
+    void FixedUpdate()
+    {
+        HealthBar.fillAmount = Health / MaxHealth;
+
+
+    }
+
+    void Start()
+    {
+        MaxHealth = Health;
     }
 }

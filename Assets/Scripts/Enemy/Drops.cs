@@ -12,9 +12,11 @@ public class Drops : MonoBehaviour
 
     //max gold drop for enemy
     public int MaxCoins;
+    public int MaxMobLoot;
 
     //bone, slime or something else
     public GameObject MobDropItem;
+
 
     //rare stuff like skull, gems or something else
     public GameObject[] RareDropItem;
@@ -40,8 +42,19 @@ public class Drops : MonoBehaviour
           Instantiate(coin, transform.position, Quaternion.identity);
         }
 
+        //random amount of gold
+        int MobLoot = Random.Range(1, MaxMobLoot);
+
+        //runs a loop that drops coins
+        for(int i = 0; i < MobLoot; i++)
+        {
+          //instantiates gold at the enemy's position
+          Instantiate(MobDropItem, transform.position, Quaternion.identity);
+        }
+
         //is for seeing if item shuold drop
         int DropRate = Random.Range(1, 100);
+        Debug.Log(DropRate);
 
         //checks if the drop rate is less than the rare drop rate
         if (DropRate < RareDropRate)

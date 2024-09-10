@@ -32,6 +32,7 @@ public class Shop : MonoBehaviour
         {
             ShopPromt.SetActive(false); //deactivates shop promt
             InRange = false; //player ind range false
+
         }
     }
 
@@ -40,6 +41,7 @@ public class Shop : MonoBehaviour
         if (Input.GetButton("Interact") && InRange) //if pressed Interact and in rang
         {   
             ShopMenu.SetActive(true); // activate shop
+
         }
     }
 }
