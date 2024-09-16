@@ -5,8 +5,8 @@ using UnityEngine;
 public class UITestHelp : MonoBehaviour
 {
 
-    public GameObject Enemy;
-    public Transform SpawnLocation;
+    public GameObject enemy;
+    public Transform spawnLocation;
 
     public void UseCoins()
     {
@@ -23,6 +23,6 @@ public class UITestHelp : MonoBehaviour
 
     public void SpawnEnemy()
     {
-        Instantiate(Enemy,SpawnLocation);
+        Instantiate(enemy,spawnLocation);
     }
 }

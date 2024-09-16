@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using UnityEditor;
 using UnityEngine;
 
 public class BasicMageAttack : MonoBehaviour
@@ -15,6 +16,8 @@ public class BasicMageAttack : MonoBehaviour
     [Header("Ball Attack")]
     public GameObject Ball;
 
+
+
     
     // Update is called once per frame
     void Start()
@@ -22,14 +25,15 @@ public class BasicMageAttack : MonoBehaviour
         //find player
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         // start funktion
-        StartCoroutine(Attacks());
+        InvokeRepeating("Attacks", 1, 1);
 
     }
 
-    IEnumerator Attacks()
+    void Attacks()
     {
+        RaycastHit2D Hit = Physics2D.Linecast(FirePoint.position, Player.position);
         //check if there is a player
-        if (Player != null)
+        if (Player != null && Hit.collider.name == "PlayerBody")
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -50,12 +54,12 @@ public class BasicMageAttack : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
 
-            //wait some seconds
-            yield return new WaitForSeconds(Timer);
 
-            //Start function all over again
-            StartCoroutine(Attacks());
         }
+
+
+        
+        
         
     }
 }

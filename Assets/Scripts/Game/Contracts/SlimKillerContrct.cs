@@ -10,12 +10,12 @@ public class SlimKillerContrct : MonoBehaviour
 
     void Start()
     {
-        StartSlimeKillCount = EnemyKillStats.SlimesKilled; //to track
+        StartSlimeKillCount = EnemyKillStats.slimesKilled; //to track
     }
 
     void FixedUpdate()
     {
-        if (EnemyKillStats.SlimesKilled >= 5 + StartSlimeKillCount) //checks if player got enough kills
+        if (EnemyKillStats.slimesKilled >= 5 + StartSlimeKillCount) //checks if player got enough kills
         {
             PlayerStats.Coin += Prize; //gives prize
             Destroy(this); //destroys contract

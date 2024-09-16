@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class SlimePickup : MonoBehaviour
 {
-     //speed of coin when dropped
-    public float Speed;
+    //speed of coin when dropped
+    public float speed;
 
     //direction and angle of coin when dropped
     private Vector2 fireDir;
@@ -17,14 +17,14 @@ public class SlimePickup : MonoBehaviour
         fireDir.y = Random.Range(-3f, 3f);
         fireDir.x = Random.Range(-3f, 3f);
       
-        //calculate the angel to fire the coind
+        //calculate the angel to fire the coin
         float angle = Mathf.Atan2(fireDir.y+2f, fireDir.x+ 2f) * Mathf.Rad2Deg; 
         //Change the dir of the coins
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // get the rb and Add force to the coin
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
+        rb.AddForce(fireDir * speed, ForceMode2D.Impulse);
 
 	}
 

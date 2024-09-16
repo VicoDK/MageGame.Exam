@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class EnemyKillTracker : MonoBehaviour
 {
-    public String EnemyType; //name of enemy
+    public String enemyType; //name of enemy
 
     void OnDestroy() //runs when destoyed
     {
@@ -15,10 +15,10 @@ public class EnemyKillTracker : MonoBehaviour
       if(gameObject.scene.isLoaded) //safty
       {
         
-        switch (EnemyType)//checks enemy types
+        switch (enemyType)//checks enemy types
         {
         case "Slime":
-            EnemyKillStats.SlimesKilled++; //slime killed therefore slimeskilled start plused 
+            EnemyKillStats.slimesKilled++; //slime killed therefore slimeskilled start plused 
             break;
 /*        case 4:
             
