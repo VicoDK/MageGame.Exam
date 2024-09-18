@@ -10,6 +10,8 @@ public class Coin : MonoBehaviour
 
     //direction and angle of coin when dropped
     public Vector2 fireDir;
+    PlayerStats PlayerStat;
+
 
 
 	void Start () 
@@ -27,17 +29,24 @@ public class Coin : MonoBehaviour
         Rigidbody2D rb = GetComponent<Rigidbody2D>();
         rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
 
+        PlayerStat = GetComponent<PlayerStats>();
+
 	}
 
     //colliding with something
-    void OnTriggerEnter2D(Collider2D collision)
+void OnTriggerEnter2D(Collider2D collision)
+{
+    //if player
+    if (collision.gameObject.CompareTag("Player"))
     {
-        //if player
-        if(collision.gameObject.CompareTag("Player"))
+        // Get the PlayerStats component from the player object
+        PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
+        if (playerStats != null)
         {
-            //Give player coins and destroy coin
-            PlayerStats.Coin++;
+            // Give player coins and destroy coin
+            playerStats.Coin++;
             Destroy(gameObject);
         }
     }
+}
 }

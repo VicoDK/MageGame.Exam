@@ -8,10 +8,10 @@ public class BasicMageAttack : MonoBehaviour
 {
     //generald stats for basic attack
     [Header("General stats")]
-    public Transform Player;
+    private Transform Player;
     public Transform FirePoint;
     public float Speed;
-    public float Timer;
+    public float AttackSpeed;
 
     [Header("Ball Attack")]
     public GameObject Ball;
@@ -25,7 +25,7 @@ public class BasicMageAttack : MonoBehaviour
         //find player
         Player = GameObject.FindGameObjectWithTag("Player").transform;
         // start funktion
-        InvokeRepeating("Attacks", 1, 1);
+        InvokeRepeating("Attacks", 1, AttackSpeed);
 
     }
 

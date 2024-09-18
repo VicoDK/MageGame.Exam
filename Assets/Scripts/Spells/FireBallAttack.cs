@@ -16,14 +16,21 @@ public class FireBallAttack : MonoBehaviour
     public GameObject Ball;
     public GameObject explosionPrefab;
 
+    PlayerStats PlayerStat;
+    Attack attack;
 
+    private void Start()
+    {
+        PlayerStat = GetComponent<PlayerStats>();
+        attack = GetComponent<Attack>();
+    }
 
     // Update is called once per frame
     void Update()
     {
         //ball attacks
         //rigistere input
-        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStats.Mana >= ManaCost && Attack.AttackReady && !PlayerStats.Shopping)
+        if (Input.GetKeyDown(KeyCode.Alpha1) && PlayerStat.Mana >= ManaCost && attack.AttackReady && !PlayerStat.Shopping)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -49,9 +56,9 @@ public class FireBallAttack : MonoBehaviour
             Invoke("ReplaceBullet", Vector2.Distance(transform.position, mousePosition) / Speed);
 
             //mana cost
-            PlayerStats.Mana -= ManaCost;
+            PlayerStat.Mana -= ManaCost;
 
-            StartCoroutine(Attack.AttackDelay());
+            StartCoroutine(attack.AttackDelay());
 
         }
     }

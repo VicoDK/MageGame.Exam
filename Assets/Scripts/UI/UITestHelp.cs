@@ -8,11 +8,18 @@ public class UITestHelp : MonoBehaviour
     public GameObject enemy;
     public Transform spawnLocation;
 
+    PlayerStats PlayerStat;
+
+    private void Start()
+    {
+        PlayerStat = GetComponent<PlayerStats>();
+    }
+
     public void UseCoins()
     {
-        if (PlayerStats.Coin > 10)
+        if (PlayerStat.Coin > 10)
         {
-            PlayerStats.Coin -= 10;
+            PlayerStat.Coin -= 10;
         }
         else
         {

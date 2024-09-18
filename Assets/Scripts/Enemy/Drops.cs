@@ -54,7 +54,6 @@ public class Drops : MonoBehaviour
 
         //is for seeing if item shuold drop
         int DropRate = Random.Range(1, 100);
-        Debug.Log(DropRate);
 
         //checks if the drop rate is less than the rare drop rate
         if (DropRate < RareDropRate)

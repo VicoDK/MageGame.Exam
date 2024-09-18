@@ -1657,10 +1657,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc6d03eb2e2c1754aa5bd10f0caf7c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 570141366}
   FirePoint: {fileID: 1739723195916629893}
   Speed: 8
-  Timer: 1
+  AttackSpeed: 10
   Ball: {fileID: 8380647616341837268, guid: 45eab6ac4aabf3445b4039704555a242, type: 3}
 --- !u!114 &467526098
 MonoBehaviour:
@@ -2294,7 +2293,7 @@ MonoBehaviour:
       m_Action: Player Movment
       m_Flags: 8
     m_Flags: 0
-  speed: 5
+  speed: 180
   RollSpeed: 30
   rb: {fileID: 570141369}
 --- !u!114 &570141371
@@ -2313,6 +2312,8 @@ MonoBehaviour:
   Sword: {fileID: 9148675580946371985, guid: 7448ab64cfcd082478dcbae138590041, type: 3}
   Speed: 30
   BaseAttack: {fileID: 8380647616341837268, guid: 3ded4a9125822474582bbad5df25b988, type: 3}
+  Delay: 0.2
+  AttackReady: 1
 --- !u!114 &570141372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2325,15 +2326,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3017f75c34a9f4295e58b788007c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Coin: 0
   CoinAmountDisplay: {fileID: 1030595592}
-  _Health: 100
-  _HealthRegn: 1
+  Health: 100
+  Alive: 1
+  HealthRegn: 10
   HealthRegnDelay: 1
   DeathMenu: {fileID: 57011749}
-  _Mana: 100
-  _ManaRegn: 1
+  Mana: 100
+  ManaRegn: 10
   HealthBar: {fileID: 957349814}
   ManaBar: {fileID: 1920784474}
+  Shopping: 0
 --- !u!114 &570141373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4425,6 +4429,7 @@ MonoBehaviour:
   PlayerUI: {fileID: 1047487411}
   Coins: {fileID: 625505793}
   Script: {fileID: 1589845836}
+  PlayerStat: {fileID: 0}
 --- !u!1 &1387538160
 GameObject:
   m_ObjectHideFlags: 0
@@ -5028,6 +5033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ef503d16e14cf844bdcf68db37f9f17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimesKilled: 0
 --- !u!1 &1600808365
 GameObject:
   m_ObjectHideFlags: 0
@@ -7133,7 +7139,6 @@ GameObject:
   - component: {fileID: 9112633204357327102}
   - component: {fileID: 3275058632670866407}
   - component: {fileID: 982637261815072616}
-  - component: {fileID: 9112633204357327103}
   m_Layer: 6
   m_Name: Dummy
   m_TagString: Enemy
@@ -7159,21 +7164,6 @@ MonoBehaviour:
   BurnTimer: 2
   BurnEffectLength: 5
   HealthBar: {fileID: 640020379}
---- !u!114 &9112633204357327103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8308547774628737903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3aace2c2339fb0418cccf4ddc70a359, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 570141366}
-  speed: 5
-  agent: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

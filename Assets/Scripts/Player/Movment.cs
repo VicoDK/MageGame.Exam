@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
 
 public class Movment : MonoBehaviour
 {
@@ -12,8 +13,8 @@ public class Movment : MonoBehaviour
     Vector2 MoveDir = Vector2.zero;
 
     //player speed
-    public float speed = 5f;
-    public float RollSpeed = 10f;
+    public float speed;
+    public float RollSpeed;
 
     //rigibody
     [SerializeField] private Rigidbody2D rb;
@@ -22,7 +23,12 @@ public class Movment : MonoBehaviour
     //public Animator Animator;
 
     
+    PlayerStats PlayerStat;
 
+    private void Start()
+    {
+        PlayerStat = GetComponent<PlayerStats>();
+    }
 
     private void OnEnable()
     {
@@ -46,15 +52,12 @@ public class Movment : MonoBehaviour
             Debug.Log("Roll");
         }
 
-    }
-
-    void FixedUpdate()
-    {
-        if (!PlayerStats.Shopping) 
+        if (!PlayerStat.Shopping) 
         {
             //move player
-            rb.velocity = new Vector2(MoveDir.x * speed, MoveDir.y * speed);
+            rb.velocity = new Vector2(MoveDir.x * speed * Time.deltaTime, MoveDir.y * speed * Time.deltaTime);
         }
 
     }
+
 }

@@ -9,6 +9,13 @@ public class EnemyKillTracker : MonoBehaviour
 {
     public String enemyType; //name of enemy
 
+    EnemyKillStats EnemyKillStats;
+
+    private void Start()
+    {
+        EnemyKillStats = GetComponent<EnemyKillStats>();
+    }
+
     void OnDestroy() //runs when destoyed
     {
 

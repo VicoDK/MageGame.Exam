@@ -17,14 +17,23 @@ public class Attack : MonoBehaviour
     [Header("Basic attack")]
     public float Speed;
     public GameObject BaseAttack;
-    static public float Delay = 0.2f; 
-    static public bool AttackReady = true;
+    public float Delay = 0.2f; //Static
+    public bool AttackReady = true; //static
+    PlayerStats PlayerStat;
+
+    private void Start()
+    {
+        PlayerStat = GetComponent<PlayerStats>();
+    }
+    
+
+
 
     void Update()
     {
         //base attack
         //here we check after input and if attack is ready
-        if (Input.GetButtonDown("Fire1") && AttackReady && !PlayerStats.Shopping)
+        if (Input.GetButtonDown("Fire1") && AttackReady && !PlayerStat.Shopping)
         {
 
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
@@ -54,7 +63,7 @@ public class Attack : MonoBehaviour
     }
 
     //this is the IEnumerator for timer
-    static public IEnumerator AttackDelay ()
+    public IEnumerator AttackDelay ()
     {
         //attack is not ready to go now
         AttackReady = false;

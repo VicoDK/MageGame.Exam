@@ -12,19 +12,17 @@ public class PlayerStats : MonoBehaviour
     
     
     [Header("Player purse")]
-    public static float CoinAmount; 
-    static public int Coin;
+    public float Coin; //static
+
     public TMP_Text CoinAmountDisplay;
     
 
     [Header("Health")]
-    public float _Health;
-    public static float Health;
-    static public bool Alive = true;
+    public float Health; //static
+    public bool Alive = true; //static
     
     private float MaxHealth;
-    public float _HealthRegn;
-    public static float HealthRegn;
+    public float HealthRegn; //static
     public float HealthRegnDelay;
     private bool AllowHeal = true;
 
@@ -32,44 +30,30 @@ public class PlayerStats : MonoBehaviour
     public GameObject DeathMenu;
 
     [Header("Mana")]
-    public float _Mana;
-    public static float Mana;
+    public  float Mana; //static
     private float MaxMana;
-    public float _ManaRegn;
-    public static float ManaRegn;
+    public float ManaRegn; //static
 
     [Header("Mana and Health bars")]
     public Image HealthBar;
     public Image ManaBar;
 
 
-    public static bool Shopping;
+    public bool Shopping; //static
 
  
 
     void Start()
     {
-        //here we set the static variables to the orther variabels
-        Health = _Health;
-        HealthRegn = _HealthRegn;
-        MaxHealth = _Health;
-        Mana = _Mana;
-        MaxMana = _Mana;
-        ManaRegn = _ManaRegn;
         Shopping = false;
-
+        
+        MaxMana = Mana;
+        MaxHealth = Health;
         
     }   
 
     void FixedUpdate()
     {
-        //this wil allow to see the static variabels
-        _Health = Health;
-        _HealthRegn = HealthRegn;
-        _Mana = Mana;
-        _ManaRegn = ManaRegn;
-        CoinAmount = Coin;
-
 
         //this is for mana regn
         if (MaxMana > Mana && Alive)
@@ -110,7 +94,7 @@ public class PlayerStats : MonoBehaviour
 
 
         //for updating layout with coins 
-        CoinAmountDisplay.text = (CoinAmount + " Coins");
+        CoinAmountDisplay.text = (Coin + " Coins");
     }
 
     //function for taking damage

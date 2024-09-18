@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuScript : MonoBehaviour
 {
+    PlayerStats PlayerStat;
+    Attack Attack;
+
+    private void Start()
+    {
+        PlayerStat = GetComponent<PlayerStats>();
+        Attack = GetComponent<Attack>();
+    }
+
     public void Quit()
     {
         Application.Quit(); // to quit game
@@ -13,7 +22,7 @@ public class DeathMenuScript : MonoBehaviour
     public void Restart()
     {
         // Reset player stats and reload the scene
-        PlayerStats.Alive = true;
+        PlayerStat.Alive = true;
         Attack.AttackReady = true;
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);
