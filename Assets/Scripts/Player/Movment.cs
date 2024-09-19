@@ -14,7 +14,13 @@ public class Movment : MonoBehaviour
 
     //player speed
     public float speed;
+
+    //Roll
     public float RollSpeed;
+    bool canRoll = true; 
+    bool canMove = true; 
+    float currentRollTime;
+    float startRollTime = 0.3f;
 
     //rigibody
     [SerializeField] private Rigidbody2D rb;
@@ -46,17 +52,44 @@ public class Movment : MonoBehaviour
         //read player input
         MoveDir = PlayerMovment.ReadValue<Vector2>();
 
-        if (Input.GetButton("Roll"))
+        if (Input.GetButtonDown("Roll") && canRoll)
         {
-            rb.AddForce(MoveDir * RollSpeed);
+            StartCoroutine(Dash(MoveDir));
             Debug.Log("Roll");
         }
 
-        if (!PlayerStat.Shopping) 
+        if (!PlayerStat.Shopping && canMove) 
         {
             //move player
             rb.velocity = new Vector2(MoveDir.x * speed * Time.deltaTime, MoveDir.y * speed * Time.deltaTime);
         }
+
+    }
+
+
+    IEnumerator Dash(Vector2 direction)
+    {
+        canRoll = false; // When Player Dash, Player Cannot Move
+        canMove = false; // And Player Cannot Dash
+      
+        currentRollTime = startRollTime; // Reset the dash timer.
+
+        while (currentRollTime > 0f)
+        {
+            currentRollTime -= Time.deltaTime; // Lower the dash timer each frame.
+
+            direction.Normalize();
+            rb.velocity = direction * RollSpeed; // Dash in the direction that was held down.
+                                                 // No need to multiply by Time.DeltaTime here, physics are already consistent across different FPS.
+
+            yield return null; // Returns out of the coroutine this frame so we don't hit an infinite loop.
+        }
+
+        rb.velocity = new Vector2(0f, 0f); // Stop dashing.
+
+        canRoll = true;
+        canMove = true; // CHANGE --- Need to enable movement after dashing.
+
 
     }
 
