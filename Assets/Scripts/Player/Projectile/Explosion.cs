@@ -35,9 +35,9 @@ public class Explosion : MonoBehaviour
     //here we check if there is a collsion and if its the player
     public void OnTriggerEnter2D(Collider2D collision)
     {
-
         if(collision.gameObject.CompareTag("Enemy"))
         {
+            
             //here we find a script whit the name EnemyHealth and  the function TakeDamage and give it our value Damage
             collision.GetComponent<EnemyHealth>().TakeDamage(Damage, LightingMagic);
             

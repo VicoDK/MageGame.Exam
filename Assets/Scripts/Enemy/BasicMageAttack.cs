@@ -16,6 +16,8 @@ public class BasicMageAttack : MonoBehaviour
     [Header("Ball Attack")]
     public GameObject Ball;
 
+    public bool StopShot;
+
 
 
     
@@ -31,9 +33,12 @@ public class BasicMageAttack : MonoBehaviour
 
     void Attacks()
     {
+        
         RaycastHit2D Hit = Physics2D.Linecast(FirePoint.position, Player.position);
+
+
         //check if there is a player
-        if (Player != null && Hit.collider.name == "PlayerBody")
+        if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position

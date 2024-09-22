@@ -58,12 +58,16 @@ public class Movment : MonoBehaviour
             Debug.Log("Roll");
         }
 
+      
+
+    }
+
+    void FixedUpdate()
+    {
         if (!PlayerStat.Shopping && canMove) 
         {
-            //move player
-            rb.velocity = new Vector2(MoveDir.x * speed * Time.deltaTime, MoveDir.y * speed * Time.deltaTime);
+        gameObject.transform.Translate(MoveDir.x * speed , MoveDir.y * speed ,0 );
         }
-
     }
 
 
