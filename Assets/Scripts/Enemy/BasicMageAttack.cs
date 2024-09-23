@@ -17,6 +17,7 @@ public class BasicMageAttack : MonoBehaviour
     public GameObject Ball;
 
     public bool StopShot;
+    public RaycastHit2D Hit;
 
 
 
@@ -31,12 +32,14 @@ public class BasicMageAttack : MonoBehaviour
 
     }
 
+    void Update()
+    {
+        Hit = Physics2D.Linecast(FirePoint.position, Player.position); //makes a line between enemy and player
+    }
+
     void Attacks()
     {
         
-        RaycastHit2D Hit = Physics2D.Linecast(FirePoint.position, Player.position);
-
-
         //check if there is a player
         if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot)
         {

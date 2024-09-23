@@ -7,22 +7,23 @@ using System.Collections;
 
 public class AIagent : MonoBehaviour
 {
-    
-    private AIPath path;
+    [Header("AI Path")]
     [SerializeField] private float moveSpeed;
+    private AIPath path;
     private Transform target;
-
     [SerializeField] private float stopDistanceThreshold;
     private float distanceToTarget;
     [SerializeField] private float stopChasing;
+     public float EnemyKeepInMindTime;
 
-    private BasicMageAttack Scripts;
-
-    private Vector2 startPos;
-    private bool running;
+    [Header("Patrol")]
     public float patrolNewSpotTime;
-
     private GameObject PatrolSquare;
+    private bool running;
+    private Vector2 startPos;
+
+    //else 
+    private BasicMageAttack Scripts;
 
     private void Start()
     {
@@ -48,14 +49,10 @@ public class AIagent : MonoBehaviour
             Scripts.StopShot = false; //Makes the enemy shoot
 
         }
-        else if (distanceToTarget > stopChasing) //check if the player is too far away
+        else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody") //check if the player is too far away or if the player is in sight
         {
-            //path.destination = transform.position; //sets it path to its location ****
-            Scripts.StopShot = true; //stops the enemy from shooting
-            if (!running)
-            {
-                StartCoroutine(Patrol());
-            }
+            StartCoroutine(KeepPlayerInMind()); //starts a IEnumerator
+            
             
 
         }
@@ -70,6 +67,18 @@ public class AIagent : MonoBehaviour
 
 
 
+    }
+
+    IEnumerator KeepPlayerInMind()
+    {
+        yield return new WaitForSeconds(EnemyKeepInMindTime); //makes it wait a few second so the enemy keeps the player in its mind
+
+        //path.destination = transform.position; //sets it path to its location ****
+        Scripts.StopShot = true; //stops the enemy from shooting
+        if (!running)
+        {
+            StartCoroutine(Patrol());
+        }
     }
 
     IEnumerator Patrol() //makes the enemy patrol
