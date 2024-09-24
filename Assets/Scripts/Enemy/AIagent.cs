@@ -37,7 +37,6 @@ public class AIagent : MonoBehaviour
 
     void Update()
     {
-
         path.maxSpeed = moveSpeed; //Sets the max speed
 
         distanceToTarget = Vector2.Distance(transform.position, target.position); //finds the distance from enemy to player

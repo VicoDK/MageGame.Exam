@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2099208703303316352}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -217,4 +217,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162dea2cd6c14e54e8cd5047dc2b61c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  speed: 0

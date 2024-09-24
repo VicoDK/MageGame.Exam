@@ -18,6 +18,7 @@ public class BasicMageAttack : MonoBehaviour
 
     public bool StopShot;
     public RaycastHit2D Hit;
+    public bool canShoot;
 
 
 
@@ -41,7 +42,7 @@ public class BasicMageAttack : MonoBehaviour
     {
         
         //check if there is a player
-        if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot)
+        if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot && canShoot)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position

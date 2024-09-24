@@ -114,7 +114,7 @@ public class EnemyHealth : MonoBehaviour
         if (BurningEffect)
         {
             //turn player red
-            GetComponent<SpriteRenderer>().material.color = new Color (255, 0, 0, 255); 
+            GetComponent<SpriteRenderer>().color = new Color (255, 0, 0, 125); 
 
             //the enemy takes some damage every few second and counts it 
             if (Time.time >= Burntimestamp1)
@@ -136,19 +136,19 @@ public class EnemyHealth : MonoBehaviour
         else if (FrozenEffect) 
         {
             //make them change color to frozen
-            GetComponent<SpriteRenderer>().material.color = new Color (0, 146, 241, 255); 
+            GetComponent<SpriteRenderer>().color = new Color (0, 146, 241, 125); 
 
         }
         else if (WetEffect)
         {
             //make them change color to wet
-            GetComponent<SpriteRenderer>().material.color = new Color (0, 0, 255, 255); 
+            GetComponent<SpriteRenderer>().color = new Color (0, 0, 255, 125); 
 
         }
         else if (!BurningEffect && !FrozenEffect && !WetEffect)
         {
             //make them change color to normal
-            GetComponent<SpriteRenderer>().material.color = new Color (255, 255, 255, 255); 
+            GetComponent<SpriteRenderer>().color = new Color (255, 255, 255, 255); 
 
 
         }
