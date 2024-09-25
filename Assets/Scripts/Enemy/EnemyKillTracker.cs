@@ -9,11 +9,11 @@ public class EnemyKillTracker : MonoBehaviour
 {
     public String enemyType; //name of enemy
 
-    EnemyKillStats EnemyKillStats;
+    private EnemyKillStats EnemyKillStats;
 
-    private void Start()
+    void Start()
     {
-        EnemyKillStats = GetComponent<EnemyKillStats>();
+        EnemyKillStats = GameObject.Find("ContactTracker").gameObject.GetComponent<EnemyKillStats>();
     }
 
     void OnDestroy() //runs when destoyed
@@ -27,10 +27,10 @@ public class EnemyKillTracker : MonoBehaviour
         case "Slime":
             EnemyKillStats.slimesKilled++; //slime killed therefore slimeskilled start plused 
             break;
-/*        case 4:
-            
+        case "Test":
+        Debug.Log("test død");
             break;
-        case 3:
+        /*case 3:
             
             break;
         case 2:

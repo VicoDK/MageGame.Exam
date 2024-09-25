@@ -248,7 +248,7 @@ GameObject:
   - component: {fileID: 57728685}
   - component: {fileID: 57728686}
   - component: {fileID: 57728687}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 150934092}
   - component: {fileID: 150934091}
   - component: {fileID: 150934090}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -590,7 +590,7 @@ GameObject:
   - component: {fileID: 209330496}
   - component: {fileID: 209330498}
   - component: {fileID: 209330497}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -724,7 +724,7 @@ GameObject:
   - component: {fileID: 238057609}
   - component: {fileID: 238057608}
   - component: {fileID: 238057607}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -858,7 +858,7 @@ GameObject:
   - component: {fileID: 310660434}
   - component: {fileID: 310660436}
   - component: {fileID: 310660435}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: RawImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 382330085}
   - component: {fileID: 382330084}
   - component: {fileID: 382330083}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Buy 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1234,7 +1234,7 @@ GameObject:
   - component: {fileID: 434843430}
   - component: {fileID: 434843431}
   - component: {fileID: 434843432}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1368,7 @@ GameObject:
   - component: {fileID: 441877225}
   - component: {fileID: 441877227}
   - component: {fileID: 441877226}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1443,7 +1443,7 @@ GameObject:
   - component: {fileID: 443209586}
   - component: {fileID: 443209585}
   - component: {fileID: 443209584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: ShopGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1786,7 +1786,7 @@ GameObject:
   - component: {fileID: 525773492}
   - component: {fileID: 525773491}
   - component: {fileID: 525773490}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Buy 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1919,7 +1919,7 @@ GameObject:
   - component: {fileID: 557644175}
   - component: {fileID: 557644174}
   - component: {fileID: 557644176}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AktiveShopAreal
   m_TagString: DontHit
   m_Icon: {fileID: 0}
@@ -2321,7 +2321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 616952539}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Coins
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2360,7 +2360,7 @@ GameObject:
   - component: {fileID: 625505792}
   - component: {fileID: 625505794}
   - component: {fileID: 625505793}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Coin Amount
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2569,7 +2569,7 @@ GameObject:
   - component: {fileID: 730556591}
   - component: {fileID: 730556593}
   - component: {fileID: 730556592}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3057,7 +3057,7 @@ GameObject:
   - component: {fileID: 891983483}
   - component: {fileID: 891983482}
   - component: {fileID: 891983481}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3907,7 +3907,7 @@ GameObject:
   - component: {fileID: 1134707710}
   - component: {fileID: 1134707709}
   - component: {fileID: 1134707708}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Buy 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4172,7 +4172,7 @@ GameObject:
   - component: {fileID: 1270527479}
   - component: {fileID: 1270527481}
   - component: {fileID: 1270527480}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4409,7 +4409,7 @@ GameObject:
   - component: {fileID: 1323034352}
   - component: {fileID: 1323034353}
   - component: {fileID: 1323034354}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4542,7 +4542,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1357059889}
   - component: {fileID: 1357059890}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Shop Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4905,7 +4905,7 @@ GameObject:
   - component: {fileID: 1456849687}
   - component: {fileID: 1456849686}
   - component: {fileID: 1456849685}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EventSystem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5011,7 +5011,7 @@ GameObject:
   - component: {fileID: 1514659027}
   - component: {fileID: 1514659026}
   - component: {fileID: 1514659025}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: buy 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5144,7 +5144,7 @@ GameObject:
   - component: {fileID: 1589845836}
   - component: {fileID: 1589845837}
   m_Layer: 0
-  m_Name: Contact Tracker
+  m_Name: ContactTracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5377,7 +5377,7 @@ GameObject:
   - component: {fileID: 1670712124}
   - component: {fileID: 1670712123}
   - component: {fileID: 1670712122}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

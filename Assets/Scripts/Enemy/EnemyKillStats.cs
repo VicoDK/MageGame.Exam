@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EnemyKillStats : MonoBehaviour
 {
-    public int slimesKilled; //tracks slimes killed (Static)
+    public int slimesKilled; //tracks slimes killed 
 }
