@@ -58,6 +58,7 @@ public class Movment : MonoBehaviour
             Debug.Log("Roll");
         }
 
+        Flip();
       
 
     }
@@ -94,6 +95,21 @@ public class Movment : MonoBehaviour
         canRoll = true;
         canMove = true; // CHANGE --- Need to enable movement after dashing.
 
+
+    }
+
+    void Flip()
+    {
+
+        if (MoveDir.x < 0)
+        {
+            gameObject.transform.localScale = new Vector3(-1,1,1);
+        }
+        else if (MoveDir.x > 0)
+        {
+            gameObject.transform.localScale = new Vector3(1,1,1);
+            
+        }
 
     }
 

@@ -27,8 +27,8 @@ public class EnemyKillTracker : MonoBehaviour
         case "Slime":
             EnemyKillStats.slimesKilled++; //slime killed therefore slimeskilled start plused 
             break;
-        case "Test":
-        Debug.Log("test død");
+        case "Mage":
+            EnemyKillStats.mageKilled++;
             break;
         /*case 3:
             

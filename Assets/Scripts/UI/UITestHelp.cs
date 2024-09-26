@@ -6,30 +6,16 @@ public class UITestHelp : MonoBehaviour
 {
 
     public GameObject enemy;
+    public GameObject mage;
     public Transform spawnLocation;
-
-    PlayerStats PlayerStat;
-
-    private void Start()
-    {
-        PlayerStat = GetComponent<PlayerStats>();
-    }
-
-    public void UseCoins()
-    {
-        if (PlayerStat.Coin > 10)
-        {
-            PlayerStat.Coin -= 10;
-        }
-        else
-        {
-            Debug.Log("Not enough coins");
-        }
-
-    }
 
     public void SpawnEnemy()
     {
         Instantiate(enemy,spawnLocation);
+    }
+
+    public void SpawnMage()
+    {
+        Instantiate(mage,spawnLocation);
     }
 }

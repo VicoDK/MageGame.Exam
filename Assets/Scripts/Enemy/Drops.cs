@@ -45,18 +45,24 @@ public class Drops : MonoBehaviour
         //random amount of gold
         int MobLoot = Random.Range(1, MaxMobLoot);
 
-        //runs a loop that drops coins
-        for(int i = 0; i < MobLoot; i++)
+        //if this mob dosnt have any mobdrop then it dosnt run
+        if (MobDropItem != null)
         {
-          //instantiates gold at the enemy's position
-          Instantiate(MobDropItem, transform.position, Quaternion.identity);
+          //runs a loop that drops coins
+          for(int i = 0; i < MobLoot; i++)
+          {
+            //instantiates gold at the enemy's position
+            Instantiate(MobDropItem, transform.position, Quaternion.identity);
+          }
+
         }
+  
 
         //is for seeing if item shuold drop
         int DropRate = Random.Range(1, 100);
 
         //checks if the drop rate is less than the rare drop rate
-        if (DropRate < RareDropRate)
+        if (DropRate < RareDropRate && RareDropItem != null)
         {
           //picks a random object in arry
           ItemDrop = RareDropItem[Random.Range(0,RareDropItem.Length)];
