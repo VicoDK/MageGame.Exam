@@ -9,6 +9,7 @@ public class BasicAttack : MonoBehaviour
     [Header("Values")]
     public float Damage;
     public String itself;
+    public bool isThisPlayer;
 
     //check if it hit anything and it is not the player
     public void OnTriggerEnter2D(Collider2D collision)
@@ -40,7 +41,7 @@ public class BasicAttack : MonoBehaviour
 
             
         }
-        else if(collision.gameObject.CompareTag("Wall")) // if its hits a wall
+        else if(collision.gameObject.CompareTag("Wall") && isThisPlayer) // if its hits a wall
         {
             Destroy(gameObject); //destroy ball
        

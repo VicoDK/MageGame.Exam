@@ -11,6 +11,7 @@ public class AIagent : MonoBehaviour
     [SerializeField] private float moveSpeed;
     private AIPath path;
     private Transform target;
+    private Transform Foot;
     [SerializeField] private float stopDistanceThreshold;
     private float distanceToTarget;
     [SerializeField] private float stopChasing;
@@ -25,6 +26,9 @@ public class AIagent : MonoBehaviour
     //else 
     private BasicMageAttack Scripts;
 
+    public float waitToWalkAroundCornerTime;
+    public RaycastHit2D HitFood;
+
     private void Start()
     {
 
@@ -33,22 +37,25 @@ public class AIagent : MonoBehaviour
         startPos = transform.position; //Stores the start pos
         PatrolSquare = GameObject.Find ("PatrolSquare"); //stores the PatrolSquare as a game object
         target = GameObject.FindGameObjectWithTag("Player").transform;
+        Foot = GameObject.Find("Foot").transform;
     }
 
     void Update()
     {
+        HitFood = Physics2D.Linecast(Foot.position, target.position);
         path.maxSpeed = moveSpeed; //Sets the max speed
 
         distanceToTarget = Vector2.Distance(transform.position, target.position); //finds the distance from enemy to player
         
 
-        if (distanceToTarget < stopDistanceThreshold) //check if the enemy is too close
+        if (distanceToTarget < stopDistanceThreshold && Scripts.Hit.collider.name == "PlayerBody" && HitFood.collider.name == "PlayerBody") //check if the enemy is too close
         {
+
             path.destination = transform.position; //sets it path to its location
             Scripts.StopShot = false; //Makes the enemy shoot
 
         }
-        else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody") //check if the player is too far away or if the player is in sight
+        else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
         {
             StartCoroutine(KeepPlayerInMind()); //starts a IEnumerator
             
@@ -70,7 +77,10 @@ public class AIagent : MonoBehaviour
 
     IEnumerator KeepPlayerInMind()
     {
-        yield return new WaitForSeconds(EnemyKeepInMindTime); //makes it wait a few second so the enemy keeps the player in its mind
+  
+        yield return new WaitForSeconds(EnemyKeepInMindTime);
+
+
 
         //path.destination = transform.position; //sets it path to its location ****
         Scripts.StopShot = true; //stops the enemy from shooting
@@ -95,5 +105,6 @@ public class AIagent : MonoBehaviour
        
 
     }
+
 
 }
