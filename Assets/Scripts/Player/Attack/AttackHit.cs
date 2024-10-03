@@ -9,6 +9,16 @@ public class AttackHit : MonoBehaviour
 
     private bool hasExploded = false; // Add a boolean flag
 
+    FireBallAttack FireBallAttack;
+
+
+
+    void Start()
+    {
+        FireBallAttack = GameObject.Find("PlayerBody").GetComponent<FireBallAttack>(); //stores the player FireBallAttack script
+        Invoke("ReplaceBullet", Vector2.Distance(transform.position, FireBallAttack.mousePosition) / FireBallAttack.Speed); //invokes a function to destroy the fire ball after it has hit i distanation
+    }
+
     // Check if it hit anything and it is not the player
     public void OnTriggerEnter2D(Collider2D collision)
     {
@@ -19,5 +29,17 @@ public class AttackHit : MonoBehaviour
             Destroy(gameObject);
             hasExploded = true; // Set the flag to true
         }
+    }
+
+
+    void ReplaceBullet()
+    {
+
+
+        
+        Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);//Instantiate explosion prefab at bullet position
+        Destroy(gameObject); //destroys the fireball
+        
+
     }
 }

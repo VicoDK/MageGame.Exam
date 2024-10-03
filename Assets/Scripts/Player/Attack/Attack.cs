@@ -42,7 +42,7 @@ public class Attack : MonoBehaviour
             mousePosition.z = 0f;
 
             // Calculate direction towards mouse position
-            Vector2 fireDir = (mousePosition - transform.position).normalized;
+            Vector2 fireDir = (mousePosition - FirePoint.position).normalized;
 
             // Instantiate bullet at fire point
             GameObject bullet = Instantiate(BaseAttack, FirePoint.position, Quaternion.identity);

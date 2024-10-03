@@ -156,6 +156,7 @@ public class EnemyHealth : MonoBehaviour
 
     void FixedUpdate()
     {
+
         HealthBar.fillAmount = Health / MaxHealth;
 
 

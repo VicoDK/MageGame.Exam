@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8423508152580548701}
   m_Layer: 6
   m_Name: Enemy Healthbar
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: aca9f972ac5e1b540848e0b95151ab10, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 9c7fbd2d30c1a5648818b44b3b9a76a0, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -187,7 +187,7 @@ GameObject:
   - component: {fileID: 3515375925382653249}
   m_Layer: 6
   m_Name: Foot
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -516,7 +516,7 @@ GameObject:
   - component: {fileID: 1190917078863462857}
   m_Layer: 6
   m_Name: Background
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -592,7 +592,7 @@ GameObject:
   - component: {fileID: 3149932132863094334}
   m_Layer: 6
   m_Name: Canvas
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -694,7 +694,7 @@ GameObject:
   - component: {fileID: 1713540076587067170}
   m_Layer: 6
   m_Name: PatrolSquare
-  m_TagString: Untagged
+  m_TagString: DontHit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

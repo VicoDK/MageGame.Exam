@@ -12,34 +12,40 @@ public class PlayerStats : MonoBehaviour
     
     
     [Header("Player purse")]
-    public float Coin; //static
+    public float Coin; 
 
     public TMP_Text CoinAmountDisplay;
     
 
     [Header("Health")]
-    public float Health; //static
-    public bool Alive = true; //static
+    public float Health; 
+    public bool Alive = true; 
     
     private float MaxHealth;
-    public float HealthRegn; //static
+    public float HealthRegn; 
     public float HealthRegnDelay;
     private bool AllowHeal = true;
+
+    private float healTime;
 
     [Header("UI")]
     public GameObject DeathMenu;
 
     [Header("Mana")]
-    public  float Mana; //static
+    public  float Mana; 
     private float MaxMana;
-    public float ManaRegn; //static
+    public float ManaRegn; 
+    private bool AllowMana;
+     public float manaRegnDelay;
+
+     private float ManaTime;
 
     [Header("Mana and Health bars")]
     public Image HealthBar;
     public Image ManaBar;
 
 
-    public bool Shopping; //static
+    public bool Shopping; 
 
  
 
@@ -52,13 +58,38 @@ public class PlayerStats : MonoBehaviour
         
     }   
 
+    void Update()
+    {
+        //makes xTime count down 
+        healTime -= Time.deltaTime;  
+        ManaTime -= Time.deltaTime;
+
+
+    }
+
     void FixedUpdate()
     {
 
-        //this is for mana regn
-        if (MaxMana > Mana && Alive)
+        //runs when the time for regen to started runned out
+        if (healTime < 0f)
         {
-            Mana += ManaRegn;
+            //starts the players healing
+            AllowHeal = true;
+
+        }
+
+        //runs when the time for mana regen to started runned out
+        if (ManaTime < 0f)
+        {
+            //starts the players mana regen
+            AllowMana = true;
+
+        }
+    
+        //this is for mana regn
+        if (MaxMana > Mana && Alive && AllowMana)
+        {
+            Mana += ManaRegn/50;
         }
 
         //this is for health regn
@@ -68,7 +99,7 @@ public class PlayerStats : MonoBehaviour
         }
         else if (MaxHealth > Health && AllowHeal)
         {
-            Health += HealthRegn;
+            Health += HealthRegn/50;
         }
 
         //this is to update health and mana bar
@@ -83,16 +114,6 @@ public class PlayerStats : MonoBehaviour
         }
 
 
-        //delete before realese
-        //
-        //
-        //
-        if (Input.GetKeyDown(KeyCode.Alpha0))
-        {
-            Mana = MaxMana;
-        }
-
-
         //for updating layout with coins 
         CoinAmountDisplay.text = (Coin + " Coins");
     }
@@ -103,24 +124,24 @@ public class PlayerStats : MonoBehaviour
 
         Health -= Damage;
 
-        //start heal delay timer
-        StartCoroutine(Attacks());
+         //stops the player from healing
+        AllowHeal = false;
+
+        //set the timer to HealthRegnDelay
+        healTime = HealthRegnDelay;
+
 
         
 
     } 
 
-    //heal delay timer
-    private IEnumerator Attacks ()
+    public void ManaCost()
     {
-        //stops the player from healing
-        AllowHeal = false;
-        //here we wait some seconds
-        yield return new WaitForSeconds(HealthRegnDelay);
-        //starts the players healing
-        AllowHeal = true;
-        
+        // stops for mana regen
+        AllowMana = false;
+
+        //set the timer to manaRegnDelay
+        ManaTime = manaRegnDelay;
+
     }
-
-
 }

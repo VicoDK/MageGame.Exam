@@ -36,6 +36,7 @@ public class BasicMageAttack : MonoBehaviour
     void Update()
     {
         Hit = Physics2D.Linecast(FirePoint.position, Player.position); //makes a line between enemy and player
+  
     }
 
     void Attacks()

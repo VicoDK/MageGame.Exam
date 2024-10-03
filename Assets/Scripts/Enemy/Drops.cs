@@ -62,7 +62,7 @@ public class Drops : MonoBehaviour
         int DropRate = Random.Range(1, 100);
 
         //checks if the drop rate is less than the rare drop rate
-        if (DropRate < RareDropRate && RareDropItem != null)
+        if (DropRate < RareDropRate && RareDropItem != null && RareDropItem.Length > 0)
         {
           //picks a random object in arry
           ItemDrop = RareDropItem[Random.Range(0,RareDropItem.Length)];
