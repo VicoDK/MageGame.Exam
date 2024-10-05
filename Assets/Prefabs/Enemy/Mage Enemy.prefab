@@ -101,6 +101,9 @@ MonoBehaviour:
   Ball: {fileID: 8380647616341837268, guid: 45eab6ac4aabf3445b4039704555a242, type: 3}
   StopShot: 0
   canShoot: 1
+  HitLayer:
+    serializedVersion: 2
+    m_Bits: 251
 --- !u!1 &1325383912852884752
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,6 +282,7 @@ MonoBehaviour:
   BurnTimer: 2
   BurnEffectLength: 5
   HealthBar: {fileID: 2832352415601382121}
+  Alive: 1
 --- !u!114 &8462088003772655582
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuScript : MonoBehaviour
 {
-    PlayerStats PlayerStat;
+    public PlayerStats PlayerStat;
     Attack Attack;
 
     private void Start()
     {
-        PlayerStat = GetComponent<PlayerStats>();
-        Attack = GetComponent<Attack>();
+        PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+        Attack = GameObject.Find("PlayerBody").GetComponent<Attack>();
     }
 
     public void Quit()

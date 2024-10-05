@@ -8,83 +8,107 @@ using System.Collections;
 public class AIagent : MonoBehaviour
 {
     [Header("AI Path")]
-    [SerializeField] private float moveSpeed;
-    private AIPath path;
-    private Transform target;
-    private Transform Foot;
-    [SerializeField] private float stopDistanceThreshold;
-    private float distanceToTarget;
-    [SerializeField] private float stopChasing;
-     public float EnemyKeepInMindTime;
+    [SerializeField] private float moveSpeed; //speed of enemy 
+    private AIPath path; //to store the pathing
+    private Transform target; //store player local
+    public Transform Foot; //enemy food local
+    [SerializeField] private float stopDistanceThreshold; //how close can the enemy get to player
+    private float distanceToTarget; //how far the player is from enemy
+    [SerializeField] private float stopChasing; //when the enemy is too far away from player
+    public float EnemyKeepInMindTime; //how long it should chase player after leaving LOS
+    private float timeElapsed; //counter
+
+    private string EnemyMode; //which mode the enemy is in
+
+    
 
     [Header("Patrol")]
-    public float patrolNewSpotTime;
-    private GameObject PatrolSquare;
-    private bool running;
-    private Vector2 startPos;
+    public float patrolNewSpotTime; //spot to patrol to
+    private GameObject PatrolSquare; //the area for patrol
+    private bool running; //is the enemy moving 
+    private Vector2 startPos; //start pos
 
     //else 
-    private BasicMageAttack Scripts;
-
-    public float waitToWalkAroundCornerTime;
-    public RaycastHit2D HitFood;
+    private BasicMageAttack Scripts; //store script
+    public RaycastHit2D HitFood; //raycast from food
+    public EnemyHealth EnemyHealth; //enemy stats
 
     private void Start()
     {
 
+        EnemyHealth = GetComponent<EnemyHealth>();
         path = GetComponent<AIPath>(); //stores the AiPath componet
         Scripts = GetComponentInChildren<BasicMageAttack>(); //get to read some values from BasicMageAttack scriptet
         startPos = transform.position; //Stores the start pos
         PatrolSquare = GameObject.Find ("PatrolSquare"); //stores the PatrolSquare as a game object
         target = GameObject.FindGameObjectWithTag("Player").transform;
-        Foot = GameObject.Find("Foot").transform;
+        Foot = transform.Find("Foot").transform;
     }
 
     void Update()
     {
+
+        timeElapsed -= Time.deltaTime; // timmer
+
         HitFood = Physics2D.Linecast(Foot.position, target.position);
         path.maxSpeed = moveSpeed; //Sets the max speed
 
         distanceToTarget = Vector2.Distance(transform.position, target.position); //finds the distance from enemy to player
         
-
-        if (distanceToTarget < stopDistanceThreshold && Scripts.Hit.collider.name == "PlayerBody" && HitFood.collider.name == "PlayerBody") //check if the enemy is too close
+        if (EnemyHealth.Alive) // checks if enemy is alive
         {
+            if (distanceToTarget < stopDistanceThreshold && Scripts.Hit.collider.name == "PlayerBody" && HitFood.collider.name == "PlayerBody") //check if the enemy is too close
+            {
+                EnemyMode = "TooClose";
 
-            path.destination = transform.position; //sets it path to its location
-            Scripts.StopShot = false; //Makes the enemy shoot
+            }
+            else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
+            {    
 
+                if  (timeElapsed < 0) // time is run out
+                {
+                    EnemyMode = "Patrol";
+                }              
+
+            }
+            else //if none of the above is true then this runs
+            {
+                EnemyMode = "Chase";
+                keepInMind();
+            }
         }
-        else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
+
+        switch (EnemyMode)
         {
-            StartCoroutine(KeepPlayerInMind()); //starts a IEnumerator
-            
-            
+            case "Chase":
+            {
+                path.destination = target.position; //sets it path to the target pos
+                Scripts.StopShot = false; //makes it start to shoot
+                
+                break;
+            }
+            case "TooClose":
+            {
+                path.destination = transform.position; //sets it path to its location
+                Scripts.StopShot = false; //Makes the enemy shoot
+                break;
+            }
+            case "Patrol":
+            {
+                if (!running) //check if enemy is patrolling
+                {
+                    StartCoroutine(Patrol());// start patrolling
+                }
+                break;
+            }
 
-        }
-        else //if none of the above is true then this runs
-        {
-            path.destination = target.position; //sets it path to the target pos
-            Scripts.StopShot = false; //makes it start to shoot
-            
-        }
-
-
+        } 
     }
 
-    IEnumerator KeepPlayerInMind()
+    void keepInMind()
     {
-  
-        yield return new WaitForSeconds(EnemyKeepInMindTime);
 
-
-
-        //path.destination = transform.position; //sets it path to its location ****
-        Scripts.StopShot = true; //stops the enemy from shooting
-        if (!running)
-        {
-            StartCoroutine(Patrol());
-        }
+        timeElapsed = EnemyKeepInMindTime; //make sure the timer resets
     }
 
     IEnumerator Patrol() //makes the enemy patrol

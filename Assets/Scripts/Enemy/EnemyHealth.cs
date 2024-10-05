@@ -32,6 +32,7 @@ public class EnemyHealth : MonoBehaviour
     private int BurnTicks;
 
     public Image HealthBar;
+    public bool Alive = true;
 
 
     //function for taking damage
@@ -106,6 +107,7 @@ public class EnemyHealth : MonoBehaviour
         //check if enemy is dead
         if (Health < 0 || Health == 0)
         {
+            Alive = false;
             Destroy(gameObject);
         }
 

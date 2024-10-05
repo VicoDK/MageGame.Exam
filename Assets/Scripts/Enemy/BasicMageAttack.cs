@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.Mathematics;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,6 +20,9 @@ public class BasicMageAttack : MonoBehaviour
     public bool StopShot;
     public RaycastHit2D Hit;
     public bool canShoot;
+    EnemyHealth EnemyHealth;
+
+    public LayerMask HitLayer;
 
 
 
@@ -28,6 +32,8 @@ public class BasicMageAttack : MonoBehaviour
     {
         //find player
         Player = GameObject.FindGameObjectWithTag("Player").transform;
+        EnemyHealth = transform.parent.gameObject.GetComponent<EnemyHealth>();
+
         // start funktion
         InvokeRepeating("Attacks", 1, AttackSpeed);
 
@@ -35,7 +41,11 @@ public class BasicMageAttack : MonoBehaviour
 
     void Update()
     {
-        Hit = Physics2D.Linecast(FirePoint.position, Player.position); //makes a line between enemy and player
+        if (EnemyHealth.Alive)
+        {
+            Hit = Physics2D.Linecast(FirePoint.position, Player.position, HitLayer); //makes a line between enemy and player
+        }
+       
   
     }
 
