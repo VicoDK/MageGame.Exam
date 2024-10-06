@@ -67,7 +67,8 @@ public class Movment : MonoBehaviour
     {
         if (!PlayerStat.Shopping && canMove) 
         {
-        gameObject.transform.Translate(MoveDir.x * speed , MoveDir.y * speed ,0 );
+            //gameObject.transform.Translate(MoveDir.x * speed , MoveDir.y * speed ,0 );
+            rb.velocity = new Vector3(MoveDir.x * speed , MoveDir.y * speed, 0).normalized * speed;
         }
     }
 

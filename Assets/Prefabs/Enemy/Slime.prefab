@@ -156,8 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d347c1ebc2f2de4db98a38527282e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamage: 10
-  AttackSpeed: 0.2
+  AttackDamage: 25
+  AttackSpeed: 0.4
 --- !u!114 &2840422971117146225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,7 +178,7 @@ MonoBehaviour:
   canShoot: 0
   HitLayer:
     serializedVersion: 2
-    m_Bits: 251
+    m_Bits: 187
 --- !u!1 &2256198825204764389
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,7 +365,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 0
   m_Constraints: 4
 --- !u!114 &7428427752487453628
@@ -382,9 +382,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 100
   LightingOnWetEnemy: 1.25
-  BurnDamage: 5
-  BurnTimer: 2
-  BurnEffectLength: 5
+  BurnDamage: 10
+  BurnTimer: 0.5
+  BurnEffectLength: 6
   HealthBar: {fileID: 8423508152580548701}
   Alive: 1
 --- !u!114 &4240217922888746085
@@ -502,11 +502,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  Foot: {fileID: 0}
   stopDistanceThreshold: 0
   stopChasing: 12
   EnemyKeepInMindTime: 2
   patrolNewSpotTime: 5
-  waitToWalkAroundCornerTime: 1
+  EnemyHealth: {fileID: 0}
 --- !u!1 &5837127682392702230
 GameObject:
   m_ObjectHideFlags: 0

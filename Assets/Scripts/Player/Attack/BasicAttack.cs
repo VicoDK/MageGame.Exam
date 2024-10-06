@@ -34,8 +34,9 @@ public class BasicAttack : MonoBehaviour
             else if (itself == "Enemy")
             {
                 PlayerStats playerStats = collision.GetComponent<PlayerStats>();
-                if (playerStats != null)
+                if (playerStats != null && !hit)
                 {
+                    hit = true;
                     playerStats.TakeDamage(Damage);
                 }
             }

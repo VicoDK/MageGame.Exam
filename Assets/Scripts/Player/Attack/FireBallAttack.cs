@@ -14,7 +14,7 @@ public class FireBallAttack : MonoBehaviour
 
     [Header("Ball Attack")]
     public GameObject Ball;
-    public GameObject explosionPrefab;
+
 
     PlayerStats PlayerStat;
     Attack attack;
