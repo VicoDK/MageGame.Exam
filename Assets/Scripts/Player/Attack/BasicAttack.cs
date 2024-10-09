@@ -44,6 +44,12 @@ public class BasicAttack : MonoBehaviour
 
             
         }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+
+            Destroy(gameObject);//destroy ball
+        }
+        
 
    
   

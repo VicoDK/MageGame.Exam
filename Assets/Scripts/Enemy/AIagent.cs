@@ -32,6 +32,8 @@ public class AIagent : MonoBehaviour
     private BasicMageAttack Scripts; //store script
     public RaycastHit2D HitFood; //raycast from food
     public EnemyHealth EnemyHealth; //enemy stats
+    private bool Counting = false;
+  
 
     private void Start()
     {
@@ -64,17 +66,25 @@ public class AIagent : MonoBehaviour
             }
             else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
             {    
-
-                if  (timeElapsed < 0) // time is run out
+  
+                if  (/*timeElapsed < 0*/ Vector3.Distance(path.destination ,transform.position) < 0.7f ) // check if enemy is at the last seeing target pos
                 {
-                    EnemyMode = "Patrol";
+                    Debug.Log("start counting ");
+                    Debug.Log(timeElapsed);
+                    keepInMind();
+                    if (timeElapsed < 0)
+                    {
+                        Counting = false;
+                        EnemyMode = "Patrol";
+                    }
+                    
                 }              
 
             }
             else //if none of the above is true then this runs
             {
                 EnemyMode = "Chase";
-                keepInMind();
+                //keepInMind();
             }
         }
 
@@ -82,8 +92,13 @@ public class AIagent : MonoBehaviour
         {
             case "Chase":
             {
-                path.destination = target.position; //sets it path to the target pos
-                Scripts.StopShot = false; //makes it start to shoot
+                if (Scripts.Hit.collider.name == "PlayerBody" ) //only update when enemy can see player
+                {
+                    path.destination = target.position; //sets it path to the target pos
+                    Scripts.StopShot = false; //makes it start to shoot
+
+                }
+
                 
                 break;
             }
@@ -107,8 +122,13 @@ public class AIagent : MonoBehaviour
 
     void keepInMind()
     {
-
-        timeElapsed = EnemyKeepInMindTime; //make sure the timer resets
+        
+        if (Counting == false)
+        {
+            Counting = true;
+            timeElapsed = EnemyKeepInMindTime; //make sure the timer resets
+        }
+        
     }
 
     IEnumerator Patrol() //makes the enemy patrol

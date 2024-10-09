@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class DeathMenuScript : MonoBehaviour
 {
-    public PlayerStats PlayerStat;
+    private PlayerStats PlayerStat;
     Attack Attack;
 
     private void Start()

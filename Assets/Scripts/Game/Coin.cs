@@ -11,11 +11,13 @@ public class Coin : MonoBehaviour
     //direction and angle of coin when dropped
     public Vector2 fireDir;
     PlayerStats PlayerStat;
+    private bool pickup; 
 
 
 
 	void Start () 
     {
+        pickup = false;
         //random direction and angle
         fireDir.y = Random.Range(-3f, 3f);
         fireDir.x = Random.Range(-3f, 3f);
@@ -41,8 +43,9 @@ void OnTriggerEnter2D(Collider2D collision)
     {
         // Get the PlayerStats component from the player object
         PlayerStats playerStats = collision.gameObject.GetComponent<PlayerStats>();
-        if (playerStats != null)
+        if (playerStats != null && !pickup)
         {
+            pickup = true;
             // Give player coins and destroy coin
             playerStats.Coin++;
             Destroy(gameObject);

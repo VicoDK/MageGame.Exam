@@ -11,7 +11,14 @@ public class Shop : MonoBehaviour
     public GameObject ShopPromt;
     private bool InRange;
 
-    
+    PlayerStats PlayerStats;
+
+    void Start()
+    {
+        PlayerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+    }
+
+
     void OnTriggerEnter2D(Collider2D collision) //Something enters 
     {   
         if (collision.gameObject.CompareTag("Player")) // if player
@@ -38,7 +45,7 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButton("Interact") && InRange) //if pressed Interact and in rang
+        if (Input.GetButtonDown("Interact") && InRange && !PlayerStats.Shopping) //if pressed Interact and in rang
         {   
             ShopMenu.SetActive(true); // activate shop
 

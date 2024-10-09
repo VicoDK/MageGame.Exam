@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     
     
     [Header("Player purse")]
-    public float Coin; 
+     public float Coin; 
 
     public TMP_Text CoinAmountDisplay;
     
@@ -115,7 +115,7 @@ public class PlayerStats : MonoBehaviour
 
 
         //for updating layout with coins 
-        CoinAmountDisplay.text = (Coin + " Coins");
+        CoinAmountDisplay.text = (Coin + " ");
     }
 
     //function for taking damage

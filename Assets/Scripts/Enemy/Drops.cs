@@ -33,7 +33,7 @@ public class Drops : MonoBehaviour
       if(gameObject.scene.isLoaded)
       {
         //random amount of gold
-        int CoinCount = Random.Range(1, MaxCoins);
+        int CoinCount = Random.Range(0, MaxCoins);
 
         //runs a loop that drops coins
         for(int i = 0; i < CoinCount; i++)
@@ -43,7 +43,7 @@ public class Drops : MonoBehaviour
         }
 
         //random amount of gold
-        int MobLoot = Random.Range(1, MaxMobLoot);
+        int MobLoot = Random.Range(0, MaxMobLoot);
 
         //if this mob dosnt have any mobdrop then it dosnt run
         if (MobDropItem != null)

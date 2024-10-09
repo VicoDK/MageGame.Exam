@@ -7,12 +7,12 @@ public class DestroyOnDestroyPoint : MonoBehaviour
     public GameObject obj;
 
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
-
 
         if (collision.gameObject.CompareTag("Wall"))
         {
+            Debug.Log("delete");
             Destroy(obj);//destroy ball
         }
         

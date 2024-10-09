@@ -46,7 +46,7 @@ public class ShopMenu : MonoBehaviour
     {
         Coins.text = (PlayerStat.Coin + " Coins"); //track players coins and displayes it
 
-        if (Input.GetKeyDown(KeyCode.Escape)) // if ESC pressed
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I)) // if ESC pressed
         {
             itself.SetActive(false); //disables the shop
         }

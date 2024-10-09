@@ -297,7 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 6015824056694125623}
   coin: {fileID: 3456449158348236121, guid: 8be724315fa123649b6f7c297e451ab5, type: 3}
-  MaxCoins: 6
+  MaxCoins: 4
   MaxMobLoot: 3
   MobDropItem: {fileID: 0}
   RareDropItem: []
@@ -401,7 +401,7 @@ MonoBehaviour:
   Foot: {fileID: 0}
   stopDistanceThreshold: 4
   stopChasing: 12
-  EnemyKeepInMindTime: 3
+  EnemyKeepInMindTime: 2
   patrolNewSpotTime: 5
   EnemyHealth: {fileID: 0}
 --- !u!114 &2755604216146271366
