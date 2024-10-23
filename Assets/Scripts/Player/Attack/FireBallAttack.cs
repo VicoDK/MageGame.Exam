@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class FireBallAttack : MonoBehaviour
 {
     [Header("General stats")]
+    private PlayerInput  pInput;
     public Transform FirePoint;
     public float Speed;
     public int ManaCost;
@@ -24,6 +26,7 @@ public class FireBallAttack : MonoBehaviour
     {
         PlayerStat = GetComponent<PlayerStats>();
         attack = GetComponent<Attack>();
+        pInput = GetComponent<PlayerInput>();
     }
 
     // Update is called once per frame
@@ -31,7 +34,7 @@ public class FireBallAttack : MonoBehaviour
     {
         //ball attacks
         //rigistere input
-        if (Input.GetKeyDown(KeyCode.Mouse1) && PlayerStat.Mana >= ManaCost && attack.AttackReady && !PlayerStat.Shopping)
+        if (pInput.actions["SecondFire"].WasPressedThisFrame() && PlayerStat.Mana >= ManaCost && attack.AttackReady && !PlayerStat.Shopping)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position

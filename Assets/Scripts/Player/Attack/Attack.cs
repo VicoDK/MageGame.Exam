@@ -7,6 +7,7 @@ public class Attack : MonoBehaviour
 {
     [Header("Player Input System")]
     //add new input system
+    private PlayerInput  pInput;
     [Header("Fire Point")]
     public Transform FirePoint;
 
@@ -24,6 +25,7 @@ public class Attack : MonoBehaviour
     private void Start()
     {
         PlayerStat = GetComponent<PlayerStats>();
+        pInput = GetComponent<PlayerInput>();
     }
     
 
@@ -33,7 +35,7 @@ public class Attack : MonoBehaviour
     {
         //base attack
         //here we check after input and if attack is ready
-        if (Input.GetButtonDown("Fire1") && AttackReady && !PlayerStat.Shopping)
+        if (pInput.actions["Fire"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping)
         {
 
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
@@ -73,6 +75,8 @@ public class Attack : MonoBehaviour
         AttackReady = true;
           
     }
+
+    
 
 
 

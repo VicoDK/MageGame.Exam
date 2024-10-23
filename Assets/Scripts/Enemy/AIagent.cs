@@ -40,7 +40,7 @@ public class AIagent : MonoBehaviour
 
         EnemyHealth = GetComponent<EnemyHealth>();
         path = GetComponent<AIPath>(); //stores the AiPath componet
-        Scripts = GetComponentInChildren<BasicMageAttack>(); //get to read some values from BasicMageAttack scriptet
+        Scripts = GetComponentInChildren<BasicMageAttack>(); //get to read some values from BasicMageAttack scriptet 
         startPos = transform.position; //Stores the start pos
         PatrolSquare = GameObject.Find ("PatrolSquare"); //stores the PatrolSquare as a game object
         target = GameObject.FindGameObjectWithTag("Player").transform;
@@ -57,7 +57,7 @@ public class AIagent : MonoBehaviour
 
         distanceToTarget = Vector2.Distance(transform.position, target.position); //finds the distance from enemy to player
         
-        if (EnemyHealth.Alive) // checks if enemy is alive
+        if (EnemyHealth.Alive && Scripts != null) // checks if enemy is alive
         {
             if (distanceToTarget < stopDistanceThreshold && Scripts.Hit.collider.name == "PlayerBody" && HitFood.collider.name == "PlayerBody") //check if the enemy is too close
             {
@@ -67,10 +67,9 @@ public class AIagent : MonoBehaviour
             else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
             {    
   
-                if  (/*timeElapsed < 0*/ Vector3.Distance(path.destination ,transform.position) < 0.7f ) // check if enemy is at the last seeing target pos
+                if  (Vector3.Distance(path.destination ,transform.position) < 0.7f ) // check if enemy is at the last seeing target pos
                 {
-                    Debug.Log("start counting ");
-                    Debug.Log(timeElapsed);
+
                     keepInMind();
                     if (timeElapsed < 0)
                     {
@@ -84,7 +83,7 @@ public class AIagent : MonoBehaviour
             else //if none of the above is true then this runs
             {
                 EnemyMode = "Chase";
-                //keepInMind();
+           
             }
         }
 

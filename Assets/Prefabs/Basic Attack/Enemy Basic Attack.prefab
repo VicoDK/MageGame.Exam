@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4287136172970447197}
   - component: {fileID: 47590580621910564}
   - component: {fileID: 6391035699456305258}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DestroyPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1151325590514569211}
   - component: {fileID: -6011853512072851016}
   - component: {fileID: -1727380707450081538}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy Basic Attack
   m_TagString: Bullet
   m_Icon: {fileID: 0}

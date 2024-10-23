@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shop : MonoBehaviour
 {
@@ -12,10 +13,12 @@ public class Shop : MonoBehaviour
     private bool InRange;
 
     PlayerStats PlayerStats;
+    private PlayerInput  pInput;
 
     void Start()
     {
         PlayerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+        pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
     }
 
 
@@ -45,7 +48,7 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("Interact") && InRange && !PlayerStats.Shopping) //if pressed Interact and in rang
+        if (pInput.actions["Interact"].WasPressedThisFrame() && InRange && !PlayerStats.Shopping) //if pressed Interact and in rang
         {   
             ShopMenu.SetActive(true); // activate shop
 

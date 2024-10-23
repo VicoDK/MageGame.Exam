@@ -10,6 +10,8 @@ public class ResetScene : MonoBehaviour
     private PlayerStats PlayerStat;
     Attack Attack;
 
+    static public float CoinAmount = 0;
+
     private void Start()
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
@@ -24,6 +26,7 @@ public class ResetScene : MonoBehaviour
             // Reset player stats and reload the scene
             PlayerStat.Alive = true;
             Attack.AttackReady = true;
+            CoinAmount = PlayerStat.Coin; // make better save system
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);
 

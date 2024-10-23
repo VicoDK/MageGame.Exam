@@ -9,7 +9,8 @@ public class Movment : MonoBehaviour
     [Header("Player Controlls")]
     //this is the input maneger
 
-    public InputAction PlayerMovment;
+    //public InputAction PlayerMovment;
+    private PlayerInput  pInput;
     Vector2 MoveDir = Vector2.zero;
 
     //player speed
@@ -34,23 +35,16 @@ public class Movment : MonoBehaviour
     private void Start()
     {
         PlayerStat = GetComponent<PlayerStats>();
-    }
-
-    private void OnEnable()
-    {
-        PlayerMovment.Enable();
-    }
-
-    private void OnDisable()
-    {
-        PlayerMovment.Disable();
+        pInput =GetComponent<PlayerInput>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         //read player input
-        MoveDir = PlayerMovment.ReadValue<Vector2>();
+        MoveDir = pInput.actions.FindAction("Move").ReadValue<Vector2>();
+   
 
         if (Input.GetButtonDown("Roll") && canRoll)
         {

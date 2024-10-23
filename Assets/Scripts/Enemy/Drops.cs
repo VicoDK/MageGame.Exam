@@ -33,7 +33,7 @@ public class Drops : MonoBehaviour
       if(gameObject.scene.isLoaded)
       {
         //random amount of gold
-        int CoinCount = Random.Range(0, MaxCoins);
+        int CoinCount = Random.Range(1, MaxCoins);
 
         //runs a loop that drops coins
         for(int i = 0; i < CoinCount; i++)

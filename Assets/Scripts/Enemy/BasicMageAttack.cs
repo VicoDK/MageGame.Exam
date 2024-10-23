@@ -37,6 +37,8 @@ public class BasicMageAttack : MonoBehaviour
         // start funktion
         InvokeRepeating("Attacks", 1, AttackSpeed);
 
+        Hit = Physics2D.Linecast(FirePoint.position, Player.position, HitLayer); //makes a line between enemy and player
+
     }
 
     void Update()

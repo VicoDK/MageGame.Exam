@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class ShopMenu : MonoBehaviour
 {
@@ -27,7 +28,9 @@ public class ShopMenu : MonoBehaviour
     public ContractsTracker Script; //holds script
 
 
-    public PlayerStats PlayerStat;
+    private PlayerStats PlayerStat;
+    public PlayerInput  pInput;
+    public PlayerInput  pInputShopMenu;
 
     void Start()
     {
@@ -35,18 +38,15 @@ public class ShopMenu : MonoBehaviour
         Price2Text.text = ("Price " + Price2);
         Price3Text.text = ("Price " + Price3);
         Price4Text.text = ("Price " + Price4);
-       
-
-
 
         
     }
 
     void Update()
     {
-        Coins.text = (PlayerStat.Coin + " Coins"); //track players coins and displayes it
+        Coins.text = (PlayerStat.Coin+ ""); //track players coins and displayes it
 
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.I)) // if ESC pressed
+        if (pInputShopMenu.actions["Escape"].WasPressedThisFrame()|| pInputShopMenu.actions["Interact"].WasPressedThisFrame()) // if ESC pressed
         {
             itself.SetActive(false); //disables the shop
         }
@@ -54,9 +54,14 @@ public class ShopMenu : MonoBehaviour
 
     private void OnEnable() //on enable 
     {
+        pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+        pInputShopMenu = GetComponent<PlayerInput>();
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         PlayerUI.SetActive(false); //diable player ui
         PlayerStat.Shopping = true; //stops the player from moving
+        pInput.DeactivateInput(); 
+        Time.timeScale = 0;
+
 
         
     }
@@ -65,6 +70,8 @@ public class ShopMenu : MonoBehaviour
     {
         PlayerUI.SetActive(true); // turn player ui on
         PlayerStat.Shopping = false; // enables the player movement
+        pInput.ActivateInput(); 
+        Time.timeScale = 1;
   
     }
 

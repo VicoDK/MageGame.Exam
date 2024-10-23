@@ -403,7 +403,7 @@ MonoBehaviour:
   coin: {fileID: 3456449158348236121, guid: 8be724315fa123649b6f7c297e451ab5, type: 3}
   MaxCoins: 3
   MaxMobLoot: 2
-  MobDropItem: {fileID: 7188647949043861757, guid: 450ede735a84cff49a23d49c05926460, type: 3}
+  MobDropItem: {fileID: 0}
   RareDropItem: []
   RareDropRate: 30
 --- !u!114 &7481229572999934733

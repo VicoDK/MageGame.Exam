@@ -12,7 +12,6 @@ public class DestroyOnDestroyPoint : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Wall"))
         {
-            Debug.Log("delete");
             Destroy(obj);//destroy ball
         }
         

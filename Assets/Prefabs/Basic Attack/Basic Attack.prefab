@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6011853512072851016}
   - component: {fileID: -1727380707450081538}
   - component: {fileID: 8719831824385046590}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Basic Attack
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -129,6 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Damage: 40
   itself: Player
+  DestoyDetector: {fileID: 8869006966860596891}
 --- !u!58 &8719831824385046590
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -176,7 +177,7 @@ GameObject:
   - component: {fileID: 8559239355613352580}
   - component: {fileID: 183614846538536089}
   - component: {fileID: 1093462124844740312}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DestroyPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

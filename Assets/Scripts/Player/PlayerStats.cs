@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -46,15 +47,21 @@ public class PlayerStats : MonoBehaviour
 
 
     public bool Shopping; 
+    private SpriteRenderer Sprite;
+    private PlayerInput  pInput;
 
  
 
     void Start()
     {
+        Coin = ResetScene.CoinAmount;
         Shopping = false;
         
         MaxMana = Mana;
         MaxHealth = Health;
+
+        Sprite = GetComponent<SpriteRenderer>();
+        //pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
         
     }   
 
@@ -110,7 +117,10 @@ public class PlayerStats : MonoBehaviour
         {
                        
             DeathMenu.SetActive(true);
-            Destroy(gameObject);
+            Sprite.enabled = false;
+            pInput.DeactivateInput(); 
+            Time.timeScale = 0;
+            //Destroy(gameObject);
         }
 
 
