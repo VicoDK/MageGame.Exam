@@ -21,10 +21,13 @@ public class Attack : MonoBehaviour
     public float Delay = 0.2f; //Static
     public bool AttackReady = true; //static
     PlayerStats PlayerStat;
+    Vector2 fireDir;
+    Movment movement;
 
     private void Start()
     {
         PlayerStat = GetComponent<PlayerStats>();
+        movement = GetComponent<Movment>();
         pInput = GetComponent<PlayerInput>();
     }
     
@@ -35,16 +38,37 @@ public class Attack : MonoBehaviour
     {
         //base attack
         //here we check after input and if attack is ready
-        if (pInput.actions["Fire"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping)
+        if (pInput.actions["Fire"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping && movement.canMove|| pInput.actions["FireController"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping && movement.canMove)
         {
+            if (pInput.actions["Fire"].WasPressedThisFrame()) //Mouse input
+            {
+                //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
+                // Get mouse position
+                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition.z = 0f;
 
-            //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
-            // Get mouse position
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.z = 0f;
+                // Calculate direction towards mouse position
+                fireDir = (mousePosition - FirePoint.position).normalized;
+            }
+            else if (pInput.actions["FireController"].WasPressedThisFrame()) //Controller input
+            { 
+                fireDir = pInput.actions.FindAction("FireDIR").ReadValue<Vector2>();// read FireDIR
+                
+                if (fireDir.x == 0f && fireDir.y == 0f) //make sure that the player aims
+                {
+                    
+                    if (pInput.actions.FindAction("Move").ReadValue<Vector2>().x == 0 && pInput.actions.FindAction("Move").ReadValue<Vector2>().y == 0) //checks if player is moving
+                    {
+                        fireDir = Vector2.right; //if they dont
+                    }
+                    else 
+                    {
+                        fireDir = pInput.actions.FindAction("Move").ReadValue<Vector2>(); //if they move
+                    }
+                }
 
-            // Calculate direction towards mouse position
-            Vector2 fireDir = (mousePosition - FirePoint.position).normalized;
+            }
+            
 
             // Instantiate bullet at fire point
             GameObject bullet = Instantiate(BaseAttack, FirePoint.position, Quaternion.identity);

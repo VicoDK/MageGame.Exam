@@ -53,11 +53,19 @@ public class AIagent : MonoBehaviour
         timeElapsed -= Time.deltaTime; // timmer
 
         HitFood = Physics2D.Linecast(Foot.position, target.position);
-        path.maxSpeed = moveSpeed; //Sets the max speed
+        if (!EnemyHealth.FrozenEffect)
+        {
+            path.maxSpeed = moveSpeed; //Sets the max speed   
+        }
+        else
+        {
+            path.maxSpeed = 0;
+        }
+        
 
         distanceToTarget = Vector2.Distance(transform.position, target.position); //finds the distance from enemy to player
         
-        if (EnemyHealth.Alive && Scripts != null) // checks if enemy is alive
+        if (EnemyHealth.Alive && Scripts != null && !EnemyHealth.FrozenEffect) // checks if enemy is alive
         {
             if (distanceToTarget < stopDistanceThreshold && Scripts.Hit.collider.name == "PlayerBody" && HitFood.collider.name == "PlayerBody") //check if the enemy is too close
             {

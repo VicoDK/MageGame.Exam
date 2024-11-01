@@ -8,14 +8,19 @@ public class PhysicalEnemyAttack : MonoBehaviour
     public float AttackDamage;
     public float AttackSpeed;
     private bool AttackReady = true;
+    EnemyHealth enemyHealth; //enemy stats
 
 
+    void Start()
+    {
+        enemyHealth = GetComponentInParent<EnemyHealth>();
+    }
     //check if colision
     public void OnTriggerStay2D(Collider2D collision)
     {
 
         //check if its the player and attack is ready
-        if(collision.gameObject.CompareTag("Player") && AttackReady)
+        if(collision.gameObject.CompareTag("Player") && AttackReady && !enemyHealth.FrozenEffect)
         {
             //do damage
             collision.GetComponent<PlayerStats>().TakeDamage(AttackDamage);

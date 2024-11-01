@@ -19,7 +19,7 @@ public class Movment : MonoBehaviour
     //Roll
     public float RollSpeed;
     bool canRoll = true; 
-    bool canMove = true; 
+    public bool canMove = true; 
     float currentRollTime;
     float startRollTime = 0.3f;
 
@@ -96,11 +96,11 @@ public class Movment : MonoBehaviour
     void Flip()
     {
 
-        if (MoveDir.x < 0)
+        if (MoveDir.x < 0 && canMove)
         {
             gameObject.transform.localScale = new Vector3(-1,1,1);
         }
-        else if (MoveDir.x > 0)
+        else if (MoveDir.x > 0 && canMove)
         {
             gameObject.transform.localScale = new Vector3(1,1,1);
             

@@ -34,7 +34,7 @@ public class BasicAttack : MonoBehaviour
                 if (enemyHealth != null && !hit) //if there is non do nothing
                 {
                     hit = true;
-                    enemyHealth.TakeDamage(Damage, false);
+                    enemyHealth.TakeDamage(Damage);
                 }
 
             }

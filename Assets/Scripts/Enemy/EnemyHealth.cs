@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
@@ -16,8 +17,9 @@ public class EnemyHealth : MonoBehaviour
 
     //Generald info
     private bool BurningEffect;
-    private bool FrozenEffect;
+    public bool FrozenEffect;
     private bool WetEffect;
+    private Rigidbody2D rb;
 
     [Header("Effect Damage + Effect Timer")]
 
@@ -33,6 +35,8 @@ public class EnemyHealth : MonoBehaviour
 
     public Image HealthBar;
     public bool Alive = true;
+    public GameObject Ice;
+
 
 
     //function for taking damage
@@ -44,18 +48,34 @@ public class EnemyHealth : MonoBehaviour
             //take damage more damage
             Health -= Damage*LightingOnWetEnemy;
         }
-        else 
+        else
         {
-            //take damage
             Health -= Damage;
         }
+ 
 
     } 
+    public void TakeDamage(float Damage)
+    {
+        Health -= Damage;
+    }
+
+
+    public void TakeDamage(float Damage, float time, string magicType)
+    {
+        if (magicType == "Ice")
+        {
+            Health -= Damage;
+            Invoke("UnFreze", time);
+        }
+
+    }
 
 
     //function for burning enemy
     public void Bruning()
     {
+        
         //if enemy is not wet or forzen 
         if (!WetEffect && !FrozenEffect)
         {
@@ -78,11 +98,25 @@ public class EnemyHealth : MonoBehaviour
         FrozenEffect = true;
         WetEffect = false;
         BurningEffect = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        Ice.SetActive(true);
+
     }
+
+    public void UnFreze()
+    {
+        Ice.SetActive(false); // removes ice 
+        rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation; 
+        FrozenEffect = false;
+        
+
+    }
+    
 
     //function for making the enemy wet
     public void Wet()
     {
+        
         //if enemy is not burning or forzen 
         if (!BurningEffect && !FrozenEffect)
         {
@@ -102,7 +136,11 @@ public class EnemyHealth : MonoBehaviour
 
     void Update()
     {
-
+        
+        if (!FrozenEffect)
+        {
+            UnFreze();
+        }
 
         //check if enemy is dead
         if (Health < 0 || Health == 0)
@@ -115,6 +153,7 @@ public class EnemyHealth : MonoBehaviour
         //here we see what effect we should do
         if (BurningEffect)
         {
+            Ice.SetActive(false);
             //turn player red
             GetComponent<SpriteRenderer>().color = new Color (255, 0, 0, 125); 
 
@@ -138,19 +177,21 @@ public class EnemyHealth : MonoBehaviour
         else if (FrozenEffect) 
         {
             //make them change color to frozen
-            GetComponent<SpriteRenderer>().color = new Color (0, 146, 241, 125); 
+            
 
         }
         else if (WetEffect)
         {
             //make them change color to wet
             GetComponent<SpriteRenderer>().color = new Color (0, 0, 255, 125); 
+            
 
         }
         else if (!BurningEffect && !FrozenEffect && !WetEffect)
         {
             //make them change color to normal
             GetComponent<SpriteRenderer>().color = new Color (255, 255, 255, 255); 
+            
 
 
         }
@@ -167,5 +208,6 @@ public class EnemyHealth : MonoBehaviour
     void Start()
     {
         MaxHealth = Health;
+        rb = GetComponent<Rigidbody2D>();
     }
 }

@@ -14,11 +14,13 @@ public class Shop : MonoBehaviour
 
     PlayerStats PlayerStats;
     private PlayerInput  pInput;
+    Movment movement;
 
     void Start()
     {
         PlayerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+        movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
     }
 
 
@@ -48,7 +50,7 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        if (pInput.actions["Interact"].WasPressedThisFrame() && InRange && !PlayerStats.Shopping) //if pressed Interact and in rang
+        if (pInput.actions["Interact"].WasPressedThisFrame() && InRange && !PlayerStats.Shopping && movement.canMove) //if pressed Interact and in rang
         {   
             ShopMenu.SetActive(true); // activate shop
 

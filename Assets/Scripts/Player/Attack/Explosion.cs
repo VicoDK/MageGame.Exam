@@ -25,6 +25,9 @@ public class Explosion : MonoBehaviour
     public bool RockMagic;
     public bool WaterMagic;
     public bool EnergyMagic;
+
+    [Header("Effects")]
+    public float frezeTime;
     
     void Start()
     {
@@ -39,8 +42,19 @@ public class Explosion : MonoBehaviour
         {
             
             //here we find a script whit the name EnemyHealth and  the function TakeDamage and give it our value Damage
-            collision.GetComponent<EnemyHealth>().TakeDamage(Damage, LightingMagic);
-            
+
+            if (LightingMagic)
+            {
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, LightingMagic);   
+            }
+            else if (IceMagic)
+            {
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, frezeTime, "Ice");  
+            }
+            else 
+            {
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage);   
+            }
             //here we check which effect to give
             if(BurningEffect)
             {
