@@ -19,6 +19,7 @@ public class AIagent : MonoBehaviour
     private float timeElapsed; //counter
 
     private string EnemyMode; //which mode the enemy is in
+    private float resetTime;
 
     
 
@@ -74,7 +75,7 @@ public class AIagent : MonoBehaviour
             }
             else if (distanceToTarget > stopChasing || Scripts.Hit.collider.name != "PlayerBody" ) //check if the player is too far away or if the player is in sight
             {    
-  
+
                 if  (Vector3.Distance(path.destination ,transform.position) < 0.7f ) // check if enemy is at the last seeing target pos
                 {
 
@@ -129,12 +130,13 @@ public class AIagent : MonoBehaviour
 
     void keepInMind()
     {
-        
+
         if (Counting == false)
         {
             Counting = true;
             timeElapsed = EnemyKeepInMindTime; //make sure the timer resets
         }
+
         
     }
 
@@ -153,6 +155,8 @@ public class AIagent : MonoBehaviour
        
 
     }
+
+
 
 
 }
