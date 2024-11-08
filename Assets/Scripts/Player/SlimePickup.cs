@@ -11,11 +11,11 @@ public class SlimePickup : MonoBehaviour
     private Vector2 fireDir;
 
 
-	void Start () 
+	public void MobDrop() 
     {
         //random direction and angle
-        fireDir.y = Random.Range(-3f, 3f);
-        fireDir.x = Random.Range(-3f, 3f);
+        fireDir.y = Random.Range(-1f, 1f);
+        fireDir.x = Random.Range(-1f, 1f);
       
         //calculate the angel to fire the coin
         float angle = Mathf.Atan2(fireDir.y+2f, fireDir.x+ 2f) * Mathf.Rad2Deg; 
@@ -23,20 +23,8 @@ public class SlimePickup : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
         // get the rb and Add force to the coin
-        Rigidbody2D rb = GetComponent<Rigidbody2D>();
-        rb.AddForce(fireDir * speed, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddForce(fireDir * speed, ForceMode2D.Impulse);
 
 	}
 
-    //colliding with something
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if player
-        if(collision.gameObject.CompareTag("Player"))
-        {
-            //Give player coins and destroy coin
-            //PlayerStats.Slime++;
-            Destroy(gameObject);
-        }
-    }
 }

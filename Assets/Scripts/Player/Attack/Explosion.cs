@@ -12,19 +12,41 @@ public class Explosion : MonoBehaviour
    public float Damage;
 
     [Header("Magic Effect")]
-    public bool BurningEffect;
+    /*public bool BurningEffect;
     public bool FrozenEffect;
-    public bool WetEffect;
+    public bool WetEffect;*/
+    public magicEffects magicEffect;
+    public enum magicEffects
+    {
+        BurningEffect,
+        FrozenEffect,
+        WetEffect,
+        none
+    }
+
 
     [Header("Magic Type")]
-    public bool FireMagic;
+    /*public bool FireMagic;
     public bool IceMagic;
     public bool LightingMagic;
     public bool WindMagic;
     public bool plantMagic;
     public bool RockMagic;
     public bool WaterMagic;
-    public bool EnergyMagic;
+    public bool EnergyMagic;*/
+    public magicTypes magicType;
+    public enum magicTypes
+    {
+        FireMagic,
+        IceMagic,
+        LightingMagic,
+        WindMagic,
+        plantMagic,
+        RockMagic,
+        WaterMagic,
+        EnergyMagic
+    }
+
 
     [Header("Effects")]
     public float frezeTime;
@@ -43,28 +65,29 @@ public class Explosion : MonoBehaviour
             
             //here we find a script whit the name EnemyHealth and  the function TakeDamage and give it our value Damage
 
-            if (LightingMagic)
+            if (magicType == magicTypes.LightingMagic)
             {
-                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, LightingMagic);   
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, magicType);   
             }
-            else if (IceMagic)
+            else if (magicType == magicTypes.IceMagic)
             {
-                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, frezeTime, "Ice");  
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, frezeTime, magicType);  
             }
             else 
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage);   
             }
+            
             //here we check which effect to give
-            if(BurningEffect)
+            if(magicEffect == magicEffects.BurningEffect)
             {
                 collision.GetComponent<EnemyHealth>().Bruning();
             }
-            else if(FrozenEffect)
+            else if(magicEffect == magicEffects.FrozenEffect)
             {
                 collision.GetComponent<EnemyHealth>().Frozen();
             }
-            else if(WetEffect)
+            else if(magicEffect == magicEffects.WetEffect)
             {
                 collision.GetComponent<EnemyHealth>().Wet();
             }

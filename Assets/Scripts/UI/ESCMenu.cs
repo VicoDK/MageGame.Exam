@@ -7,7 +7,7 @@ public class ESCMenu : MonoBehaviour
 {
     public GameObject EscMenu;
     private bool Aktive;
-    public PlayerInput  pInput;
+     PlayerInput  pInput;
 
 
     PlayerStats PlayerStat;

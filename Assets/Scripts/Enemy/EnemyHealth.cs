@@ -40,10 +40,10 @@ public class EnemyHealth : MonoBehaviour
 
 
     //function for taking damage
-    public void TakeDamage(float Damage, bool LightingMagic)
+    public void TakeDamage(float Damage, Explosion.magicTypes magicType)
     {   
         //check if enemy is wet and there is used LightingMagic 
-        if (WetEffect && LightingMagic)
+        if (WetEffect && magicType == Explosion.magicTypes.LightingMagic )
         {
             //take damage more damage
             Health -= Damage*LightingOnWetEnemy;
@@ -61,9 +61,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage(float Damage, float time, string magicType)
+    public void TakeDamage(float Damage, float time, Explosion.magicTypes magicType)
     {
-        if (magicType == "Ice")
+        if (magicType == Explosion.magicTypes.IceMagic)
         {
             Health -= Damage;
             Invoke("UnFreze", time);
@@ -160,7 +160,7 @@ public class EnemyHealth : MonoBehaviour
             //the enemy takes some damage every few second and counts it 
             if (Time.time >= Burntimestamp1)
             {
-                TakeDamage(BurnDamage, false);
+                TakeDamage(BurnDamage);
                 Burntimestamp1 = Time.time + BurnTimer;
                 BurnTicks++;
             }

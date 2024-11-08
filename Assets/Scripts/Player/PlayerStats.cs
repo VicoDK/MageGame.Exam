@@ -10,14 +10,6 @@ public class PlayerStats : MonoBehaviour
 {
     [Header("Player Stats")]
     
-    
-    
-    [Header("Player purse")]
-     public float Coin; 
-
-    public TMP_Text CoinAmountDisplay;
-    
-
     [Header("Health")]
     public float Health; 
     public bool Alive = true; 
@@ -54,7 +46,6 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        Coin = ResetScene.CoinAmount;
         Shopping = false;
         
         MaxMana = Mana;
@@ -125,7 +116,7 @@ public class PlayerStats : MonoBehaviour
 
 
         //for updating layout with coins 
-        CoinAmountDisplay.text = (Coin + " ");
+        //CoinAmountDisplay.text = (Coin + " ");
     }
 
     //function for taking damage

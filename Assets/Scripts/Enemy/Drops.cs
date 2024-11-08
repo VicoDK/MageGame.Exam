@@ -52,7 +52,9 @@ public class Drops : MonoBehaviour
           for(int i = 0; i < MobLoot; i++)
           {
             //instantiates gold at the enemy's position
-            Instantiate(MobDropItem, transform.position, Quaternion.identity);
+
+            GameObject mobDrop = Instantiate(MobDropItem, transform.position, Quaternion.identity);
+            mobDrop.GetComponent<SlimePickup>().MobDrop();
           }
 
         }

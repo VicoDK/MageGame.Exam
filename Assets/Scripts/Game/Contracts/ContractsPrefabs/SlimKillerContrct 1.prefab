@@ -45,3 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prize: 5
+  itemReward: {fileID: 6712372983688644731, guid: aecc0316503ff8e47934313b1ce4f5e0, type: 3}
+  killAmount: 2

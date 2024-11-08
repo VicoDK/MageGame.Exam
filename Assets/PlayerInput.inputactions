@@ -9,7 +9,7 @@
                     "name": "Fire",
                     "type": "Button",
                     "id": "f81a59d0-948a-44e9-a1d6-5e790dac236e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -18,7 +18,7 @@
                     "name": "SecondFire",
                     "type": "Button",
                     "id": "647c77ad-b413-4c5d-9b5a-68266b148c02",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -27,7 +27,7 @@
                     "name": "Interact",
                     "type": "Button",
                     "id": "8a69be1b-36c1-428e-a492-a6e876e0f460",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -73,6 +73,15 @@
                     "type": "Button",
                     "id": "64c8cedb-9919-4536-bf13-cdcc1342b791",
                     "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Inventory",
+                    "type": "Button",
+                    "id": "0a01cea8-78a9-4303-bcc9-ed538dfab2bb",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -285,6 +294,17 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6efb868-a5cb-4d61-b1ac-ee1b66cea4e4",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "Inventory",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

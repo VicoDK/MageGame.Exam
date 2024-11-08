@@ -11,7 +11,7 @@ public class Movment : MonoBehaviour
 
     //public InputAction PlayerMovment;
     private PlayerInput  pInput;
-    Vector2 MoveDir = Vector2.zero;
+    public Vector2 MoveDir = Vector2.zero;
 
     //player speed
     public float speed;
@@ -22,6 +22,7 @@ public class Movment : MonoBehaviour
     public bool canMove = true; 
     float currentRollTime;
     float startRollTime = 0.3f;
+    public int LookDIR;
 
     //rigibody
     [SerializeField] private Rigidbody2D rb;
@@ -35,7 +36,7 @@ public class Movment : MonoBehaviour
     private void Start()
     {
         PlayerStat = GetComponent<PlayerStats>();
-        pInput =GetComponent<PlayerInput>();
+        pInput = GetComponent<PlayerInput>();
         
     }
 
@@ -96,13 +97,15 @@ public class Movment : MonoBehaviour
     void Flip()
     {
 
-        if (MoveDir.x < 0 && canMove)
+        if (MoveDir.x < 0 && canMove && !PlayerStat.Shopping)
         {
             gameObject.transform.localScale = new Vector3(-1,1,1);
+            LookDIR = -1;
         }
-        else if (MoveDir.x > 0 && canMove)
+        else if (MoveDir.x > 0 && canMove && !PlayerStat.Shopping)
         {
             gameObject.transform.localScale = new Vector3(1,1,1);
+            LookDIR = 1;
             
         }
 
