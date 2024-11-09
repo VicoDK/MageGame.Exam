@@ -1,11 +1,13 @@
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.InputSystem.iOS;
 using UnityEngine.UI;
 
 public class ItemPickUp : MonoBehaviour
 {
     //Inventory inventory;
     private bool pickup = false;
+    private bool runWhile = true;
     public string itemName;
 
     public bool Stackable;
@@ -16,9 +18,12 @@ public class ItemPickUp : MonoBehaviour
     public float delayPickUpTime;
     private GameObject itemManager;
     public string ItemNameInResources;
+    private int step = 1;
+    Inventory inventory;
 
     void Start()
     {   
+        inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
         itemManager = GameObject.Find("ItemManager");
         this.transform.parent = itemManager.transform;
         itemPrefab = Resources.Load<GameObject>(ItemNameInResources);
@@ -33,47 +38,74 @@ public class ItemPickUp : MonoBehaviour
 
 
 
-
     void OnTriggerEnter2D(Collider2D collision)
     {
         //if player
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && delayPickUp && !pickup)
         {
-            if (!pickup && delayPickUp)
-            {
-                pickup = true;
-                gameObject.SetActive(false);   
-                Inventory.Getitem(itemPrefab);
-            }
+            runWhile = true;
+            step = 1;
 
-
-            // Get the Inventory component from the player object
-            /*inventory = collision.transform.parent.GetComponentInChildren<Inventory>();
-            if (inventory != null && !pickup)
-            {   // remake for list (mylist.contains(thing))
-
-                for (int i = 0; i < inventory.items.Length; i++)
+                while (runWhile)
                 {
-                    if (inventory.items[i].Items == null)
-                    {
-                        pickup = true;
-                        inventory.items[i].Items =this.transform.gameObject;
-                        inventory.items[i].Amount = 1;
-                        gameObject.SetActive(false);
-                        break;
-                    }
-                    else if (inventory.items[i].Items.GetComponent<ItemPickUp>().itemName == itemName && Stackable)
-                    {
+                    Debug.Log("0.2");
 
-                        pickup = true;
-                        inventory.items[i].Amount++;
-                        gameObject.SetActive(false);
+                    switch (step) 
+                    {
+                        case 1:
+                        for (int i = 0; i < inventory.items.Length+1; i++)
+                        {
+                            if (i < inventory.items.Length)
+                            {
+                                if (inventory.items[i].Items == itemPrefab && itemPrefab.GetComponent<ItemPickUp>().MaxStack != inventory.items[i].Amount)
+                                {
+                                    Debug.Log("1");
+
+                                    pickup = true;
+                                    runWhile = false;
+                                    gameObject.SetActive(false);   
+                                    Inventory.Getitem(itemPrefab);
+                                    break;
+                                }
+                            }
+                            else 
+                            {
+                                Debug.Log("2");
+                                step = 2;
+                                break;
+                            }
+
+                        }
+
+                        break;
+                        case 2:
+                            for (int i = 0; i < inventory.items.Length+1; i++)
+                            {
+                                if (i < inventory.items.Length)
+                                {
+                                    if (inventory.items[i].Items == null)
+                                    {
+                                        Debug.Log("3");
+                                        pickup = true;
+                                        runWhile = false;
+                                        gameObject.SetActive(false);   
+                                        Inventory.Getitem(itemPrefab);
+                                        break;
+                                    }
+                                    
+                                }
+
+                            }
+                            runWhile = false;
                         break;
                     }
-                    
                 }
                 
-            }*/
+                /*pickup = true;
+                gameObject.SetActive(false);   
+                Inventory.Getitem(itemPrefab);*/
+            
         }
     }
+    
 }
