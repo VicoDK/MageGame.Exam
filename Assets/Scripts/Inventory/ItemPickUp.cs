@@ -48,7 +48,6 @@ public class ItemPickUp : MonoBehaviour
 
                 while (runWhile)
                 {
-                    Debug.Log("0.2");
 
                     switch (step) 
                     {
@@ -59,7 +58,6 @@ public class ItemPickUp : MonoBehaviour
                             {
                                 if (inventory.items[i].Items == itemPrefab && itemPrefab.GetComponent<ItemPickUp>().MaxStack != inventory.items[i].Amount)
                                 {
-                                    Debug.Log("1");
 
                                     pickup = true;
                                     runWhile = false;
@@ -70,7 +68,6 @@ public class ItemPickUp : MonoBehaviour
                             }
                             else 
                             {
-                                Debug.Log("2");
                                 step = 2;
                                 break;
                             }
@@ -85,7 +82,7 @@ public class ItemPickUp : MonoBehaviour
                                 {
                                     if (inventory.items[i].Items == null)
                                     {
-                                        Debug.Log("3");
+
                                         pickup = true;
                                         runWhile = false;
                                         gameObject.SetActive(false);   

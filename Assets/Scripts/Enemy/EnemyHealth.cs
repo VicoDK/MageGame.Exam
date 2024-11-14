@@ -37,21 +37,42 @@ public class EnemyHealth : MonoBehaviour
     public bool Alive = true;
     public GameObject Ice;
 
+    public magicTypes enemyMagicType;
+    public enum magicTypes
+    {
+        Fire,
+        Ice,
+        Lighting,
+        Wind,
+        plant,
+        Rock,
+        Water,
+        Energy
+    }
+
 
 
     //function for taking damage
     public void TakeDamage(float Damage, Explosion.magicTypes magicType)
     {   
+
         //check if enemy is wet and there is used LightingMagic 
         if (WetEffect && magicType == Explosion.magicTypes.LightingMagic )
         {
             //take damage more damage
             Health -= Damage*LightingOnWetEnemy;
         }
+        else if (Explosion.magicTypes.WaterMagic == magicType && enemyMagicType == magicTypes.Fire )
+        {
+
+            Health -= Damage*1.5f;
+        }
         else
         {
+ 
             Health -= Damage;
         }
+
  
 
     } 
@@ -94,21 +115,27 @@ public class EnemyHealth : MonoBehaviour
     //function to frezze the enemy
     public void Frozen()
     {
-        //enemy is frozen  (but not wet)  (but not burning)
-        FrozenEffect = true;
-        WetEffect = false;
-        BurningEffect = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        Ice.SetActive(true);
+        if (enemyMagicType != magicTypes.Fire)
+        {
+
+            //enemy is frozen  (but not wet)  (but not burning)
+            FrozenEffect = true;
+            WetEffect = false;
+            BurningEffect = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            Ice.SetActive(true);
+        }
 
     }
 
     public void UnFreze()
     {
-        Ice.SetActive(false); // removes ice 
-        rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation; 
-        FrozenEffect = false;
-        
+        if (enemyMagicType != magicTypes.Fire)
+        {
+            Ice.SetActive(false); // removes ice 
+            rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation; 
+            FrozenEffect = false;
+        }        
 
     }
     

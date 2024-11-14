@@ -17,4 +17,25 @@ public class ContractsTracker : MonoBehaviour
       Instantiate(Contractschosen, transform.position, Quaternion.identity, this.transform);
 
    }
+   /* started working on a better contract system
+   [SerializeField] static public int contractAmount;
+   [SerializeField] static public int counter;
+   static void GetContract(GameObject contract)
+   {
+      GameObject[] ContractList = new GameObject[contractAmount];
+      for (int i = 0; i < contractAmount; i++)
+      {
+         if (ContractList != null)
+         {
+            counter++;
+         }
+      }
+      
+      if (!(counter <= contractAmount))
+      {
+         Instantiate(contract);
+      }
+
+
+   }*/
 }

@@ -21,6 +21,15 @@ public class PlayerStats : MonoBehaviour
 
     private float healTime;
 
+
+
+    private bool BurningEffect;
+    public float BurnDamage;
+    public float BurnTimer;
+    public int BurnEffectLength;
+    private float Burntimestamp1;
+        private int BurnTicks;
+
     [Header("UI")]
     public GameObject DeathMenu;
 
@@ -40,7 +49,8 @@ public class PlayerStats : MonoBehaviour
 
     public bool Shopping; 
     private SpriteRenderer Sprite;
-    private PlayerInput  pInput;
+    public PlayerInput  pInput;
+    private bool ones;
 
  
 
@@ -61,6 +71,39 @@ public class PlayerStats : MonoBehaviour
         //makes xTime count down 
         healTime -= Time.deltaTime;  
         ManaTime -= Time.deltaTime;
+
+
+
+        //burning
+        if (BurningEffect)
+        {   
+            ones = false;
+            
+            GetComponent<SpriteRenderer>().color = new Color (255, 0, 0, 125); 
+
+            //the enemy takes some damage every few second and counts it 
+            if (Time.time >= Burntimestamp1)
+            {
+                TakeDamage(BurnDamage);
+                Burntimestamp1 = Time.time + BurnTimer;
+                BurnTicks++;
+            }
+
+            //if the burnticks is over BurnEffectLength, then the burning stops
+            if (BurnTicks >= BurnEffectLength)
+            {
+                if (!ones)
+                {
+                    GetComponent<SpriteRenderer>().color = new Color (255, 255, 255, 255); 
+                    ones = true;
+                }
+                
+                BurnTicks = 0;
+                BurningEffect = false;
+            }
+
+
+        }
 
 
     }
@@ -129,7 +172,62 @@ public class PlayerStats : MonoBehaviour
         AllowHeal = false;
 
         //set the timer to HealthRegnDelay
+        healTime = HealthRegnDelay;  
+
+    } 
+
+    //enemy damage
+    public void TakeDamage(float Damage, PhysicalEnemyAttack.magicEffects magicEffects)
+    {
+
+        Health -= Damage;
+
+         //stops the player from healing
+        AllowHeal = false;
+
+        //set the timer to HealthRegnDelay
         healTime = HealthRegnDelay;
+
+        switch (magicEffects)
+        {
+
+            case PhysicalEnemyAttack.magicEffects.BurningEffect:
+            BurningEffect = true;
+
+            break;
+            default:
+            break;
+
+        }
+
+
+        
+
+    } 
+
+    //self damage
+    public void TakeDamage(float Damage, Explosion.magicEffects magicType)
+    {
+
+        Health -= Damage;
+
+         //stops the player from healing
+        AllowHeal = false;
+
+        //set the timer to HealthRegnDelay
+        healTime = HealthRegnDelay;
+
+        switch (magicType)
+        {
+
+            case Explosion.magicEffects.BurningEffect:
+            BurningEffect = true;
+
+            break;
+            default:
+            break;
+
+        }
 
 
         

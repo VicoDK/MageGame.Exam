@@ -104,7 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc35526a6ebd80f4a801f5042e485bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickup: 0
   itemName: Potion
   Stackable: 1
   itemUiImage: {fileID: 2800000, guid: 43700a030e85f194581d5a6b217dc067, type: 3}
@@ -225,4 +224,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 1
   itemType: 1
-  potionHealAmount: 0
+  potionHealAmount: 20

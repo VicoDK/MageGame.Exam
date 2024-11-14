@@ -73,6 +73,10 @@ public class Explosion : MonoBehaviour
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage, frezeTime, magicType);  
             }
+            else if (magicType == magicTypes.WaterMagic)
+            {
+                collision.GetComponent<EnemyHealth>().TakeDamage(Damage, magicType);  
+            }
             else 
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage);   
@@ -95,7 +99,7 @@ public class Explosion : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStats>().TakeDamage(Damage);
+            collision.GetComponent<PlayerStats>().TakeDamage(Damage, magicEffect);
         }
         
     }

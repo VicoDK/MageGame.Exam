@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -16,6 +17,15 @@ public class ItemSlots : MonoBehaviour
     public GameObject useUI;
     public GameObject normalUI;
 
+    public enum SlotType
+    {
+        ItemSlot,
+        CloakSlot,
+        StaffSlot
+    }
+
+    public SlotType slotType;
+
 
     void Start()
     {   
@@ -27,50 +37,87 @@ public class ItemSlots : MonoBehaviour
 
     void Update()
     {
-        //display image   
-        if (inventory.items[SlotNumber-1].Items != null)
+        if (slotType == SlotType.ItemSlot)
         {
-            ri = inventory.items[SlotNumber-1].Items.transform.GetComponent<ItemPickUp>().itemUiImage;
 
-            this.gameObject.GetComponent<RawImage>().texture = ri;
-            
-        }
-        else 
-        {
-            this.gameObject.GetComponent<RawImage>().texture = null;
-        }
-
-        //display amount
-        if (inventory.items[SlotNumber-1].Amount > 1)
-        {
-            count.text = (inventory.items[SlotNumber-1].Amount + "");
-        }
-        else
-        {
-            count.text = ("");
-        }
-
-        //check if usecase
-        if (inventory.items[SlotNumber-1].Items != null)
-        {
-            if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().canUse)
+            //display image   
+            if (inventory.items[SlotNumber-1].Items != null)
             {
-                useUI.SetActive(true);
-                normalUI.SetActive(false);
+                ri = inventory.items[SlotNumber-1].Items.transform.GetComponent<ItemPickUp>().itemUiImage;
+
+                this.gameObject.GetComponent<RawImage>().texture = ri;
+                
+            }
+            else 
+            {
+                this.gameObject.GetComponent<RawImage>().texture = null;
+            }
+
+            //display amount
+            if (inventory.items[SlotNumber-1].Amount > 1)
+            {
+                count.text = (inventory.items[SlotNumber-1].Amount + "");
+            }
+            else
+            {
+                count.text = ("");
+            }
+
+            //check if usecase
+            if (inventory.items[SlotNumber-1].Items != null)
+            {
+                if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().canUse)
+                {
+                    useUI.SetActive(true);
+                    normalUI.SetActive(false);
+                }
+                else 
+                {
+                    useUI.SetActive(false);
+                    normalUI.SetActive(true);
+
+                }
+
             }
             else 
             {
                 useUI.SetActive(false);
-                normalUI.SetActive(true);
+                normalUI.SetActive(false);            
+            }
+        }
+        else if (slotType == SlotType.CloakSlot)
+        {
+            //display image   
+            if (inventory.cloakSlot != null)
+            {
+                ri = inventory.cloakSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
 
+                this.gameObject.GetComponent<RawImage>().texture = ri;
+                
+            }
+            else 
+            {
+                this.gameObject.GetComponent<RawImage>().texture = null;
+            }
+        }
+        else if (slotType == SlotType.StaffSlot)
+        {
+            //display image   
+            if (inventory.staffSlot != null)
+            {
+                ri = inventory.staffSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
+
+                this.gameObject.GetComponent<RawImage>().texture = ri;
+                
+            }
+            else 
+            {
+                this.gameObject.GetComponent<RawImage>().texture = null;
             }
 
         }
-        else 
-        {
-            useUI.SetActive(false);
-            normalUI.SetActive(false);            
-        }
+
+
 
     }
 
@@ -84,7 +131,8 @@ public class ItemSlots : MonoBehaviour
 
     public void UseItemInSlot()
     {
-        inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().UseItem();
+
+        inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().UseItem(SlotNumber);
     }
 
 

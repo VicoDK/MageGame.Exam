@@ -24,11 +24,11 @@ public class itemUse : MonoBehaviour
 
     public int potionHealAmount;
 
-    public void UseItem()
+    public void UseItem(int SlotNumber)
     {
         if (canUse && itemType == whatItem.HealthPotion)
         {
-            HealthPotion();
+            HealthPotion(SlotNumber);
         }
         else 
         {
@@ -39,9 +39,11 @@ public class itemUse : MonoBehaviour
     }
 
 
-    public void HealthPotion()
+    public void HealthPotion(int SlotNumber)
     {
+
         playerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+        GameObject.Find("CanvasG").GetComponent<Inventory>().items[SlotNumber-1].Amount--;
         playerStats.Health += potionHealAmount;
 
     }
