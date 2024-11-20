@@ -10,15 +10,9 @@ public class PhysicalEnemyAttack : MonoBehaviour
     private bool AttackReady = true;
     EnemyHealth enemyHealth; //enemy stats
 
-    public enum magicEffects
-    {
-        BurningEffect,
-        FrozenEffect,
-        WetEffect,
-        none
-    }
 
-    public magicEffects magicEffect;
+    public MagicTypes.magicEffects magicEffect;
+    public MagicTypes.Magictype magictype;
 
 
     void Start()
@@ -33,7 +27,7 @@ public class PhysicalEnemyAttack : MonoBehaviour
         if(collision.gameObject.CompareTag("Player") && AttackReady && !enemyHealth.FrozenEffect)
         {
             //do damage
-            collision.GetComponent<PlayerStats>().TakeDamage(AttackDamage, magicEffect);
+            collision.GetComponent<PlayerStats>().TakeDamage(AttackDamage, magicEffect, magictype);
             //start timer
             StartCoroutine(Attacks());
         }

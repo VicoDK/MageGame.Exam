@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour
     public float Health; 
     public bool Alive = true; 
     
-    private float MaxHealth;
+    public float MaxHealth;
     public float HealthRegn; 
     public float HealthRegnDelay;
     private bool AllowHeal = true;
@@ -52,6 +52,13 @@ public class PlayerStats : MonoBehaviour
     public PlayerInput  pInput;
     private bool ones;
 
+
+    Inventory Inventory;
+    itemUse CloakStat;
+
+    public float DamageWeaknessModifier;
+    public float DamageResistensModifier;
+
  
 
     void Start()
@@ -63,6 +70,8 @@ public class PlayerStats : MonoBehaviour
 
         Sprite = GetComponent<SpriteRenderer>();
         //pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+        Inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        //CloakStat = Inventory.cloakSlot.gameObject.GetComponent<ItemUse>();
         
     }   
 
@@ -71,6 +80,11 @@ public class PlayerStats : MonoBehaviour
         //makes xTime count down 
         healTime -= Time.deltaTime;  
         ManaTime -= Time.deltaTime;
+
+        if (Health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
 
 
 
@@ -122,6 +136,7 @@ public class PlayerStats : MonoBehaviour
         //runs when the time for mana regen to started runned out
         if (ManaTime < 0f)
         {
+
             //starts the players mana regen
             AllowMana = true;
 
@@ -129,8 +144,25 @@ public class PlayerStats : MonoBehaviour
     
         //this is for mana regn
         if (MaxMana > Mana && Alive && AllowMana)
-        {
-            Mana += ManaRegn/50;
+        {   
+
+            if (Inventory.staffSlot != null)
+            {
+                if (Inventory.staffSlot.GetComponent<itemUse>().manaRegenModifer != 0)
+                {
+                    Mana += (ManaRegn/50) * Inventory.staffSlot.GetComponent<itemUse>().manaRegenModifer;
+                }
+                else 
+                {
+
+                    Mana += (ManaRegn/50);
+                }
+            }
+            else
+            {
+
+                Mana += (ManaRegn/50);
+            }
         }
 
         //this is for health regn
@@ -165,8 +197,16 @@ public class PlayerStats : MonoBehaviour
     //function for taking damage
     public void TakeDamage(float Damage)
     {
+        
+        if (Inventory.cloakSlot.GetComponent<itemUse>().defence != 0 && Inventory.cloakSlot != null)
+        {
+        Health -= Damage * Inventory.cloakSlot.GetComponent<itemUse>().defence;
 
-        Health -= Damage;
+        }
+        else 
+        {
+            Health -= Damage;
+        }
 
          //stops the player from healing
         AllowHeal = false;
@@ -177,10 +217,47 @@ public class PlayerStats : MonoBehaviour
     } 
 
     //enemy damage
-    public void TakeDamage(float Damage, PhysicalEnemyAttack.magicEffects magicEffects)
+    public void TakeDamage(float Damage, MagicTypes.magicEffects magicEffects, MagicTypes.Magictype magictype)
     {
+        if (Inventory.cloakSlot.GetComponent<itemUse>().magicWaekness == magictype)
+        {
+            if (Inventory.cloakSlot.GetComponent<itemUse>().defence != 0 && Inventory.cloakSlot != null)
+            {
+                Health -= (Damage * Inventory.cloakSlot.GetComponent<itemUse>().defence) * DamageWeaknessModifier;
 
-        Health -= Damage;
+            }
+            else 
+            {
+                Health -= Damage;
+            }
+
+        }
+        else if (Inventory.cloakSlot.GetComponent<itemUse>().magicResistens == magictype)
+        { 
+            if (Inventory.cloakSlot.GetComponent<itemUse>().defence != 0 && Inventory.cloakSlot != null)
+            {
+                Health -= (Damage * Inventory.cloakSlot.GetComponent<itemUse>().defence) * DamageResistensModifier;
+
+            }
+            else 
+            {
+                Health -= Damage;
+            }
+
+        }
+        else 
+        {
+            if (Inventory.cloakSlot.GetComponent<itemUse>().defence != 0 && Inventory.cloakSlot != null)
+            {
+                Health -= Damage * Inventory.cloakSlot.GetComponent<itemUse>().defence;
+
+            }
+            else 
+            {
+                Health -= Damage;
+            }
+        }
+
 
          //stops the player from healing
         AllowHeal = false;
@@ -191,7 +268,7 @@ public class PlayerStats : MonoBehaviour
         switch (magicEffects)
         {
 
-            case PhysicalEnemyAttack.magicEffects.BurningEffect:
+            case MagicTypes.magicEffects.BurningEffect:
             BurningEffect = true;
 
             break;
@@ -206,7 +283,7 @@ public class PlayerStats : MonoBehaviour
     } 
 
     //self damage
-    public void TakeDamage(float Damage, Explosion.magicEffects magicType)
+    public void TakeDamage(float Damage, MagicTypes.magicEffects magicType, bool selfDamage)
     {
 
         Health -= Damage;
@@ -220,7 +297,7 @@ public class PlayerStats : MonoBehaviour
         switch (magicType)
         {
 
-            case Explosion.magicEffects.BurningEffect:
+            case MagicTypes.magicEffects.BurningEffect:
             BurningEffect = true;
 
             break;

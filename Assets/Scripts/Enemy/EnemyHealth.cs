@@ -18,7 +18,7 @@ public class EnemyHealth : MonoBehaviour
     //Generald info
     private bool BurningEffect;
     public bool FrozenEffect;
-    private bool WetEffect;
+    public bool WetEffect;
     private Rigidbody2D rb;
 
     [Header("Effect Damage + Effect Timer")]
@@ -37,34 +37,24 @@ public class EnemyHealth : MonoBehaviour
     public bool Alive = true;
     public GameObject Ice;
 
-    public magicTypes enemyMagicType;
-    public enum magicTypes
-    {
-        Fire,
-        Ice,
-        Lighting,
-        Wind,
-        plant,
-        Rock,
-        Water,
-        Energy
-    }
+    public MagicTypes.Magictype enemyMagicType;
 
 
 
     //function for taking damage
-    public void TakeDamage(float Damage, Explosion.magicTypes magicType)
+    public void TakeDamage(float Damage, MagicTypes.Magictype magicType)
     {   
 
+
+
         //check if enemy is wet and there is used LightingMagic 
-        if (WetEffect && magicType == Explosion.magicTypes.LightingMagic )
+        if (WetEffect && magicType == MagicTypes.Magictype.LightingMagic )
         {
             //take damage more damage
             Health -= Damage*LightingOnWetEnemy;
         }
-        else if (Explosion.magicTypes.WaterMagic == magicType && enemyMagicType == magicTypes.Fire )
+        else if (MagicTypes.Magictype.WaterMagic == magicType && enemyMagicType == MagicTypes.Magictype.FireMagic )
         {
-
             Health -= Damage*1.5f;
         }
         else
@@ -82,9 +72,9 @@ public class EnemyHealth : MonoBehaviour
     }
 
 
-    public void TakeDamage(float Damage, float time, Explosion.magicTypes magicType)
+    public void TakeDamage(float Damage, float time, MagicTypes.Magictype magicType)
     {
-        if (magicType == Explosion.magicTypes.IceMagic)
+        if (magicType == MagicTypes.Magictype.IceMagic)
         {
             Health -= Damage;
             Invoke("UnFreze", time);
@@ -115,7 +105,7 @@ public class EnemyHealth : MonoBehaviour
     //function to frezze the enemy
     public void Frozen()
     {
-        if (enemyMagicType != magicTypes.Fire)
+        if (enemyMagicType != MagicTypes.Magictype.FireMagic)
         {
 
             //enemy is frozen  (but not wet)  (but not burning)
@@ -130,7 +120,7 @@ public class EnemyHealth : MonoBehaviour
 
     public void UnFreze()
     {
-        if (enemyMagicType != magicTypes.Fire)
+        if (enemyMagicType != MagicTypes.Magictype.FireMagic)
         {
             Ice.SetActive(false); // removes ice 
             rb.constraints = RigidbodyConstraints2D.None | RigidbodyConstraints2D.FreezeRotation; 

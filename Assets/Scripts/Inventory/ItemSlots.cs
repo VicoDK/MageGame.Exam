@@ -1,6 +1,8 @@
 using System;
+using System.Xml.Serialization;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +18,8 @@ public class ItemSlots : MonoBehaviour
     
     public GameObject useUI;
     public GameObject normalUI;
+    public GameObject equipUI;
+    public GameObject unequip;
 
     public enum SlotType
     {
@@ -29,7 +33,7 @@ public class ItemSlots : MonoBehaviour
 
     void Start()
     {   
-        inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
         count = GetComponentInChildren<TMP_Text>();
         PlayerPOS = GameObject.Find("PlayerBody").GetComponent<Transform>();
         PlayerMovement = GameObject.Find("PlayerBody").GetComponent<Movment>();
@@ -37,6 +41,11 @@ public class ItemSlots : MonoBehaviour
 
     void Update()
     {
+        if (inventory == null)
+        {
+            Debug.Log("1");
+        }
+
         if (slotType == SlotType.ItemSlot)
         {
 
@@ -70,11 +79,19 @@ public class ItemSlots : MonoBehaviour
                 {
                     useUI.SetActive(true);
                     normalUI.SetActive(false);
+                    equipUI.SetActive(false);
                 }
-                else 
+                else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().equip)
+                {
+                    useUI.SetActive(false);
+                    normalUI.SetActive(false);
+                    equipUI.SetActive(true);
+                }
+                else
                 {
                     useUI.SetActive(false);
                     normalUI.SetActive(true);
+                    equipUI.SetActive(false);
 
                 }
 
@@ -82,7 +99,8 @@ public class ItemSlots : MonoBehaviour
             else 
             {
                 useUI.SetActive(false);
-                normalUI.SetActive(false);            
+                normalUI.SetActive(false); 
+                equipUI.SetActive(false);           
             }
         }
         else if (slotType == SlotType.CloakSlot)
@@ -93,11 +111,14 @@ public class ItemSlots : MonoBehaviour
                 ri = inventory.cloakSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
 
                 this.gameObject.GetComponent<RawImage>().texture = ri;
+                unequip.SetActive(true);
                 
             }
             else 
             {
                 this.gameObject.GetComponent<RawImage>().texture = null;
+                unequip.SetActive(false);
+
             }
         }
         else if (slotType == SlotType.StaffSlot)
@@ -108,11 +129,13 @@ public class ItemSlots : MonoBehaviour
                 ri = inventory.staffSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
 
                 this.gameObject.GetComponent<RawImage>().texture = ri;
-                
+                unequip.SetActive(true);
             }
             else 
             {
                 this.gameObject.GetComponent<RawImage>().texture = null;
+                unequip.SetActive(false);
+
             }
 
         }
@@ -133,6 +156,58 @@ public class ItemSlots : MonoBehaviour
     {
 
         inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().UseItem(SlotNumber);
+    }
+
+    public void Equip()
+    {
+        if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().itemType == itemUse.whatItem.Staff)
+        {
+            if (inventory.staffSlot == null)
+            {
+                inventory.staffSlot = inventory.items[SlotNumber-1].Items;
+                inventory.items[SlotNumber-1].Items = null;
+            }
+            else 
+            {
+                GameObject itemHold = inventory.staffSlot;
+                inventory.staffSlot = inventory.items[SlotNumber-1].Items;
+                inventory.items[SlotNumber-1].Items = itemHold;
+            }
+        }
+        else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().itemType == itemUse.whatItem.Cloak)
+        {
+            if (inventory.cloakSlot == null)
+            {
+                inventory.cloakSlot = inventory.items[SlotNumber-1].Items;
+                inventory.items[SlotNumber-1].Items = null;
+            }
+            else 
+            {
+                GameObject itemHold = inventory.cloakSlot;
+                inventory.cloakSlot = inventory.items[SlotNumber-1].Items;
+                inventory.items[SlotNumber-1].Items = itemHold;
+            }
+
+        }
+        else 
+        {
+            Debug.Log("dont work");
+        }
+    }
+
+    public void UnequipStaff()
+    {
+        Inventory.Getitem(inventory.staffSlot);
+        inventory.staffSlot = null;
+
+
+    }
+    public void UnequipCloak()
+    {
+        Inventory.Getitem(inventory.cloakSlot);
+        inventory.cloakSlot = null;
+
+
     }
 
 

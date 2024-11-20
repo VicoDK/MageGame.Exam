@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDamage: 25
   AttackSpeed: 0.4
-  magicEffect: 0
+  magicEffect: 3
 --- !u!114 &2840422971117146225
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 557044379088704661}
   - component: {fileID: 3077898638377043963}
   m_Layer: 8
-  m_Name: Triangle
+  m_Name: MiniMap Dot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -171,7 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackDamage: 10
   AttackSpeed: 0.2
-  magicEffect: 0
+  magicEffect: 3
 --- !u!114 &1426817790412800657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -497,7 +497,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   Foot: {fileID: 0}
-  stopDistanceThreshold: 4
+  stopDistanceThreshold: 400
   stopChasing: 12
   EnemyKeepInMindTime: 2
   patrolNewSpotTime: 5

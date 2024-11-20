@@ -12,49 +12,36 @@ public class Explosion : MonoBehaviour
    public float Damage;
 
     [Header("Magic Effect")]
-    /*public bool BurningEffect;
-    public bool FrozenEffect;
-    public bool WetEffect;*/
-    public magicEffects magicEffect;
-    public enum magicEffects
-    {
-        BurningEffect,
-        FrozenEffect,
-        WetEffect,
-        none
-    }
+    public MagicTypes.magicEffects magicEffect;
 
 
     [Header("Magic Type")]
-    /*public bool FireMagic;
-    public bool IceMagic;
-    public bool LightingMagic;
-    public bool WindMagic;
-    public bool plantMagic;
-    public bool RockMagic;
-    public bool WaterMagic;
-    public bool EnergyMagic;*/
-    public magicTypes magicType;
-    public enum magicTypes
-    {
-        FireMagic,
-        IceMagic,
-        LightingMagic,
-        WindMagic,
-        plantMagic,
-        RockMagic,
-        WaterMagic,
-        EnergyMagic
-    }
+
+    public MagicTypes.Magictype magicType;
 
 
     [Header("Effects")]
     public float frezeTime;
+
+    Inventory inventory;
     
     void Start()
     {
         //here we start det Explosion timer
         StartCoroutine(Explode());
+
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        if (inventory.staffSlot.GetComponent<itemUse>().damageModifer != 0)
+        {
+            if (inventory.staffSlot.GetComponent<itemUse>().magicAffinity == magicType)
+            {
+                Damage *= inventory.staffSlot.GetComponent<itemUse>().damageModifer * inventory.staffSlot.GetComponent<itemUse>().magicAffinityModifier;
+            }
+            else
+            {
+                Damage *= inventory.staffSlot.GetComponent<itemUse>().damageModifer;
+            }
+        }
     }
 
     //here we check if there is a collsion and if its the player
@@ -65,15 +52,15 @@ public class Explosion : MonoBehaviour
             
             //here we find a script whit the name EnemyHealth and  the function TakeDamage and give it our value Damage
 
-            if (magicType == magicTypes.LightingMagic)
+            if (magicType == MagicTypes.Magictype.LightingMagic)
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage, magicType);   
             }
-            else if (magicType == magicTypes.IceMagic)
+            else if (magicType == MagicTypes.Magictype.IceMagic)
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage, frezeTime, magicType);  
             }
-            else if (magicType == magicTypes.WaterMagic)
+            else if (magicType == MagicTypes.Magictype.WaterMagic)
             {
                 collision.GetComponent<EnemyHealth>().TakeDamage(Damage, magicType);  
             }
@@ -83,15 +70,15 @@ public class Explosion : MonoBehaviour
             }
             
             //here we check which effect to give
-            if(magicEffect == magicEffects.BurningEffect)
+            if(magicEffect == MagicTypes.magicEffects.BurningEffect)
             {
                 collision.GetComponent<EnemyHealth>().Bruning();
             }
-            else if(magicEffect == magicEffects.FrozenEffect)
+            else if(magicEffect == MagicTypes.magicEffects.FrozenEffect)
             {
                 collision.GetComponent<EnemyHealth>().Frozen();
             }
-            else if(magicEffect == magicEffects.WetEffect)
+            else if(magicEffect == MagicTypes.magicEffects.WetEffect)
             {
                 collision.GetComponent<EnemyHealth>().Wet();
             }
@@ -99,7 +86,7 @@ public class Explosion : MonoBehaviour
         }
         else if (collision.gameObject.CompareTag("Player"))
         {
-            collision.GetComponent<PlayerStats>().TakeDamage(Damage, magicEffect);
+            collision.GetComponent<PlayerStats>().TakeDamage(Damage, magicEffect, true);
         }
         
     }

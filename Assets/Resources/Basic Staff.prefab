@@ -104,13 +104,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc35526a6ebd80f4a801f5042e485bb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Name
+  itemName: Basic Staff
   Stackable: 0
   itemUiImage: {fileID: 2800000, guid: 818e87f2ce938ed48be91590d4099c8f, type: 3}
   MaxStack: 1
   itemPrefab: {fileID: 2555155911585461382}
   delayPickUpTime: 1
-  ItemNameInResources: Staff
+  ItemNameInResources: Basic Staff
 --- !u!58 &8046416729702399632
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -160,7 +160,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0
+  m_LinearDamping: 1
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -173,7 +173,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &771751803359195285
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -223,5 +223,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
-  itemType: 0
+  equip: 1
+  itemType: 3
   potionHealAmount: 0
+  damageModifer: 1000
+  magicAffinity: 0
+  manaRegenModifer: 0.1
+  defence: 0
+  magicResistens: 0
+  magicWaekness: 0

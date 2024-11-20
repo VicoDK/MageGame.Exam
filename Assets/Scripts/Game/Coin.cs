@@ -40,7 +40,7 @@ void OnTriggerEnter2D(Collider2D collision)
     if (collision.gameObject.CompareTag("Player"))
     {
         // Get the PlayerStats component from the player object
-        Inventory inventory = collision.transform.parent.GetComponentInChildren<Inventory>();;
+        Inventory inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
         if (inventory != null && !pickup)
         {
             pickup = true;

@@ -13,9 +13,23 @@ public class BasicAttack : MonoBehaviour
     bool hit = false;
     public GameObject DestoyDetector;
 
+    Inventory inventory;
+
     void Start()
     {
         Invoke("EnableDestoy", 0.04f);
+        
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+
+        if (inventory.staffSlot != null)
+        {
+            if (inventory.staffSlot.GetComponent<itemUse>().damageModifer != 0 && itself == "Player")
+            {
+                Damage *= inventory.staffSlot.GetComponent<itemUse>().damageModifer;
+            }
+        }
+
+    
 
     }
 

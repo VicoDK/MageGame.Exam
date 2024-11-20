@@ -37,9 +37,11 @@ public class Inventory : MonoBehaviour
     Inventory inventory;
 
 
+
     void Start()
     {
         inventory = Instance;
+
     
     }
 
@@ -47,7 +49,7 @@ public class Inventory : MonoBehaviour
     {
         if (staffSlot != null)
         {
-            if (!staffSlot.CompareTag("Staff"))
+            if (staffSlot.gameObject.GetComponent<itemUse>().itemType != itemUse.whatItem.Staff)
             {
                 Getitem(staffSlot);
                 staffSlot = null;
@@ -57,7 +59,7 @@ public class Inventory : MonoBehaviour
 
         if (cloakSlot != null)
         {
-            if (!cloakSlot.CompareTag("Cloak"))
+            if (cloakSlot.gameObject.GetComponent<itemUse>().itemType != itemUse.whatItem.Cloak)
             {
                 Getitem(cloakSlot);
                 cloakSlot = null;

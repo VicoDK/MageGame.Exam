@@ -61,7 +61,7 @@ public class ShopMenu : MonoBehaviour
         PlayerUI.SetActive(false); //diable player ui
         PlayerStat.Shopping = true; //stops the player from moving
         Time.timeScale = 0;
-        inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
+        inventory = GameObject.Find("Inventory").GetComponent<Inventory>();
 
 
         

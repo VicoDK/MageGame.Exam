@@ -23,7 +23,7 @@ public class ItemPickUp : MonoBehaviour
 
     void Start()
     {   
-        inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
         itemManager = GameObject.Find("ItemManager");
         this.transform.parent = itemManager.transform;
         itemPrefab = Resources.Load<GameObject>(ItemNameInResources);
