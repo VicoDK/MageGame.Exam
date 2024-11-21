@@ -10,6 +10,7 @@ public class ResetScene : MonoBehaviour
     private PlayerStats PlayerStat;
     Inventory inventory;
     Attack Attack;
+    Controls controls;
 
     static public float CoinAmount = 0;
 
@@ -18,6 +19,7 @@ public class ResetScene : MonoBehaviour
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         Attack = GameObject.Find("PlayerBody").GetComponent<Attack>();
         inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
+        controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
     }
 
     public void OnTriggerEnter2D(Collider2D Other)
@@ -27,7 +29,7 @@ public class ResetScene : MonoBehaviour
 
             // Reset player stats and reload the scene
             PlayerStat.Alive = true;
-            Attack.AttackReady = true;
+            controls.AttackReady  = true;
             CoinAmount = inventory.coin; // make better save system
             string currentSceneName = SceneManager.GetActiveScene().name;
             SceneManager.LoadScene(currentSceneName);

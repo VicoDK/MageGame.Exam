@@ -8,7 +8,7 @@ public class BallAttack : MonoBehaviour
 {
     [Header("General stats")]
     private PlayerInput  pInput;
-    public Transform FirePoint;
+    Transform FirePoint;
     public float Speed;
     public int ManaCost;
     private GameObject bullet;
@@ -21,20 +21,28 @@ public class BallAttack : MonoBehaviour
     PlayerStats PlayerStat;
     Attack attack;
     public Vector3 mousePosition;
+    bool ones = true;
+    Movment movement;
+    Controls controls;
+    public float Delay;
 
-    private void Start()
-    {
-        PlayerStat = GetComponent<PlayerStats>();
-        attack = GetComponent<Attack>();
-        pInput = GetComponent<PlayerInput>();
-    }
 
     // Update is called once per frame
-    void Update()
+    public void Fire()
     {
+
+        if (PlayerStat == null || movement == null || pInput == null || FirePoint == null ||controls == null)
+        {
+            PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+            movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
+            pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+            FirePoint = GameObject.Find("FirePoint").GetComponent<Transform>();
+            controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
+            ones = false;
+        }
         //ball attacks
         //rigistere input
-        if (pInput.actions["SecondFire"].WasPressedThisFrame() && PlayerStat.Mana >= ManaCost && attack.AttackReady && !PlayerStat.Shopping)
+        if (pInput.actions["SecondFire"].WasPressedThisFrame() && PlayerStat.Mana >= ManaCost && controls.AttackReady  && !PlayerStat.Shopping && movement.canMove)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
@@ -46,6 +54,8 @@ public class BallAttack : MonoBehaviour
 
             // Instantiate bullet at fire point
             bullet = Instantiate(Ball, FirePoint.position, Quaternion.identity);
+            bullet.GetComponent<AttackHit>().mousePosition = mousePosition;
+            bullet.GetComponent<AttackHit>().Speed = Speed;
 
             // Rotate bullet towards mouse position
             float angle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
@@ -59,7 +69,7 @@ public class BallAttack : MonoBehaviour
             PlayerStat.Mana -= ManaCost;
             PlayerStat.ManaCost(); // this function makes sure that the manaRegen works
 
-            StartCoroutine(attack.AttackDelay());
+            controls.AttackDelay(Delay);
 
         }
     }

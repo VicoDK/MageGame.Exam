@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,38 +8,35 @@ public class Attack : MonoBehaviour
 {
     [Header("Player Input System")]
     //add new input system
-    private PlayerInput  pInput;
-    [Header("Fire Point")]
-    public Transform FirePoint;
-
-
-    [Header("Meleattack")]
-    public GameObject Sword;
+     PlayerInput  pInput;
+    private Transform FirePoint;
 
     [Header("Basic attack")]
     public float Speed;
     public GameObject BaseAttack;
-    public float Delay = 0.2f; //Static
-    public bool AttackReady = true; //static
+    public float Delay = 0.2f;
     PlayerStats PlayerStat;
     Vector2 fireDir;
     Movment movement;
+    Controls controls;
 
-    private void Start()
+    public void Fire()
     {
-        PlayerStat = GetComponent<PlayerStats>();
-        movement = GetComponent<Movment>();
-        pInput = GetComponent<PlayerInput>();
-    }
-    
+        if (PlayerStat == null || movement == null || pInput == null || FirePoint == null ||controls == null) 
+        {
+            PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+            movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
+            pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+            FirePoint = GameObject.Find("FirePoint").GetComponent<Transform>();
+            controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
 
+        }
+        ojnfghongfh
+        //fireball dont move
 
-
-    void Update()
-    {
         //base attack
         //here we check after input and if attack is ready
-        if (pInput.actions["Fire"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping && movement.canMove|| pInput.actions["FireController"].WasPressedThisFrame() && AttackReady && !PlayerStat.Shopping && movement.canMove)
+        if (controls.AttackReady && !PlayerStat.Shopping && movement.canMove)
         {
             if (pInput.actions["Fire"].WasPressedThisFrame()) //Mouse input
             {
@@ -81,24 +79,12 @@ public class Attack : MonoBehaviour
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.AddForce(fireDir * Speed, ForceMode2D.Impulse);
 
-            //here we start a IEnumerator for the timer
-            StartCoroutine(AttackDelay());
+            controls.AttackDelay(Delay);
 
         }
 
     }
 
-    //this is the IEnumerator for timer
-    public IEnumerator AttackDelay ()
-    {
-        //attack is not ready to go now
-        AttackReady = false;
-        //here we wait some time
-        yield return new WaitForSeconds(Delay);
-        //now attack is ready
-        AttackReady = true;
-          
-    }
 
     
 

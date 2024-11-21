@@ -9,14 +9,14 @@ public class AttackHit : MonoBehaviour
 
     private bool hasExploded = false; // Add a boolean flag
 
-    BallAttack ballAttack;
+    public Vector3 mousePosition;
+    public float Speed;
 
 
 
     void Start()
     {
-        ballAttack = GameObject.Find("PlayerBody").GetComponent<BallAttack>(); //stores the player BallAttack script
-        Invoke("ReplaceBullet", Vector2.Distance(transform.position, ballAttack.mousePosition) / ballAttack.Speed); //invokes a function to destroy the fire ball after it has hit i distanation
+        Invoke("ReplaceBullet", Vector2.Distance(transform.position, mousePosition) / Speed); //invokes a function to destroy the fire ball after it has hit i distanation
     }
 
     // Check if it hit anything and it is not the player

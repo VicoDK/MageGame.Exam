@@ -9,12 +9,14 @@ public class DeathMenuScript : MonoBehaviour
     private PlayerStats PlayerStat;
     Attack Attack;
     private PlayerInput  pInput;
+    Controls controls;
 
     private void Start()
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         Attack = GameObject.Find("PlayerBody").GetComponent<Attack>();
         pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
+        controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
     }
 
     public void Quit()
@@ -26,7 +28,7 @@ public class DeathMenuScript : MonoBehaviour
     {
         // Reset player stats and reload the scene
         PlayerStat.Alive = true;
-        Attack.AttackReady = true;
+        controls.AttackReady  = true;
         Time.timeScale = 1;
         pInput.ActivateInput();
 

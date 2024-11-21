@@ -4432,9 +4432,10 @@ GameObject:
   - component: {fileID: 2393893291079935822}
   - component: {fileID: 5695995846577905004}
   - component: {fileID: 5923676387257210261}
-  - component: {fileID: 2632158967383190627}
   - component: {fileID: 7527688979398435032}
+  - component: {fileID: 2632158967383190627}
   - component: {fileID: 5964461016930759550}
+  - component: {fileID: 5907810660661337514}
   - component: {fileID: 5420460193799242252}
   - component: {fileID: 3496480379291300428}
   m_Layer: 3
@@ -4607,24 +4608,6 @@ MonoBehaviour:
   canMove: 1
   LookDIR: 0
   rb: {fileID: 5695995846577905004}
---- !u!114 &2632158967383190627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7438870080982943360}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e42ad81b0f9bfe4eacb9461f0e17d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FirePoint: {fileID: 4473593915420633754}
-  Sword: {fileID: 9148675580946371985, guid: 7448ab64cfcd082478dcbae138590041, type: 3}
-  Speed: 30
-  BaseAttack: {fileID: 8380647616341837268, guid: 3ded4a9125822474582bbad5df25b988, type: 3}
-  Delay: 0.4
-  AttackReady: 1
 --- !u!114 &7527688979398435032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4653,6 +4636,26 @@ MonoBehaviour:
   ManaBar: {fileID: 2668033539626615875}
   Shopping: 0
   pInput: {fileID: 3496480379291300428}
+  DamageWeaknessModifier: 3
+  DamageResistensModifier: 0.5
+--- !u!114 &2632158967383190627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438870080982943360}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e42ad81b0f9bfe4eacb9461f0e17d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePoint: {fileID: 4473593915420633754}
+  Sword: {fileID: 9148675580946371985, guid: 7448ab64cfcd082478dcbae138590041, type: 3}
+  Speed: 30
+  BaseAttack: {fileID: 8380647616341837268, guid: 3ded4a9125822474582bbad5df25b988, type: 3}
+  Delay: 0.4
+  AttackReady: 1
 --- !u!114 &5964461016930759550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4660,7 +4663,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7438870080982943360}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc87f5e76c07ee442b9bd68871ffd9f0, type: 3}
   m_Name: 
@@ -4670,6 +4673,21 @@ MonoBehaviour:
   ManaCost: 80
   Ball: {fileID: 1450144115231938622, guid: 4dfdb38673fce514e99c0bc8b75e4242, type: 3}
   mousePosition: {x: 0, y: 0, z: 0}
+--- !u!114 &5907810660661337514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7438870080982943360}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f91cca96626b32549b216738f466914c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FirePoint: {fileID: 4473593915420633754}
+  beamAttack: {fileID: 7318817885580861403, guid: 1a9d49eee9e09264b80c95474d036555, type: 3}
+  ManaCost: 1
 --- !u!61 &5420460193799242252
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5806,6 +5824,12 @@ PrefabInstance:
     - target: {fileID: 597807075726035801, guid: eaaae133aab585747a75fd6ee1638f20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372563220934823947, guid: eaaae133aab585747a75fd6ee1638f20, type: 3}
+      propertyPath: m_text
+      value: 'Drop
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 2042133424932947003, guid: eaaae133aab585747a75fd6ee1638f20, type: 3}
       propertyPath: m_Name

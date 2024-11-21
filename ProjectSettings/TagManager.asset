@@ -10,6 +10,7 @@ TagManager:
   - DontHit
   - Staff
   - Cloak
+  - BallAttack
   layers:
   - Default
   - TransparentFX
