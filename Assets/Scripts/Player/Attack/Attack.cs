@@ -19,6 +19,7 @@ public class Attack : MonoBehaviour
     Vector2 fireDir;
     Movment movement;
     Controls controls;
+    Vector3 mousePosition;
 
     public void Fire()
     {
@@ -31,8 +32,7 @@ public class Attack : MonoBehaviour
             controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
 
         }
-        ojnfghongfh
-        //fireball dont move
+
 
         //base attack
         //here we check after input and if attack is ready
@@ -42,7 +42,7 @@ public class Attack : MonoBehaviour
             {
                 //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
                 // Get mouse position
-                Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 mousePosition.z = 0f;
 
                 // Calculate direction towards mouse position
@@ -70,7 +70,7 @@ public class Attack : MonoBehaviour
 
             // Instantiate bullet at fire point
             GameObject bullet = Instantiate(BaseAttack, FirePoint.position, Quaternion.identity);
-
+            
             // Rotate bullet towards mouse position
             float angle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
             bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);

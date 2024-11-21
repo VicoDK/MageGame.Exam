@@ -15,6 +15,8 @@ public class BasicAttack : MonoBehaviour
 
     Inventory inventory;
 
+    public MagicTypes.Magictype magictype;
+
     void Start()
     {
         Invoke("EnableDestoy", 0.04f);
@@ -48,7 +50,7 @@ public class BasicAttack : MonoBehaviour
                 if (enemyHealth != null && !hit) //if there is non do nothing
                 {
                     hit = true;
-                    enemyHealth.TakeDamage(Damage);
+                    enemyHealth.TakeDamage(Damage, magictype);
                 }
 
             }

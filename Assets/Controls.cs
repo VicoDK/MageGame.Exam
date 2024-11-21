@@ -23,12 +23,62 @@ public class Controls : MonoBehaviour
             spellInventory.BasicAttack.GetComponent<Attack>().Fire();
         }
 
-        if (pInput.actions["SecondFire"].WasPressedThisFrame()) //Mouse input
+        if (pInput.actions["SecondFire"].WasPressedThisFrame()) //part1
         {
             if (spellInventory.spellsEuipe[0].CompareTag("BallAttack"))
             {
                 spellInventory.spellsEuipe[0].GetComponent<BallAttack>().Fire();
             }
+            else if (spellInventory.spellsEuipe[0].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[0].GetComponent<BeamAttack>().Fire();
+            }
+        }
+        else if (pInput.actions["SecondFire"].WasReleasedThisFrame()) 
+        {
+            if (spellInventory.spellsEuipe[0].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[0].GetComponent<BeamAttack>().Fire();
+            }
+
+        }
+        if (pInput.actions["3Fire"].WasPressedThisFrame()) //Part2
+        {
+            if (spellInventory.spellsEuipe[1].CompareTag("BallAttack"))
+            {
+                spellInventory.spellsEuipe[1].GetComponent<BallAttack>().Fire();
+            }
+            else if (spellInventory.spellsEuipe[1].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[1].GetComponent<BeamAttack>().Fire();
+            }
+        }
+        else if (pInput.actions["3Fire"].WasReleasedThisFrame()) 
+        {
+            if (spellInventory.spellsEuipe[1].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[1].GetComponent<BeamAttack>().Fire();
+            }
+
+        }
+        if (pInput.actions["4Fire"].WasPressedThisFrame()) //Part3
+        {
+            if (spellInventory.spellsEuipe[2].CompareTag("BallAttack"))
+            {
+                spellInventory.spellsEuipe[2].GetComponent<BallAttack>().Fire();
+            }
+            else if (spellInventory.spellsEuipe[2].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[2].GetComponent<BeamAttack>().Fire();
+            }
+        }
+        else if (pInput.actions["4Fire"].WasReleasedThisFrame()) 
+        {
+            if (spellInventory.spellsEuipe[2].CompareTag("BeamAttack"))
+            {
+                spellInventory.spellsEuipe[2].GetComponent<BeamAttack>().Fire();
+            }
+
         }
     
     }

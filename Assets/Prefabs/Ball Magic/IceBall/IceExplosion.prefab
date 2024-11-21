@@ -104,7 +104,7 @@ MonoBehaviour:
   Time: 0.12
   Damage: 20
   magicEffect: 1
-  magicType: 1
+  magicType: 2
   frezeTime: 2
 --- !u!58 &8706828834803071603
 CircleCollider2D:

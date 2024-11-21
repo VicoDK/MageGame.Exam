@@ -11,6 +11,7 @@ TagManager:
   - Staff
   - Cloak
   - BallAttack
+  - BeamAttack
   layers:
   - Default
   - TransparentFX

@@ -105,7 +105,7 @@ MonoBehaviour:
   Damage: 20
   magicEffect: 0
   magicType: 0
-  frezeTime: 0
+  EffectTime: 3
 --- !u!58 &2601507397426446332
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class MagicTypes : MonoBehaviour
 {
+    //generald magic things
+    public float LightingOnWetEnemyModifier;
+    public float BurnDamagePerSekund;
+
+
+
     //MagicTypes.Magictype
     public enum Magictype 
     {

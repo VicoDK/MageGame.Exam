@@ -21,7 +21,6 @@ public class BallAttack : MonoBehaviour
     PlayerStats PlayerStat;
     Attack attack;
     public Vector3 mousePosition;
-    bool ones = true;
     Movment movement;
     Controls controls;
     public float Delay;
@@ -38,7 +37,7 @@ public class BallAttack : MonoBehaviour
             pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
             FirePoint = GameObject.Find("FirePoint").GetComponent<Transform>();
             controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
-            ones = false;
+
         }
         //ball attacks
         //rigistere input
@@ -54,8 +53,8 @@ public class BallAttack : MonoBehaviour
 
             // Instantiate bullet at fire point
             bullet = Instantiate(Ball, FirePoint.position, Quaternion.identity);
-            bullet.GetComponent<AttackHit>().mousePosition = mousePosition;
             bullet.GetComponent<AttackHit>().Speed = Speed;
+            bullet.GetComponent<AttackHit>().mousePosition = mousePosition;
 
             // Rotate bullet towards mouse position
             float angle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
