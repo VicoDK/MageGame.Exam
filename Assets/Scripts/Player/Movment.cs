@@ -17,11 +17,7 @@ public class Movment : MonoBehaviour
     public float speed;
 
     //Roll
-    public float RollSpeed;
-    bool canRoll = true; 
     public bool canMove = true; 
-    float currentRollTime;
-    float startRollTime = 0.3f;
     public int LookDIR;
 
     //rigibody
@@ -45,13 +41,6 @@ public class Movment : MonoBehaviour
     {
         //read player input
         MoveDir = pInput.actions.FindAction("Move").ReadValue<Vector2>();
-   
-
-        if (Input.GetButtonDown("Roll") && canRoll)
-        {
-            StartCoroutine(Dash(MoveDir));
-            Debug.Log("Roll");
-        }
 
         Flip();
       
@@ -68,31 +57,6 @@ public class Movment : MonoBehaviour
     }
 
 
-    IEnumerator Dash(Vector2 direction)
-    {
-        canRoll = false; // When Player Dash, Player Cannot Move
-        canMove = false; // And Player Cannot Dash
-      
-        currentRollTime = startRollTime; // Reset the dash timer.
-
-        while (currentRollTime > 0f)
-        {
-            currentRollTime -= Time.deltaTime; // Lower the dash timer each frame.
-
-            direction.Normalize();
-            rb.linearVelocity = direction * RollSpeed; // Dash in the direction that was held down.
-                                                 // No need to multiply by Time.DeltaTime here, physics are already consistent across different FPS.
-
-            yield return null; // Returns out of the coroutine this frame so we don't hit an infinite loop.
-        }
-
-        rb.linearVelocity = new Vector2(0f, 0f); // Stop dashing.
-
-        canRoll = true;
-        canMove = true; // CHANGE --- Need to enable movement after dashing.
-
-
-    }
 
     void Flip()
     {

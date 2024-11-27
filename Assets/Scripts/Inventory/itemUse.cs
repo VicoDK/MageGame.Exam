@@ -2,10 +2,7 @@ using UnityEngine;
 
 public class itemUse : MonoBehaviour
 {
-    /* have alot of function (itemuses)
-    check which item it is and then run it
-    if the item dont have any uses dont do anything
-    */
+
 
     [Header("General use")]
     public bool canUse;
@@ -20,6 +17,7 @@ public class itemUse : MonoBehaviour
     [Header("Potion")]
 
     public int potionHealAmount;
+    public int potionManaHealAmount;
 
 
 
@@ -55,6 +53,10 @@ public class itemUse : MonoBehaviour
         {
             HealthPotion(SlotNumber);
         }
+        else  if (canUse && itemType == whatItem.ManaPotion)
+        {
+            ManaPotion(SlotNumber);
+        }
         else 
         {
             Debug.Log("no effect");
@@ -70,9 +72,24 @@ public class itemUse : MonoBehaviour
         
         if (playerStats.Health < playerStats.MaxHealth)
         {
-            GameObject.Find("Inventory").GetComponent<Inventory>().items[SlotNumber-1].Amount--;
+            GameObject.Find("InventoryManager").GetComponent<Inventory>().items[SlotNumber-1].Amount--;
             playerStats.Health += potionHealAmount;
             playerStats.HealthBar.fillAmount = playerStats.Health / playerStats.MaxHealth;
+        }
+
+    }
+
+    public void ManaPotion(int SlotNumber)
+    {   
+
+        playerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
+        
+        if (playerStats.Mana < playerStats.MaxMana)
+        {
+
+            GameObject.Find("InventoryManager").GetComponent<Inventory>().items[SlotNumber-1].Amount--;
+            playerStats.Mana += potionManaHealAmount;
+            playerStats.ManaBar.fillAmount = playerStats.Mana / playerStats.MaxMana;
         }
 
     }
@@ -81,6 +98,7 @@ public class itemUse : MonoBehaviour
     {
         None,
         HealthPotion,
+        ManaPotion,
         Cloak,
         Staff
         

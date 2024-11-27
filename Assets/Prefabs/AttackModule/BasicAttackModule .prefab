@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5201087682167342061}
   - component: {fileID: 7848227770511651942}
+  - component: {fileID: -8223482982555244441}
   m_Layer: 0
   m_Name: 'BasicAttackModule '
   m_TagString: Untagged
@@ -47,4 +48,17 @@ MonoBehaviour:
   Speed: 30
   BaseAttack: {fileID: 8380647616341837268, guid: 3ded4a9125822474582bbad5df25b988, type: 3}
   Delay: 0.4
-  AttackReady: 1
+--- !u!114 &-8223482982555244441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8018615473539900652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f97a8d6c9c15714dbe4c264bb21dc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemUiImage: {fileID: 2800000, guid: c3da0fd62c00ed247b5212b684d11ad4, type: 3}
+  itemName: Basic Attack

@@ -35,7 +35,7 @@ public class PlayerStats : MonoBehaviour
 
     [Header("Mana")]
     public  float Mana; 
-    private float MaxMana;
+    public float MaxMana;
     public float ManaRegn; 
     private bool AllowMana;
      public float manaRegnDelay;

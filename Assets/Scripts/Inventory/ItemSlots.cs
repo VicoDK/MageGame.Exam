@@ -41,10 +41,7 @@ public class ItemSlots : MonoBehaviour
 
     void Update()
     {
-        if (inventory == null)
-        {
-            Debug.Log("1");
-        }
+
 
         if (slotType == SlotType.ItemSlot)
         {

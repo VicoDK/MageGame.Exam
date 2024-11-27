@@ -40,6 +40,7 @@ public class ItemPickUp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+
         //if player
         if (collision.gameObject.CompareTag("Player") && delayPickUp && !pickup)
         {
@@ -54,8 +55,10 @@ public class ItemPickUp : MonoBehaviour
                         case 1:
                         for (int i = 0; i < inventory.items.Length+1; i++)
                         {
+
                             if (i < inventory.items.Length)
                             {
+
                                 if (inventory.items[i].Items == itemPrefab && itemPrefab.GetComponent<ItemPickUp>().MaxStack != inventory.items[i].Amount)
                                 {
 

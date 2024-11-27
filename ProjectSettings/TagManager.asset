@@ -12,6 +12,8 @@ TagManager:
   - Cloak
   - BallAttack
   - BeamAttack
+  - PlayerBeamAttack
+  - SpellInv
   layers:
   - Default
   - TransparentFX

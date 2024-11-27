@@ -18,7 +18,7 @@ public class ResetScene : MonoBehaviour
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         Attack = GameObject.Find("PlayerBody").GetComponent<Attack>();
-        inventory = GameObject.Find("CanvasG").GetComponent<Inventory>();
+        inventory = GameObject.Find("InventoryManager").GetComponent<Inventory>();
         controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
     }
 

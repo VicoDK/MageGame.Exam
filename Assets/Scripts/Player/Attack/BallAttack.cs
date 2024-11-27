@@ -41,7 +41,7 @@ public class BallAttack : MonoBehaviour
         }
         //ball attacks
         //rigistere input
-        if (pInput.actions["SecondFire"].WasPressedThisFrame() && PlayerStat.Mana >= ManaCost && controls.AttackReady  && !PlayerStat.Shopping && movement.canMove)
+        if (PlayerStat.Mana >= ManaCost && controls.AttackReady  && !PlayerStat.Shopping && movement.canMove)
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position

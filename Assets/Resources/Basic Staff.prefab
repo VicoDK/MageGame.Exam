@@ -224,10 +224,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canUse: 0
   equip: 1
-  itemType: 3
+  itemType: 4
   potionHealAmount: 0
+  potionManaHealAmount: 0
   damageModifer: 1000
   magicAffinity: 0
+  magicAffinityModifier: 0
   manaRegenModifer: 0.1
   defence: 0
   magicResistens: 0

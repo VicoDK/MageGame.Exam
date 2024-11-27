@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 public class InventoryMenuCanvas : MonoBehaviour
 {
     public GameObject InventoryMenu;
+    public GameObject spellList;
     private bool Aktive;
     PlayerInput  pInput;
 
@@ -36,6 +37,7 @@ public class InventoryMenuCanvas : MonoBehaviour
         else if (pInput.actions["Inventory"].WasPressedThisFrame() && Aktive && PlayerStat.Alive)
         {
             InventoryMenu.SetActive(false);
+            spellList.SetActive(false);
             Aktive = false;
             Time.timeScale = 1;
             movement.canMove = true;

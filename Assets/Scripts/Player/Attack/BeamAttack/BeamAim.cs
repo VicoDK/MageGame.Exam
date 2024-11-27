@@ -7,6 +7,31 @@ public class BeamAim : MonoBehaviour
     public Transform FirePoint;
     Transform firePoint;
 
+    [Header("Beam (Tranfer data)")]
+    public float fireRate;
+    public float damage;
+    public MagicTypes.Magictype magictype;
+    public MagicTypes.magicEffects magicEffect;
+    public float ManaCost;
+    public float pushForce;
+    private Transform Center;
+    public float EffectTime;
+
+    void Start()
+    {
+        Center = transform;
+        GetComponentInChildren<BeamAttacksSpell>().fireRate = fireRate;
+        GetComponentInChildren<BeamAttacksSpell>().damage = damage;
+        GetComponentInChildren<BeamAttacksSpell>().magicType = magictype;
+        GetComponentInChildren<BeamAttacksSpell>().ManaCost = ManaCost;
+        GetComponentInChildren<BeamAttacksSpell>().magicEffect = magicEffect;
+        GetComponentInChildren<BeamAttacksSpell>().pushForce = pushForce;
+        GetComponentInChildren<BeamAttacksSpell>().Center = Center;
+        GetComponentInChildren<BeamAttacksSpell>().EffectTime = EffectTime;
+        //GetComponentInChildren<BeamAttacksSpell>().Shape = Shape;
+        firePoint = GameObject.Find("FirePoint").transform;
+
+    }
 
     // Update is called once per frame
     void Update()
@@ -24,11 +49,7 @@ public class BeamAim : MonoBehaviour
     }
 
 
-    void Start()
-    {
-        firePoint = GameObject.Find("FirePoint").transform;
 
-    }
 
 
 }

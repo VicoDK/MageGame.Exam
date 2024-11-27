@@ -11,8 +11,9 @@ public class BeamAttack : MonoBehaviour
     public GameObject beamAttack;
     GameObject bAttack;
     Controls controls;
-    public float ManaCost;
-    bool Attacking;
+
+
+
 
     // Update is called once per frame
     public void Fire()
@@ -27,20 +28,21 @@ public class BeamAttack : MonoBehaviour
 
         }
 
-        if (pInput.actions["SecondFire"].WasPressedThisFrame() &&  !PlayerStat.Shopping && movement.canMove && PlayerStat.Mana>0|| pInput.actions["FireController"].WasPressedThisFrame() &&  !PlayerStat.Shopping && movement.canMove && PlayerStat.Mana>0)
+        if (!PlayerStat.Shopping && movement.canMove && PlayerStat.Mana>0 && (pInput.actions["SecondFire"].WasPressedThisFrame() || pInput.actions["3Fire"].WasPressedThisFrame() || pInput.actions["4Fire"].WasPressedThisFrame()))
         {
             bAttack = Instantiate(beamAttack, FirePoint.position, Quaternion.identity);
-            bAttack.GetComponentInChildren<LightningAttack>().ManaCost = ManaCost;
+ 
 
 
         }
-        else if (pInput.actions["SecondFire"].WasReleasedThisFrame() &&  !PlayerStat.Shopping && movement.canMove|| pInput.actions["FireController"].WasReleasedThisFrame() &&  !PlayerStat.Shopping && movement.canMove || PlayerStat.Mana <=0 ) 
+        else if (PlayerStat.Mana<0  || pInput.actions["SecondFire"].WasReleasedThisFrame() || pInput.actions["3Fire"].WasReleasedThisFrame() || pInput.actions["4Fire"].WasReleasedThisFrame()) 
         {
 
             Destroy(bAttack);
         }
 
     }
+
 
 
 }

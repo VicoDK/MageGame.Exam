@@ -42,7 +42,7 @@ public class EnemyHealth : MonoBehaviour
     public MagicTypes.Magictype enemyMagicType;
 
     MagicTypes magicTypes;
-    int timer = 0;
+    float timer = 0;
 
     void Start()
     {
@@ -83,7 +83,7 @@ public class EnemyHealth : MonoBehaviour
             //make them change color to wet
             GetComponent<SpriteRenderer>().color = new Color (0, 0, 255, 125); 
         }
-        else if (!BurningEffect && !FrozenEffect && !WetEffect)
+        else if (!BurningEffect && !WetEffect)
         {
             //make them change color to normal
             GetComponent<SpriteRenderer>().color = new Color (255, 255, 255, 255); 
@@ -101,16 +101,25 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.WaterMagic || enemyMagicType == MagicTypes.Magictype.RockMagic)
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.plantMagic)
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
+
+            if (WetEffect)
+            {
+                WetEffect = false;
+            }
+            
 
             break;
             case MagicTypes.Magictype.IceMagic : //IceMagic
@@ -118,15 +127,18 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.FireMagic )
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.plantMagic )
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }            
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
 
             break;
@@ -135,16 +147,24 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.RockMagic )
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.WaterMagic )
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }   
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
+
+            if (WetEffect)
+            {
+                Health -= Damage * (magicTypes.LightingOnWetEnemyModifier-1);
+            }
 
             break;
             case MagicTypes.Magictype.WindMagic : //WindMagic
@@ -152,15 +172,18 @@ public class EnemyHealth : MonoBehaviour
             if (1 == 2)
             {
                 //weak attacks                                                                DONT USE
+                //Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.RockMagic )
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }   
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
 
             break;
@@ -169,15 +192,18 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.FireMagic )
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (1 == 2)
             {
                 //Strong Attacks                                                                DONT USE
+                //Health -= Damage * magicTypes.damageAdvanced;
             }   
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
 
             break;
@@ -186,15 +212,18 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.WaterMagic )
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.LightingMagic ||  enemyMagicType == MagicTypes.Magictype.FireMagic)
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }   
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
 
             break;
@@ -203,15 +232,18 @@ public class EnemyHealth : MonoBehaviour
             if (1 == 2)
             {
                 //weak attacks                                                                 DONT USE
+                //Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.FireMagic  || enemyMagicType == MagicTypes.Magictype.RockMagic)
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }                 
 
             break;
@@ -220,15 +252,18 @@ public class EnemyHealth : MonoBehaviour
             if (enemyMagicType == MagicTypes.Magictype.WaterMagic )
             {
                 //weak attacks
+                Health -= Damage * magicTypes.damageDisadvanced;
 
             }
             else if (enemyMagicType == MagicTypes.Magictype.WaterMagic )
             {
                 //Strong Attacks
+                Health -= Damage * magicTypes.damageAdvanced;
             }
             else 
             {
                 //Neutral Attack
+                Health -= Damage;
             }  
 
             break;
@@ -249,6 +284,8 @@ public class EnemyHealth : MonoBehaviour
             BurningEffect = false;
             rb.constraints = RigidbodyConstraints2D.FreezeAll;
             Ice.SetActive(true);
+            BurningEffect = false;
+            timer = 0;
             Invoke("UnFreze", FreezeTime);
         }
 
@@ -267,16 +304,17 @@ public class EnemyHealth : MonoBehaviour
     #endregion Freze
     #region Burning
     //function for burning enemy
-    public void Bruning(int Burntime)
+    public void Bruning(float Burntime)
     {
         
         //if enemy is not wet or forzen 
-        if (!WetEffect && !FrozenEffect)
+        if (!WetEffect && !FrozenEffect && enemyMagicType != MagicTypes.Magictype.WaterMagic)
         {
             //enemy is burning 
             BurningEffect = true;
-            if (timer == 0)
+            if (timer == 0 )
             {
+                
                 StartCoroutine(BurningDamage(Burntime));
             }
             else  if (Burntime > timer)
@@ -287,6 +325,8 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
+            UnFreze();
+            CancelInvoke("UnFreze");
             //if they were wet or frozen, now they are dry
             WetEffect = false;
             FrozenEffect = false;
@@ -294,7 +334,7 @@ public class EnemyHealth : MonoBehaviour
         
     }
 
-    IEnumerator BurningDamage(int Burntime)
+    IEnumerator BurningDamage(float Burntime)
     {
 
         timer = Burntime;
@@ -310,15 +350,12 @@ public class EnemyHealth : MonoBehaviour
             Health -= magicTypes.BurnDamagePerSekund/3;
             yield return new WaitForSeconds(0.3f);
             timer--;
-            Debug.Log(timer);
-
 
         }
 
         if (timer == 0)
         {
             BurningEffect = false;
-            Debug.Log("stop burn");
         }
         
     
@@ -350,5 +387,3 @@ public class EnemyHealth : MonoBehaviour
     #endregion Effects
 
 }
-
-

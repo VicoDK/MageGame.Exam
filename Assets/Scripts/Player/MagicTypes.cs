@@ -6,6 +6,9 @@ public class MagicTypes : MonoBehaviour
     public float LightingOnWetEnemyModifier;
     public float BurnDamagePerSekund;
 
+    public float damageAdvanced; 
+    public float damageDisadvanced; 
+
 
 
     //MagicTypes.Magictype
@@ -26,10 +29,11 @@ public class MagicTypes : MonoBehaviour
     //MagicTypes.magicEffects
     public enum magicEffects
     {
+        none,
         BurningEffect,
         FrozenEffect,
-        WetEffect,
-        none
+        WetEffect
+  
     }
 
 }

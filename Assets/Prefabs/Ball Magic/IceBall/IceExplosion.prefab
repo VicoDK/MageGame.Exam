@@ -103,9 +103,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Time: 0.12
   Damage: 20
-  magicEffect: 1
+  magicEffect: 2
   magicType: 2
-  frezeTime: 2
+  EffectTime: 3
 --- !u!58 &8706828834803071603
 CircleCollider2D:
   m_ObjectHideFlags: 0
