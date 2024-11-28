@@ -64,3 +64,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemUiImage: {fileID: 2800000, guid: 26a5b406b3434e84ca49552b12a3b8b8, type: 3}
   itemName: Fire Ball
+  description: 'Shoot a fire ball and when it hits it target it explodes '

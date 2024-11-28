@@ -10,6 +10,7 @@ public class SpellSlotList : MonoBehaviour
     GameObject spellList;
     public RawImage Image;
     public TMP_Text spellName;
+    public TMP_Text spellDescription;
     bool ones;
 
     void OnEnable()
@@ -25,6 +26,7 @@ public class SpellSlotList : MonoBehaviour
         {
             Image.texture = spellInventory.Spells[slotNumber-1].transform.GetComponent<GeneraldSpellModule>().itemUiImage;
             spellName.text = (spellInventory.Spells[slotNumber-1].transform.GetComponent<GeneraldSpellModule>().itemName);
+            spellDescription.text = (spellInventory.Spells[slotNumber-1].transform.GetComponent<GeneraldSpellModule>().description);
             ones = false;
         }
     }
@@ -32,10 +34,21 @@ public class SpellSlotList : MonoBehaviour
     
     public void Equip()
     {
-        spellInventory.Spells.Add(spellInventory.spellsEuipe[EuipeSlot-1]);
-        spellInventory.spellsEuipe[EuipeSlot-1] = spellInventory.Spells[slotNumber-1]; // dont know how it would work but needs to change
-        spellInventory.Spells.Remove(spellInventory.spellsEuipe[EuipeSlot-1]);
-        spellInventory.Spells.RemoveAt(spellInventory.Spells.Count-1);
+        
+        if (spellInventory.spellsEuipe[EuipeSlot-1] == null)
+        {
+            spellInventory.spellsEuipe[EuipeSlot-1] = spellInventory.Spells[slotNumber-1]; 
+            spellInventory.Spells.Remove(spellInventory.spellsEuipe[EuipeSlot-1]); 
+            //spellInventory.Spells.RemoveAt(spellInventory.Spells.Count-1);
+        }
+        else 
+        {
+            spellInventory.Spells.Add(spellInventory.spellsEuipe[EuipeSlot-1]);
+            spellInventory.spellsEuipe[EuipeSlot-1] = spellInventory.Spells[slotNumber-1]; 
+            spellInventory.Spells.Remove(spellInventory.spellsEuipe[EuipeSlot-1]); 
+
+        }
+
         spellList.SetActive(false);
 
     }
