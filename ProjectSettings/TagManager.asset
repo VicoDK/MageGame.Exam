@@ -7,13 +7,15 @@ TagManager:
   - Bullet
   - Enemy
   - Wall
-  - DontHit
   - Staff
   - Cloak
   - BallAttack
   - BeamAttack
   - PlayerBeamAttack
   - SpellInv
+  - Object
+  - DontHit
+  - WaterTile
   layers:
   - Default
   - TransparentFX

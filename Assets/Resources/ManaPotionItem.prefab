@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5864840580190779673}
   m_Layer: 0
   m_Name: ManaPotionItem
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

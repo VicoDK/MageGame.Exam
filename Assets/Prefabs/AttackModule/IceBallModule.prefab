@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1443817609234302860}
   - component: {fileID: 6616710296529616370}
   - component: {fileID: 6428440200293121576}
+  - component: {fileID: -3257834394143177986}
   m_Layer: 0
   m_Name: IceBallModule
   m_TagString: BallAttack
@@ -48,7 +49,7 @@ MonoBehaviour:
   Speed: 10
   ManaCost: 80
   Ball: {fileID: 1450144115231938622, guid: 4dfdb38673fce514e99c0bc8b75e4242, type: 3}
-  mousePosition: {x: -1.4764185, y: 3.6599016, z: 0}
+  mousePosition: {x: -1.8054285, y: -6.056849, z: 0}
   Delay: 0.4
 --- !u!114 &6428440200293121576
 MonoBehaviour:
@@ -64,3 +65,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemUiImage: {fileID: 2800000, guid: d3f7a6b569b9a9546a094d700115ae9a, type: 3}
   itemName: Ice Ball
+  description: 
+--- !u!114 &-3257834394143177986
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099540456830967666}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f97a8d6c9c15714dbe4c264bb21dc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemUiImage: {fileID: 0}
+  itemName: 
+  description: 

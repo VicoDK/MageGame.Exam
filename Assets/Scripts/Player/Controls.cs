@@ -6,7 +6,7 @@ public class Controls : MonoBehaviour
     public bool AttackReady;
     PlayerInput pInput;
     public SpellInventory spellInventory;
-    public GameObject spellInventorytest;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -32,6 +32,7 @@ public class Controls : MonoBehaviour
             }
             else if (spellInventory.spellsEuipe[0].CompareTag("BeamAttack"))
             {
+
                 spellInventory.spellsEuipe[0].GetComponent<BeamAttack>().Fire();
             }
         }

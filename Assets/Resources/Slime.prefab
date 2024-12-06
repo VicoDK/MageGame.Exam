@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: -2035084531532443846}
   m_Layer: 0
   m_Name: Slime
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,3 +247,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canUse: 0
+  equip: 0
+  itemType: 0
+  potionHealAmount: 0
+  potionManaHealAmount: 0
+  damageModifer: 0
+  magicAffinity: 0
+  magicAffinityModifier: 0
+  manaRegenModifer: 0
+  defence: 0
+  magicResistens: 0
+  magicWaekness: 0

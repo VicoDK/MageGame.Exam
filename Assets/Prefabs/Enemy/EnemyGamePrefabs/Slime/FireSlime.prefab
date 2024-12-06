@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1076873777992838672}
   m_Layer: 6
   m_Name: Dummy Attack Model
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ GameObject:
   - component: {fileID: 2900943384923782174}
   m_Layer: 6
   m_Name: PatrolSquare
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 8932755933707239505}
   m_Layer: 6
   m_Name: Enemy Healthbar
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 3267242038985524565}
   m_Layer: 6
   m_Name: Background
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 8727653451144386564}
   m_Layer: 6
   m_Name: Canvas
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -561,7 +561,7 @@ GameObject:
   - component: {fileID: 7513121529945695883}
   m_Layer: 0
   m_Name: Ice
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 8860632066820611303}
   m_Layer: 6
   m_Name: Foot
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

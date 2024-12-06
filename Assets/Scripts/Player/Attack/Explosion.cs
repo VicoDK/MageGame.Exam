@@ -52,14 +52,12 @@ public class Explosion : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-
-
             collision.GetComponent<EnemyHealth>().TakeDamage(Damage, magicType);   
   
             
             //here we check which effect to give
             if(magicEffect == MagicTypes.magicEffects.BurningEffect)
-            {
+            {   
                 collision.GetComponent<EnemyHealth>().Bruning(EffectTime);
             }
             else if(magicEffect == MagicTypes.magicEffects.FrozenEffect)
@@ -76,6 +74,11 @@ public class Explosion : MonoBehaviour
         {
             collision.GetComponent<PlayerStats>().TakeDamage(Damage, magicEffect, true);
         }
+        else if (collision.gameObject.CompareTag("Object"))
+        {
+            collision.GetComponent<ObjectEffect>().ObjectEffects(Damage, magicType);
+        }
+
         
     }
     private IEnumerator Explode()

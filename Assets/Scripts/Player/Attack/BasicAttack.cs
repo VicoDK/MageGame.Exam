@@ -40,7 +40,7 @@ public class BasicAttack : MonoBehaviour
     {
 
         //here we check if it doesn't hit itself or a bullet or a wall 
-        if(!collision.gameObject.CompareTag(itself) && !collision.gameObject.CompareTag("Bullet") && !collision.gameObject.CompareTag("Wall") && !collision.gameObject.CompareTag("DontHit")) 
+        if(!collision.gameObject.CompareTag(itself) && collision.gameObject.CompareTag("Enemy") || !collision.gameObject.CompareTag(itself) && collision.gameObject.CompareTag("Player")) 
         {
             Destroy(gameObject); //destroy ball
             //here we what it hits 
@@ -66,6 +66,11 @@ public class BasicAttack : MonoBehaviour
             
 
             
+        }
+        else if (collision.gameObject.CompareTag("Wall"))
+        {
+            Destroy(gameObject); //destroy ball
+
         }
 
         

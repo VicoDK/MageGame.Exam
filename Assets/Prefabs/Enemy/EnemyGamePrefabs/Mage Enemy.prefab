@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 1426817790412800657}
   m_Layer: 6
   m_Name: Mage Attack Model
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -604,7 +604,7 @@ GameObject:
   - component: {fileID: 2529945620323659892}
   m_Layer: 0
   m_Name: Ice
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

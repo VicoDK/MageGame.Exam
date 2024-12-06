@@ -92,6 +92,10 @@ public class BeamAttacksSpell : MonoBehaviour
                     }
 
                 }
+                else if (enemy.gameObject.CompareTag("Object"))
+                {
+                    enemy.GetComponent<ObjectEffect>().ObjectEffects(damage, magicType);
+                }
             }
                 fireTime = fireRate;
         }

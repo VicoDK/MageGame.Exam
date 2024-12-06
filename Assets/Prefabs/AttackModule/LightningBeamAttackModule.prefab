@@ -46,7 +46,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beamAttack: {fileID: 7318817885580861403, guid: 1a9d49eee9e09264b80c95474d036555, type: 3}
-  ManaCost: 10
 --- !u!114 &-8212715759737172930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,3 +60,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemUiImage: {fileID: 2800000, guid: b5a4a564ac2dc4261a13719673f157e1, type: 3}
   itemName: Lightning Beam
+  description: 

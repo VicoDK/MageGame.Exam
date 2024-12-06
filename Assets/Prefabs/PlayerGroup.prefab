@@ -5831,7 +5831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c3017f75c34a9f4295e58b788007c5d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 100
+  Health: 1000
   Alive: 1
   MaxHealth: 0
   HealthRegn: 10
@@ -6388,7 +6388,7 @@ GameObject:
   - component: {fileID: 4473593915420633754}
   m_Layer: 0
   m_Name: FirePoint
-  m_TagString: DontHit
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
