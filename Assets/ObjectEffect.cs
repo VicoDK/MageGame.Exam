@@ -17,7 +17,7 @@ public class ObjectEffect : MonoBehaviour
 
     [Header("Torch")]
     public SpriteRenderer Fire;
-    bool Burning;
+    public bool Burning;
 
     [Header("Ice")]
 
@@ -71,6 +71,19 @@ public class ObjectEffect : MonoBehaviour
         }
 
 
+
+    }
+
+    void Start()
+    {
+        if (Burning)
+        {
+            Fire.enabled = true;
+        }
+        else 
+        {
+            Fire.enabled = false;
+        }
 
     }
 

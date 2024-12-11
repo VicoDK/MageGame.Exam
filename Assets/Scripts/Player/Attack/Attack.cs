@@ -28,7 +28,7 @@ public class Attack : MonoBehaviour
             PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
             movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
             pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
-            FirePoint = GameObject.Find("FirePoint").GetComponent<Transform>();
+            FirePoint = GameObject.Find("PlayerFirePoint").GetComponent<Transform>();
             controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
 
         }

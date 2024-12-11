@@ -194,6 +194,7 @@ MonoBehaviour:
   HitLayer:
     serializedVersion: 2
     m_Bits: 187
+  range: 11
 --- !u!1 &1325383912852884752
 GameObject:
   m_ObjectHideFlags: 0

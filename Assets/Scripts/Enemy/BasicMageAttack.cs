@@ -24,6 +24,8 @@ public class BasicMageAttack : MonoBehaviour
 
     public LayerMask HitLayer;
 
+    public float range;
+
 
 
     
@@ -45,7 +47,7 @@ public class BasicMageAttack : MonoBehaviour
     {
         if (EnemyHealth.Alive)
         {
-            Hit = Physics2D.Linecast(FirePoint.position, Player.position, HitLayer); //makes a line between enemy and player
+             Hit = Physics2D.Linecast(FirePoint.position, Player.position, HitLayer); //makes a line between enemy and player
         }
        
   
@@ -55,7 +57,7 @@ public class BasicMageAttack : MonoBehaviour
     {
         
         //check if there is a player
-        if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot && canShoot)
+        if (Player != null && Hit.collider.name == "PlayerBody" && !StopShot && canShoot && range > Vector2.Distance(Player.position, FirePoint.position))
         {
             //all the code made from line 19 to 45 is made by ChatGBT (with some small changes) with this promt "make a script for unity2d, where the players mouse is fire a object there"
             // Get mouse position
