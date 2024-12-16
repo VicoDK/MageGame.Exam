@@ -59,10 +59,11 @@ public class TreeVanish : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+
         //detect player
-        if (other.CompareTag("Player") || other.CompareTag("Enemy"))
+        if ((other.CompareTag("Player") && other.transform.Find("Foot") != null) || (other.CompareTag("Enemy") && other.transform.Find("Foot") != null))
         {
-            if (Root.transform.position.y < other.transform.position.y-(other.transform.localScale.y/2))
+            if (Root.transform.position.y < other.transform.Find("Foot").position.y)
             {
                 stage = -1;
                 srTree.sortingOrder = 10;

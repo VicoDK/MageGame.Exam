@@ -38,29 +38,42 @@ public class ObjectEffect : MonoBehaviour
             
             if (!Burning && magicType == MagicTypes.Magictype.FireMagic)
             {
-                Fire.enabled = true;
-                Burning = true;
+                if (Fire != null)
+                {
+                    Fire.enabled = true;
+                    Burning = true;
+                }
             }
             else if (Burning && magicType == MagicTypes.Magictype.WaterMagic)
             {
-                Fire.enabled = false;
-                Burning = false;
+                if (Fire != null)
+                {
+                    Fire.enabled = false;
+                    Burning = false;
+
+                }
             }
             break;
             case Type.Ice:
 
             if (!frosen && magicType == MagicTypes.Magictype.IceMagic)
             {
-                collide.isTrigger = true;
-                ice.enabled = true;
-                frosen = true;
+                if (ice != null)
+                {
+                    collide.isTrigger = true;
+                    ice.enabled = true;
+                    frosen = true;
+                }
 
             }
             else if (frosen && magicType == MagicTypes.Magictype.FireMagic)
             {
-                collide.isTrigger = false;
-                ice.enabled = false;
-                frosen = false;
+                if(ice != null)
+                {
+                    collide.isTrigger = false;
+                    ice.enabled = false;
+                    frosen = false;
+                }
 
             }
 
@@ -78,11 +91,17 @@ public class ObjectEffect : MonoBehaviour
     {
         if (Burning)
         {
-            Fire.enabled = true;
+            if (Fire != null)
+            {
+                Fire.enabled = true;
+            }
         }
         else 
         {
-            Fire.enabled = false;
+            if (Fire != null)
+            {
+                Fire.enabled = false;
+            }
         }
 
     }
