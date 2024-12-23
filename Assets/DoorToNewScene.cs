@@ -9,9 +9,17 @@ public class DoorToNewScene : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && other.transform.position.y < this.transform.position.y)
         {
-            SceneManager.LoadScene(Scene.name, LoadSceneMode.Single);
+            if (Scene != null)
+            {
+                SceneManager.LoadScene(Scene.name, LoadSceneMode.Single);
+
+            }
+            else 
+            {
+                Debug.Log("Door");
+            }
         }
     }
 }
