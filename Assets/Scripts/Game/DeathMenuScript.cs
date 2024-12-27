@@ -8,14 +8,12 @@ public class DeathMenuScript : MonoBehaviour
 {
     private PlayerStats PlayerStat;
     Attack Attack;
-    private PlayerInput  pInput;
     Controls controls;
 
     private void Start()
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         Attack = GameObject.Find("PlayerBody").GetComponent<Attack>();
-        pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
         controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
     }
 
@@ -30,7 +28,7 @@ public class DeathMenuScript : MonoBehaviour
         PlayerStat.Alive = true;
         controls.AttackReady  = true;
         Time.timeScale = 1;
-        pInput.ActivateInput();
+        Controls.PInput.ActivateInput();
 
         string currentSceneName = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentSceneName);

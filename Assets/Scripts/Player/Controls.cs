@@ -5,6 +5,7 @@ public class Controls : MonoBehaviour
 {
     public bool AttackReady;
     PlayerInput pInput;
+    static public PlayerInput PInput;
     public SpellInventory spellInventory;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,6 +14,7 @@ public class Controls : MonoBehaviour
         AttackReady = true;
         pInput = GetComponent<PlayerInput>();
         spellInventory = GameObject.Find("InventoryManager").GetComponent<SpellInventory>();
+        PInput = pInput;
     }
 
     // Update is called once per frame

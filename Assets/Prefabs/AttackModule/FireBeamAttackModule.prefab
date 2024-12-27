@@ -58,6 +58,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f97a8d6c9c15714dbe4c264bb21dc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemUiImage: {fileID: 2800000, guid: d3f7a6b569b9a9546a094d700115ae9a, type: 3}
+  itemUiImage: {fileID: 2800000, guid: 120a7274680d5664fbfe4a45509b7399, type: 3}
   itemName: Fire  Beam
   description: 

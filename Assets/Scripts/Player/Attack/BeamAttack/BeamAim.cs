@@ -29,7 +29,7 @@ public class BeamAim : MonoBehaviour
         GetComponentInChildren<BeamAttacksSpell>().Center = Center;
         GetComponentInChildren<BeamAttacksSpell>().EffectTime = EffectTime;
         //GetComponentInChildren<BeamAttacksSpell>().Shape = Shape;
-        firePoint = GameObject.Find("FirePoint").transform;
+        firePoint = GameObject.Find("PlayerFirePoint").transform;
 
     }
 

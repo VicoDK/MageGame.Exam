@@ -49,7 +49,6 @@ public class PlayerStats : MonoBehaviour
 
     public bool Shopping; 
     private SpriteRenderer Sprite;
-    public PlayerInput  pInput;
     private bool ones;
 
 
@@ -69,7 +68,6 @@ public class PlayerStats : MonoBehaviour
         MaxHealth = Health;
 
         Sprite = GetComponent<SpriteRenderer>();
-        //pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
         Inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
         //CloakStat = Inventory.cloakSlot.gameObject.GetComponent<ItemUse>();
         
@@ -184,7 +182,7 @@ public class PlayerStats : MonoBehaviour
                        
             DeathMenu.SetActive(true);
             Sprite.enabled = false;
-            pInput.DeactivateInput(); 
+            Controls.PInput.DeactivateInput(); 
             Time.timeScale = 0;
             //Destroy(gameObject);
         }

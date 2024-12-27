@@ -48,7 +48,7 @@ MonoBehaviour:
   Speed: 10
   ManaCost: 80
   Ball: {fileID: 4980175781490744837, guid: 965ce521007924f4b8a5ce4aa58ae025, type: 3}
-  mousePosition: {x: -3.7952578, y: -0.5821452, z: 0}
+  mousePosition: {x: 6.016411, y: -25.697538, z: 0}
   Delay: 0.4
 --- !u!114 &-1305337118433772159
 MonoBehaviour:
@@ -62,6 +62,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f97a8d6c9c15714dbe4c264bb21dc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemUiImage: {fileID: 2800000, guid: 26a5b406b3434e84ca49552b12a3b8b8, type: 3}
+  itemUiImage: {fileID: 2800000, guid: 020cd155b743b4a44908746fc56321f6, type: 3}
   itemName: Fire Ball
   description: 'Shoot a fire ball and when it hits it target it explodes '

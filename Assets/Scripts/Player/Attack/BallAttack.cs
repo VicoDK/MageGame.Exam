@@ -7,7 +7,6 @@ using UnityEngine.InputSystem;
 public class BallAttack : MonoBehaviour
 {
     [Header("General stats")]
-    private PlayerInput  pInput;
     Transform FirePoint;
     public float Speed;
     public int ManaCost;
@@ -30,11 +29,10 @@ public class BallAttack : MonoBehaviour
     public void Fire()
     {
 
-        if (PlayerStat == null || movement == null || pInput == null || FirePoint == null ||controls == null)
+        if (PlayerStat == null || movement == null ||  FirePoint == null ||controls == null)
         {
             PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
             movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
-            pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
             FirePoint = GameObject.Find("PlayerFirePoint").GetComponent<Transform>();
             controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
 

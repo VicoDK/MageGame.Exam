@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
     public int coin;
 
     public TMP_Text CoinAmountDisplay;
-    Inventory inventory;
+    //Inventory inventory;
 
 
 

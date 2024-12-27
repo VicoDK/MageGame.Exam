@@ -9,8 +9,6 @@ public class Movment : MonoBehaviour
     [Header("Player Controlls")]
     //this is the input maneger
 
-    //public InputAction PlayerMovment;
-    private PlayerInput  pInput;
     public Vector2 MoveDir = Vector2.zero;
 
     //player speed
@@ -32,7 +30,7 @@ public class Movment : MonoBehaviour
     private void Start()
     {
         PlayerStat = GetComponent<PlayerStats>();
-        pInput = GetComponent<PlayerInput>();
+
         
     }
 
@@ -40,7 +38,7 @@ public class Movment : MonoBehaviour
     void Update()
     {
         //read player input
-        MoveDir = pInput.actions.FindAction("Move").ReadValue<Vector2>();
+        MoveDir = Controls.PInput.actions.FindAction("Move").ReadValue<Vector2>();
 
         Flip();
       

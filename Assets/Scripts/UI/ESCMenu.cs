@@ -7,7 +7,6 @@ public class ESCMenu : MonoBehaviour
 {
     public GameObject EscMenu;
     private bool Aktive;
-     PlayerInput  pInput;
 
 
     PlayerStats PlayerStat;
@@ -18,7 +17,6 @@ public class ESCMenu : MonoBehaviour
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
-        pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
 
         
     }
@@ -26,7 +24,7 @@ public class ESCMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pInput.actions["Escape"].WasPressedThisFrame() && !Aktive && PlayerStat.Alive)
+        if (Controls.PInput.actions["Escape"].WasPressedThisFrame() && !Aktive && PlayerStat.Alive)
         {
             EscMenu.SetActive(true);
             Aktive = true;
@@ -35,7 +33,7 @@ public class ESCMenu : MonoBehaviour
 
 
         }
-        else if (pInput.actions["Escape"].WasPressedThisFrame() && Aktive && PlayerStat.Alive)
+        else if (Controls.PInput.actions["Escape"].WasPressedThisFrame() && Aktive && PlayerStat.Alive)
         {
             EscMenu.SetActive(false);
             Aktive = false;

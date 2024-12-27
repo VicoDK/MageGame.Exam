@@ -6,7 +6,6 @@ public class InventoryMenuCanvas : MonoBehaviour
     public GameObject InventoryMenu;
     public GameObject spellList;
     private bool Aktive;
-    PlayerInput  pInput;
 
 
     PlayerStats PlayerStat;
@@ -17,7 +16,6 @@ public class InventoryMenuCanvas : MonoBehaviour
     {
         PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
         movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
-        pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
 
         
     }
@@ -25,7 +23,7 @@ public class InventoryMenuCanvas : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (pInput.actions["Inventory"].WasPressedThisFrame() && !Aktive && PlayerStat.Alive)
+        if (Controls.PInput.actions["Inventory"].WasPressedThisFrame() && !Aktive && PlayerStat.Alive)
         {
             InventoryMenu.SetActive(true);
             Aktive = true;
@@ -34,7 +32,7 @@ public class InventoryMenuCanvas : MonoBehaviour
 
 
         }
-        else if (pInput.actions["Inventory"].WasPressedThisFrame() && Aktive && PlayerStat.Alive)
+        else if (Controls.PInput.actions["Inventory"].WasPressedThisFrame() && Aktive && PlayerStat.Alive)
         {
             InventoryMenu.SetActive(false);
             spellList.SetActive(false);

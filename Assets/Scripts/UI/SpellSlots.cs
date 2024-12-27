@@ -5,12 +5,16 @@ using Unity.VisualScripting;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class SpellSlots : MonoBehaviour
 {
     SpellInventory spellInventory;
     public int SlotNumber;
     private Texture ri;
+    private RawImage RI;
 
     public GameObject emptySlot;
     public GameObject filledSlot;
@@ -29,6 +33,7 @@ public class SpellSlots : MonoBehaviour
     void OnEnable()
     {   
         spellInventory = GameObject.Find("GameManager").GetComponentInChildren<SpellInventory>();
+        RI = GetComponent<RawImage>();
 
     }
 
@@ -39,16 +44,19 @@ public class SpellSlots : MonoBehaviour
         {
             ri = spellInventory.spellsEuipe[SlotNumber-1].transform.GetComponent<GeneraldSpellModule>().itemUiImage;
             this.gameObject.GetComponent<RawImage>().texture = ri;
+            RI.color =  new Color(255, 255, 255);
 
         }
         else if (SlotType.BasicAttack == slotType && spellInventory.BasicAttack != null)
         {
             ri = spellInventory.BasicAttack.transform.GetComponent<GeneraldSpellModule>().itemUiImage;
             this.gameObject.GetComponent<RawImage>().texture = ri;
+            RI.color =  new Color(255, 255, 255);
         }
         else 
         {
              this.gameObject.GetComponent<RawImage>().texture = null;
+             RI.color =  Color.green;
         }
 
     }

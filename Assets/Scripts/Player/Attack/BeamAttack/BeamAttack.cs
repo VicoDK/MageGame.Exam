@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class BeamAttack : MonoBehaviour
 {
 
-    PlayerInput pInput;
     PlayerStats PlayerStat;
     Movment movement;
     Transform FirePoint;
@@ -18,24 +17,23 @@ public class BeamAttack : MonoBehaviour
     // Update is called once per frame
     public void Fire()
     {
-        if (PlayerStat == null || movement == null || pInput == null || FirePoint == null ||controls == null)
+        if (PlayerStat == null || movement == null ||  FirePoint == null ||controls == null)
         {
             PlayerStat = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
             movement = GameObject.Find("PlayerBody").GetComponent<Movment>();
-            pInput = GameObject.Find("PlayerBody").GetComponent<PlayerInput>();
-            FirePoint = GameObject.Find("FirePoint").GetComponent<Transform>();
+            FirePoint = GameObject.Find("PlayerFirePoint").GetComponent<Transform>();
             controls = GameObject.Find("PlayerBody").GetComponent<Controls>();
 
         }
 
-        if (!PlayerStat.Shopping && movement.canMove && PlayerStat.Mana>0 && (pInput.actions["SecondFire"].WasPressedThisFrame() || pInput.actions["3Fire"].WasPressedThisFrame() || pInput.actions["4Fire"].WasPressedThisFrame()))
+        if (!PlayerStat.Shopping && movement.canMove && PlayerStat.Mana>0 && (Controls.PInput.actions["SecondFire"].WasPressedThisFrame() || Controls.PInput.actions["3Fire"].WasPressedThisFrame() || Controls.PInput.actions["4Fire"].WasPressedThisFrame()))
         {
             bAttack = Instantiate(beamAttack, FirePoint.position, Quaternion.identity);
  
 
 
         }
-        else if (PlayerStat.Mana<0  || pInput.actions["SecondFire"].WasReleasedThisFrame() || pInput.actions["3Fire"].WasReleasedThisFrame() || pInput.actions["4Fire"].WasReleasedThisFrame()) 
+        else if (PlayerStat.Mana<0  || Controls.PInput.actions["SecondFire"].WasReleasedThisFrame() || Controls.PInput.actions["3Fire"].WasReleasedThisFrame() || Controls.PInput.actions["4Fire"].WasReleasedThisFrame()) 
         {
 
             Destroy(bAttack);

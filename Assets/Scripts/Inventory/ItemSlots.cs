@@ -15,6 +15,7 @@ public class ItemSlots : MonoBehaviour
     Transform PlayerPOS;
     Movment PlayerMovement;
     public int dropSpeed;
+    private bool clickOnEnable;
     
     public GameObject useUI;
     public GameObject normalUI;
@@ -51,11 +52,14 @@ public class ItemSlots : MonoBehaviour
             {
                 ri = inventory.items[SlotNumber-1].Items.transform.GetComponent<ItemPickUp>().itemUiImage;
 
+                this.gameObject.GetComponent<RawImage>().color = Color.white;
                 this.gameObject.GetComponent<RawImage>().texture = ri;
+
                 
             }
             else 
             {
+                this.gameObject.GetComponent<RawImage>().color = Color.clear;
                 this.gameObject.GetComponent<RawImage>().texture = null;
             }
 
@@ -69,36 +73,7 @@ public class ItemSlots : MonoBehaviour
                 count.text = ("");
             }
 
-            //check if usecase
-            if (inventory.items[SlotNumber-1].Items != null)
-            {
-                if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().canUse)
-                {
-                    useUI.SetActive(true);
-                    normalUI.SetActive(false);
-                    equipUI.SetActive(false);
-                }
-                else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().equip)
-                {
-                    useUI.SetActive(false);
-                    normalUI.SetActive(false);
-                    equipUI.SetActive(true);
-                }
-                else
-                {
-                    useUI.SetActive(false);
-                    normalUI.SetActive(true);
-                    equipUI.SetActive(false);
-
-                }
-
-            }
-            else 
-            {
-                useUI.SetActive(false);
-                normalUI.SetActive(false); 
-                equipUI.SetActive(false);           
-            }
+            
         }
         else if (slotType == SlotType.CloakSlot)
         {
@@ -139,6 +114,14 @@ public class ItemSlots : MonoBehaviour
 
 
 
+    }
+
+    public void OnDisable()
+    {
+        clickOnEnable = false;
+        useUI.SetActive(false);
+        normalUI.SetActive(false); 
+        equipUI.SetActive(false); 
     }
 
     public void Drop()
@@ -205,6 +188,51 @@ public class ItemSlots : MonoBehaviour
         inventory.cloakSlot = null;
 
 
+    }
+
+    public void ClickOn()
+    {
+        if (clickOnEnable)
+        {
+            clickOnEnable = false;
+            useUI.SetActive(false);
+            normalUI.SetActive(false); 
+            equipUI.SetActive(false);
+        }
+        else if (!clickOnEnable)
+        { 
+            clickOnEnable = true;
+            if (inventory.items[SlotNumber-1].Items != null)
+            {
+                if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().canUse)
+                {
+                    useUI.SetActive(true);
+                    normalUI.SetActive(false);
+                    equipUI.SetActive(false);
+                }
+                else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().equip)
+                {
+                    useUI.SetActive(false);
+                    normalUI.SetActive(false);
+                    equipUI.SetActive(true);
+                }
+                else
+                {
+                    useUI.SetActive(false);
+                    normalUI.SetActive(true);
+                    equipUI.SetActive(false);
+
+                }
+
+            }
+            else 
+            {
+                useUI.SetActive(false);
+                normalUI.SetActive(false); 
+                equipUI.SetActive(false);           
+            }
+
+        }
     }
 
 

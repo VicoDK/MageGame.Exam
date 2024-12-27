@@ -60,5 +60,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f97a8d6c9c15714dbe4c264bb21dc75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemUiImage: {fileID: 2800000, guid: c3da0fd62c00ed247b5212b684d11ad4, type: 3}
+  itemUiImage: {fileID: 2800000, guid: ec8fbed7abee42147962befcf6126b51, type: 3}
   itemName: Basic Attack
+  description: 
