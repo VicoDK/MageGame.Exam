@@ -20,10 +20,14 @@ public class ItemPickUp : MonoBehaviour
     public string ItemNameInResources;
     private int step = 1;
     Inventory inventory;
+    ToolInventory toolInventory;
+
+    public bool tool;
 
     void Start()
     {   
         inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        toolInventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
         itemManager = GameObject.Find("ItemManager");
         this.transform.parent = itemManager.transform;
         itemPrefab = Resources.Load<GameObject>(ItemNameInResources);
@@ -40,22 +44,22 @@ public class ItemPickUp : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
-        //if player
-        if (collision.gameObject.CompareTag("Player") && delayPickUp && !pickup)
+        if (!tool)  
         {
-            runWhile = true;
-            step = 1;
+
+            //if player
+            if (collision.gameObject.CompareTag("Player") && delayPickUp && !pickup)
+            {
+                runWhile = true;
+                step = 1;
 
                 while (runWhile)
                 {
-
                     switch (step) 
                     {
                         case 1:
                         for (int i = 0; i < inventory.items.Length+1; i++)
                         {
-
                             if (i < inventory.items.Length)
                             {
 
@@ -74,9 +78,7 @@ public class ItemPickUp : MonoBehaviour
                                 step = 2;
                                 break;
                             }
-
                         }
-
                         break;
                         case 2:
                             for (int i = 0; i < inventory.items.Length+1; i++)
@@ -85,14 +87,13 @@ public class ItemPickUp : MonoBehaviour
                                 {
                                     if (inventory.items[i].Items == null)
                                     {
-
                                         pickup = true;
                                         runWhile = false;
                                         gameObject.SetActive(false);   
                                         Inventory.Getitem(itemPrefab);
                                         break;
                                     }
-                                    
+                                        
                                 }
 
                             }
@@ -100,11 +101,38 @@ public class ItemPickUp : MonoBehaviour
                         break;
                     }
                 }
-                
-                /*pickup = true;
-                gameObject.SetActive(false);   
-                Inventory.Getitem(itemPrefab);*/
+
             
+            }
+
+        }
+        else if (tool)
+        {   
+
+            if (collision.gameObject.CompareTag("Player") && delayPickUp && !pickup)
+            {
+
+
+
+   
+                for (int i = 0; i < toolInventory.Tools.Length+1; i++)
+                {
+                    if (i < toolInventory.Tools.Length)
+                    {
+                        if (toolInventory.Tools[i] == null && !pickup )
+                        {
+
+                            pickup = true;
+                            gameObject.SetActive(false); 
+                            ToolInventory.GetTool(itemPrefab);
+                        }
+
+                    }
+
+                } 
+                    
+
+            }
         }
     }
     

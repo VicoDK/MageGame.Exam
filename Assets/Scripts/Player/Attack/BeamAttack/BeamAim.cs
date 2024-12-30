@@ -41,11 +41,9 @@ public class BeamAim : MonoBehaviour
         mousePosition.z = 0f;
 
         fireDir = (mousePosition - FirePoint.position).normalized;
-
-        // Rotate bullet towards mouse position
         float angle = Mathf.Atan2(fireDir.y, fireDir.x) * Mathf.Rad2Deg;
+
         bullet.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        
     }
 
 

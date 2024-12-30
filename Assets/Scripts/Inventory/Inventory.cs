@@ -16,8 +16,7 @@ public class Inventory : MonoBehaviour
     public Item[] items;
     //public List<Item> items;
 
-    public GameObject staffSlot;
-    public GameObject cloakSlot;
+
     
     public int coin;
 
@@ -39,24 +38,7 @@ public class Inventory : MonoBehaviour
             CoinAmountDisplay = GameObject.Find("PlayerCoinAmount").GetComponent<TMP_Text>();
         }
 
-        if (staffSlot != null)
-        {
-            if (staffSlot.gameObject.GetComponent<itemUse>().itemType != itemUse.whatItem.Staff)
-            {
-                Getitem(staffSlot);
-                staffSlot = null;
-            }
-
-        }
-
-        if (cloakSlot != null)
-        {
-            if (cloakSlot.gameObject.GetComponent<itemUse>().itemType != itemUse.whatItem.Cloak)
-            {
-                Getitem(cloakSlot);
-                cloakSlot = null;
-            }
-        }
+        
 
 
         //Array.Resize<Item>(ref items, 1);

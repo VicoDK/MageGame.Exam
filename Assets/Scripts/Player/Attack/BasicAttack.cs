@@ -13,7 +13,7 @@ public class BasicAttack : MonoBehaviour
     bool hit = false;
     public GameObject DestoyDetector;
 
-    Inventory inventory;
+    ToolInventory inventory;
 
     public MagicTypes.Magictype magictype;
 
@@ -21,7 +21,7 @@ public class BasicAttack : MonoBehaviour
     {
         Invoke("EnableDestoy", 0.04f);
         
-        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
 
         if (inventory.staffSlot != null)
         {

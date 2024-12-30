@@ -23,14 +23,14 @@ public class Explosion : MonoBehaviour
     [Header("Effects")]
     public int EffectTime;
 
-    Inventory inventory;
+    ToolInventory inventory;
     
     void Start()
     {
         //here we start det Explosion timer
         StartCoroutine(Explode());
 
-        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
         if (inventory.staffSlot != null)
         {
             if (inventory.staffSlot.GetComponent<itemUse>().damageModifer != 0)

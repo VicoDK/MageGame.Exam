@@ -2,6 +2,7 @@ using System;
 using System.Xml.Serialization;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,7 @@ using UnityEngine.UI;
 public class ItemSlots : MonoBehaviour
 {
     Inventory inventory;
+    ToolInventory toolInventory;
     public int SlotNumber;
     private Texture ri;
     TMP_Text count;
@@ -21,12 +23,14 @@ public class ItemSlots : MonoBehaviour
     public GameObject normalUI;
     public GameObject equipUI;
     public GameObject unequip;
+    public GameObject empty;
 
     public enum SlotType
     {
         ItemSlot,
         CloakSlot,
-        StaffSlot
+        StaffSlot,
+        ToolSlot
     }
 
     public SlotType slotType;
@@ -35,6 +39,7 @@ public class ItemSlots : MonoBehaviour
     void Start()
     {   
         inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        toolInventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
         count = GetComponentInChildren<TMP_Text>();
         PlayerPOS = GameObject.Find("PlayerBody").GetComponent<Transform>();
         PlayerMovement = GameObject.Find("PlayerBody").GetComponent<Movment>();
@@ -42,6 +47,27 @@ public class ItemSlots : MonoBehaviour
 
     void Update()
     {
+
+        if (useUI == null)
+        {
+            useUI = empty;
+        }
+
+        if (normalUI == null)
+        {
+            normalUI = empty;  
+        }
+
+        if (equipUI == null)
+        {
+            equipUI = empty;   
+        }
+
+        if (unequip == null)
+        {
+            unequip = empty;
+        }
+
 
 
         if (slotType == SlotType.ItemSlot)
@@ -78,38 +104,60 @@ public class ItemSlots : MonoBehaviour
         else if (slotType == SlotType.CloakSlot)
         {
             //display image   
-            if (inventory.cloakSlot != null)
+            if (toolInventory.cloakSlot != null)
             {
-                ri = inventory.cloakSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
+                ri = toolInventory.cloakSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
 
+                this.gameObject.GetComponent<RawImage>().color = Color.white;
                 this.gameObject.GetComponent<RawImage>().texture = ri;
-                unequip.SetActive(true);
+
                 
             }
             else 
             {
+                this.gameObject.GetComponent<RawImage>().color = Color.clear;
                 this.gameObject.GetComponent<RawImage>().texture = null;
-                unequip.SetActive(false);
+
 
             }
         }
         else if (slotType == SlotType.StaffSlot)
         {
             //display image   
-            if (inventory.staffSlot != null)
+            if (toolInventory.staffSlot != null)
             {
-                ri = inventory.staffSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
+                ri = toolInventory.staffSlot.transform.GetComponent<ItemPickUp>().itemUiImage;
 
+                this.gameObject.GetComponent<RawImage>().color = Color.white;
                 this.gameObject.GetComponent<RawImage>().texture = ri;
-                unequip.SetActive(true);
+
             }
             else 
             {
+                this.gameObject.GetComponent<RawImage>().color = Color.clear;
                 this.gameObject.GetComponent<RawImage>().texture = null;
-                unequip.SetActive(false);
 
             }
 
+        }
+        else if (slotType == SlotType.ToolSlot)
+        {
+
+
+            if (toolInventory.Tools[SlotNumber-1] != null)
+            {
+                ri = toolInventory.Tools[SlotNumber-1].transform.GetComponent<ItemPickUp>().itemUiImage;
+
+                this.gameObject.GetComponent<RawImage>().color = Color.white;
+                this.gameObject.GetComponent<RawImage>().texture = ri;
+
+                
+            }
+            else 
+            {
+                this.gameObject.GetComponent<RawImage>().color = Color.clear;
+                this.gameObject.GetComponent<RawImage>().texture = null;
+            }
         }
 
 
@@ -119,18 +167,32 @@ public class ItemSlots : MonoBehaviour
     public void OnDisable()
     {
         clickOnEnable = false;
-        useUI.SetActive(false);
+        useUI.SetActive(false); 
         normalUI.SetActive(false); 
         equipUI.SetActive(false); 
+        
     }
 
     public void Drop()
     {
-        GameObject item = Instantiate(inventory.items[SlotNumber-1].Items, PlayerPOS.position, Quaternion.identity);
-        item.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerMovement.LookDIR, 0) * dropSpeed, ForceMode2D.Impulse);
-        inventory.items[SlotNumber-1].Amount--;
-        
+        if (slotType == SlotType.ItemSlot)
+        {
+            ClickOn();
+            GameObject item = Instantiate(inventory.items[SlotNumber-1].Items, PlayerPOS.position, Quaternion.identity);
+            item.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerMovement.LookDIR, 0) * dropSpeed, ForceMode2D.Impulse);
+            inventory.items[SlotNumber-1].Amount--;
+        }
+        else if (slotType == SlotType.ToolSlot) 
+        {
+            ClickOn();
+            GameObject item = Instantiate(toolInventory.Tools[SlotNumber-1], PlayerPOS.position, Quaternion.identity);
+            item.GetComponent<Rigidbody2D>().AddForce(new Vector2(PlayerMovement.LookDIR, 0) * dropSpeed, ForceMode2D.Impulse);
+            toolInventory.Tools[SlotNumber-1] = null;
+        } 
     }
+
+
+
 
     public void UseItemInSlot()
     {
@@ -140,32 +202,34 @@ public class ItemSlots : MonoBehaviour
 
     public void Equip()
     {
-        if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().itemType == itemUse.whatItem.Staff)
+        if (toolInventory.Tools[SlotNumber-1].GetComponent<itemUse>().itemType == itemUse.whatItem.Staff)
         {
-            if (inventory.staffSlot == null)
+            ClickOn();
+            if (toolInventory.staffSlot == null)
             {
-                inventory.staffSlot = inventory.items[SlotNumber-1].Items;
-                inventory.items[SlotNumber-1].Items = null;
+                toolInventory.staffSlot = toolInventory.Tools[SlotNumber-1];
+                toolInventory.Tools[SlotNumber-1] = null;
             }
             else 
             {
-                GameObject itemHold = inventory.staffSlot;
-                inventory.staffSlot = inventory.items[SlotNumber-1].Items;
-                inventory.items[SlotNumber-1].Items = itemHold;
+                GameObject itemHold = toolInventory.staffSlot;
+                toolInventory.staffSlot = toolInventory.Tools[SlotNumber-1];
+                toolInventory.Tools[SlotNumber-1] = itemHold;
             }
         }
-        else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().itemType == itemUse.whatItem.Cloak)
+        else if (toolInventory.Tools[SlotNumber-1].GetComponent<itemUse>().itemType == itemUse.whatItem.Cloak)
         {
-            if (inventory.cloakSlot == null)
+            ClickOn();
+            if (toolInventory.cloakSlot == null)
             {
-                inventory.cloakSlot = inventory.items[SlotNumber-1].Items;
-                inventory.items[SlotNumber-1].Items = null;
+                toolInventory.cloakSlot = toolInventory.Tools[SlotNumber-1];
+                toolInventory.Tools[SlotNumber-1] = null;
             }
             else 
             {
-                GameObject itemHold = inventory.cloakSlot;
-                inventory.cloakSlot = inventory.items[SlotNumber-1].Items;
-                inventory.items[SlotNumber-1].Items = itemHold;
+                GameObject itemHold = toolInventory.cloakSlot;
+                toolInventory.cloakSlot = toolInventory.Tools[SlotNumber-1];
+                toolInventory.Tools[SlotNumber-1] = itemHold;
             }
 
         }
@@ -177,15 +241,17 @@ public class ItemSlots : MonoBehaviour
 
     public void UnequipStaff()
     {
-        Inventory.Getitem(inventory.staffSlot);
-        inventory.staffSlot = null;
+        ClickOn();
+        ToolInventory.GetTool(toolInventory.staffSlot);
+        toolInventory.staffSlot = null;
 
 
     }
     public void UnequipCloak()
     {
-        Inventory.Getitem(inventory.cloakSlot);
-        inventory.cloakSlot = null;
+        ClickOn();
+        ToolInventory.GetTool(toolInventory.cloakSlot);
+        toolInventory.cloakSlot = null;
 
 
     }
@@ -195,11 +261,22 @@ public class ItemSlots : MonoBehaviour
         if (clickOnEnable)
         {
             clickOnEnable = false;
-            useUI.SetActive(false);
-            normalUI.SetActive(false); 
-            equipUI.SetActive(false);
+            if (useUI != null)
+            {
+                useUI.SetActive(false); 
+            }
+            
+            if (normalUI != null)
+            {
+                normalUI.SetActive(false); 
+            }
+
+            if (equipUI != null)
+            {
+                equipUI.SetActive(false); 
+            }
         }
-        else if (!clickOnEnable)
+        else if (!clickOnEnable && slotType == SlotType.ItemSlot)
         { 
             clickOnEnable = true;
             if (inventory.items[SlotNumber-1].Items != null)
@@ -208,19 +285,11 @@ public class ItemSlots : MonoBehaviour
                 {
                     useUI.SetActive(true);
                     normalUI.SetActive(false);
-                    equipUI.SetActive(false);
-                }
-                else if (inventory.items[SlotNumber-1].Items.GetComponent<itemUse>().equip)
-                {
-                    useUI.SetActive(false);
-                    normalUI.SetActive(false);
-                    equipUI.SetActive(true);
                 }
                 else
                 {
                     useUI.SetActive(false);
                     normalUI.SetActive(true);
-                    equipUI.SetActive(false);
 
                 }
 
@@ -233,8 +302,41 @@ public class ItemSlots : MonoBehaviour
             }
 
         }
+        else if (!clickOnEnable && slotType == SlotType.ToolSlot)
+        {
+            clickOnEnable = true;
+            if (toolInventory.Tools[SlotNumber-1].GetComponent<itemUse>().equip)
+            {
+                useUI.SetActive(false);
+                normalUI.SetActive(false);
+                equipUI.SetActive(true);
+            }
+
+        }
+        else if (!clickOnEnable && slotType == SlotType.CloakSlot ) 
+        {
+            clickOnEnable = true;
+            if (toolInventory.cloakSlot.GetComponent<itemUse>().equip)
+            {
+                useUI.SetActive(false);
+                normalUI.SetActive(false);
+                equipUI.SetActive(true);
+            }
+
+        }
+        else if (!clickOnEnable |slotType == SlotType.StaffSlot ) 
+        {
+            clickOnEnable = true;
+            if (toolInventory.staffSlot.GetComponent<itemUse>().equip)
+            {
+                useUI.SetActive(false);
+                normalUI.SetActive(false);
+                equipUI.SetActive(true);
+            }
+
+        }
+
+
+
     }
-
-
-
 }

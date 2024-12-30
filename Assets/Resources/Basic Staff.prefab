@@ -111,6 +111,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 2555155911585461382}
   delayPickUpTime: 1
   ItemNameInResources: Basic Staff
+  tool: 1
 --- !u!58 &8046416729702399632
 CircleCollider2D:
   m_ObjectHideFlags: 0

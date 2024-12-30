@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 2843888355000575801}
   - component: {fileID: 7041222731292631348}
   - component: {fileID: 4097585813914267803}
+  - component: {fileID: 8803630176587222647}
   m_Layer: 0
   m_Name: InventoryManager
   m_TagString: Untagged
@@ -186,9 +187,16 @@ MonoBehaviour:
     Amount: 0
   - Items: {fileID: 0}
     Amount: 0
-  staffSlot: {fileID: 0}
-  cloakSlot: {fileID: 5950954207737790318, guid: 5ec5145d199258f479c3e8f97292bef5, type: 3}
+  - Items: {fileID: 0}
+    Amount: 0
+  - Items: {fileID: 0}
+    Amount: 0
+  - Items: {fileID: 0}
+    Amount: 0
+  - Items: {fileID: 0}
+    Amount: 0
   coin: 50
+  CoinAmountDisplay: {fileID: 0}
 --- !u!114 &4097585813914267803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,11 +212,31 @@ MonoBehaviour:
   BasicAttack: {fileID: 8018615473539900652, guid: 6ff8699859e315c4b8132b08f43e1d54, type: 3}
   spellsEuipe:
   - {fileID: 1099540456830967666, guid: 0b525c838125b674ca96f8735ce11ba2, type: 3}
-  - {fileID: 5427792472091418842, guid: fa9b2ccb27da8f946b8e4c77ba8a4443, type: 3}
-  - {fileID: 5427792472091418842, guid: 1fee807de1f0f77469eafd211109863a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
   BasicAttackList: []
-  Spells:
-  - {fileID: 5427792472091418842, guid: bb188bac190adc344bba37c51094bbdd, type: 3}
+  Spells: []
+--- !u!114 &8803630176587222647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4336472963180056614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34ca1aabe4839df4a8788fc32031e1c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  staffSlot: {fileID: 0}
+  cloakSlot: {fileID: 0}
+  Tools:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1 &4380752016901351102
 GameObject:
   m_ObjectHideFlags: 0

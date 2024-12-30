@@ -5,6 +5,7 @@ public class SwitchInvMenu : MonoBehaviour
 {
     public GameObject ItemInv;
     public GameObject SpellInv;
+    public GameObject ToolInv;
 
     public TMP_Text[] invCoins;
 
@@ -26,13 +27,22 @@ public class SwitchInvMenu : MonoBehaviour
     public void GoToItemInv()
     {
         ItemInv.SetActive(true);
+        ToolInv.SetActive(false);
         SpellInv.SetActive(false);
     }
 
     public void GoToSpellInv()
     {
         ItemInv.SetActive(false);
+        ToolInv.SetActive(false);
         SpellInv.SetActive(true);
+    }
+
+        public void GoToToolInv()
+    {
+        ItemInv.SetActive(false);
+        ToolInv.SetActive(true);
+        SpellInv.SetActive(false);
     }
 
     /*void OnEnable()

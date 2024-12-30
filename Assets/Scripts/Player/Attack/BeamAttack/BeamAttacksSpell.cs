@@ -11,12 +11,12 @@ public class BeamAttacksSpell : MonoBehaviour
     public Transform Beam;
 
     
-    Inventory inventory;
+    ToolInventory inventory;
 
     public MagicTypes.Magictype magicType;
     PlayerStats playerStats;
     public float ManaCost;
-    Vector2 boxSize; 
+    //Vector2 boxSize; 
     List<GameObject> hitEnemies = new List<GameObject>();
     
     public MagicTypes.magicEffects magicEffect;
@@ -25,9 +25,9 @@ public class BeamAttacksSpell : MonoBehaviour
 
     void Start ()
     {
-        boxSize = new Vector2(transform.localScale.x, transform.localScale.y); 
+        //boxSize = new Vector2(transform.localScale.x, transform.localScale.y); 
         playerStats = GameObject.Find("PlayerBody").GetComponent<PlayerStats>();
-        inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        inventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
         if (inventory.staffSlot != null)
         {
             if (inventory.staffSlot.GetComponent<itemUse>().damageModifer != 0)

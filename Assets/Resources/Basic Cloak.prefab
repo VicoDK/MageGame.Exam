@@ -111,6 +111,7 @@ MonoBehaviour:
   itemPrefab: {fileID: 5950954207737790318}
   delayPickUpTime: 1
   ItemNameInResources: Basic Cloak
+  tool: 1
 --- !u!58 &7857076512595990353
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -52,7 +52,7 @@ public class PlayerStats : MonoBehaviour
     private bool ones;
 
 
-    Inventory Inventory;
+    ToolInventory Inventory;
     itemUse CloakStat;
 
     public float DamageWeaknessModifier;
@@ -68,7 +68,7 @@ public class PlayerStats : MonoBehaviour
         MaxHealth = Health;
 
         Sprite = GetComponent<SpriteRenderer>();
-        Inventory = GameObject.Find("GameManager").GetComponentInChildren<Inventory>();
+        Inventory = GameObject.Find("GameManager").GetComponentInChildren<ToolInventory>();
         //CloakStat = Inventory.cloakSlot.gameObject.GetComponent<ItemUse>();
         
     }   
